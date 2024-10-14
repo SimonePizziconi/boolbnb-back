@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('longitude', 11, 8);
             $table->string('image_path')->nullable();
             $table->string('image_original_name')->nullable();
-            $table->boolean('visible')->default(false);
+            $table->boolean('is_visible')->default(false);
             $table->timestamps();
         });
     }

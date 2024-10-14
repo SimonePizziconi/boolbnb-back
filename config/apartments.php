@@ -14,7 +14,7 @@ return [
         "longitude" => 9.1900,
         "image_path" => "monolocale-moderno-in-centro.jpg",
         "image_original_name" => "monolocale moderno in centro",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 1,
@@ -29,7 +29,7 @@ return [
         "longitude" => 9.1812,
         "image_path" => "appartamento-spazioso-vicino-al-parco.jpg",
         "image_original_name" => "appartamento spazioso vicino al parco",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 1,
@@ -44,7 +44,7 @@ return [
         "longitude" => 11.2558,
         "image_path" => "monolocale-in-zona-storica.jpg",
         "image_original_name" => "monolocale in zona storica",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 1,
@@ -59,7 +59,7 @@ return [
         "longitude" => 14.2681,
         "image_path" => "trilocale-vicino-al-mare.jpg",
         "image_original_name" => "trilocale vicino al mare",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 2,
@@ -74,7 +74,7 @@ return [
         "longitude" => 7.6869,
         "image_path" => "attico-di-lusso-con-terrazza.jpg",
         "image_original_name" => "attico di lusso con terrazza",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 2,
@@ -89,7 +89,7 @@ return [
         "longitude" => 10.4000,
         "image_path" => "bilocale-accogliente-con-giardino.jpg",
         "image_original_name" => "bilocale accogliente con giardino",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 2,
@@ -104,7 +104,7 @@ return [
         "longitude" => 11.3308,
         "image_path" => "villa-indipendente-in-campagna.jpg",
         "image_original_name" => "villa indipendente in campagna",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 2,
@@ -119,7 +119,7 @@ return [
         "longitude" => 11.8785,
         "image_path" => "appartamento-in-stile-rustico.jpg",
         "image_original_name" => "appartamento in stile rustico",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -134,7 +134,7 @@ return [
         "longitude" => 12.5808,
         "image_path" => "casa-al-mare-con-piscina.jpg",
         "image_original_name" => "casa al mare con piscina",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -149,7 +149,7 @@ return [
         "longitude" => 11.3426,
         "image_path" => "appartamento-in-villa-storica.jpg",
         "image_original_name" => "appartamento in villa storica",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -164,7 +164,7 @@ return [
         "longitude" => 7.6869,
         "image_path" => "monolocale-accogliente-in-centro.jpg",
         "image_original_name" => "monolocale accogliente in centro",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -179,7 +179,7 @@ return [
         "longitude" => 11.2558,
         "image_path" => "appartamento-di-lusso-con-vista-panoramica.jpg",
         "image_original_name" => "appartamento di lusso con vista panoramica",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -194,7 +194,7 @@ return [
         "longitude" => 14.2681,
         "image_path" => "bilocale-moderno-e-luminoso.jpg",
         "image_original_name" => "bilocale moderno e luminoso",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -209,7 +209,7 @@ return [
         "longitude" => 16.8661,
         "image_path" => "appartamento-con-terrazza-privata.jpg",
         "image_original_name" => "appartamento con terrazza privata",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -224,7 +224,7 @@ return [
         "longitude" => 13.3615,
         "image_path" => "trilocale-in-pieno-centro.jpg",
         "image_original_name" => "trilocale in pieno centro",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -239,7 +239,7 @@ return [
         "longitude" => 14.2681,
         "image_path" => "appartamento-con-vista-sul-mare.jpg",
         "image_original_name" => "appartamento con vista sul mare",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -254,7 +254,7 @@ return [
         "longitude" => 9.2000,
         "image_path" => "loft-moderno-nel-centro-di-milano.jpg",
         "image_original_name" => "loft moderno nel centro di milano",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -269,7 +269,7 @@ return [
         "longitude" => 11.2558,
         "image_path" => "appartamento-elegante-a-firenze.jpg",
         "image_original_name" => "appartamento elegante a firenze",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -284,7 +284,7 @@ return [
         "longitude" => 13.3615,
         "image_path" => "appartamento-in-zona-tranquilla.jpg",
         "image_original_name" => "appartamento in zona tranquilla",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -299,7 +299,7 @@ return [
         "longitude" => 12.4818,
         "image_path" => "trilocale-con-terrazzo-a-roma.jpg",
         "image_original_name" => "trilocale con terrazzo a roma",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -314,7 +314,7 @@ return [
         "longitude" => 11.3308,
         "image_path" => "appartamento-in-campagna.jpg",
         "image_original_name" => "appartamento in campagna",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -329,7 +329,7 @@ return [
         "longitude" => 7.6869,
         "image_path" => "bilocale-ristrutturato-a-torino.jpg",
         "image_original_name" => "bilocale ristrutturato a torino",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -344,7 +344,7 @@ return [
         "longitude" => 9.0877,
         "image_path" => "casa-vacanze-al-lago.jpg",
         "image_original_name" => "casa vacanze al lago",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -359,7 +359,7 @@ return [
         "longitude" => 9.6705,
         "image_path" => "villa-con-giardino-a-bergamo.jpg",
         "image_original_name" => "villa con giardino a bergamo",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -374,7 +374,7 @@ return [
         "longitude" => 14.2681,
         "image_path" => "appartamento-moderno-in-centro-citta.jpg",
         "image_original_name" => "appartamento moderno in centro citta",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -389,7 +389,7 @@ return [
         "longitude" => 11.3426,
         "image_path" => "attico-con-vista-panoramica.jpg",
         "image_original_name" => "attico con vista panoramica",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -404,7 +404,7 @@ return [
         "longitude" => 12.5674,
         "image_path" => "monolocale-a-rimini.jpg",
         "image_original_name" => "monolocale a rimini",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 3,
@@ -419,7 +419,7 @@ return [
         "longitude" => 11.3426,
         "image_path" => "appartamento-in-centro-storico.jpg",
         "image_original_name" => "appartamento in centro storico",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -434,7 +434,7 @@ return [
         "longitude" => 11.8746,
         "image_path" => "villa-storica-in-campagna.jpg",
         "image_original_name" => "villa storica in campagna",
-        "visible" => false
+        "is_visible" => false
     ],
     [
         "user_id" => 4,
@@ -449,6 +449,6 @@ return [
         "longitude" => 11.1216,
         "image_path" => "casa-in-montagna.jpg",
         "image_original_name" => "casa in montagna",
-        "visible" => false
+        "is_visible" => false
     ],
 ];
