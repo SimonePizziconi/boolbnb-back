@@ -13,7 +13,9 @@ class ApartmentsController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::orderBy('id', 'desc')->get();
+
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
