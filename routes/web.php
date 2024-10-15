@@ -24,6 +24,7 @@ Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('/apartments/trash', [ApartmentsController::class, 'trash'])->name('apartments.trash');
         Route::resource('apartments', ApartmentsController::class);
     });
 
