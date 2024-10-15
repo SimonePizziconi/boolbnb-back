@@ -65,6 +65,14 @@ class ApartmentRequest extends FormRequest
             'address.required' => 'Il titolo è un campo obbligatorio',
             'address.min' => 'Il titolo deve contenere almeno :min caratteri',
 
+            'city.required' => 'Il campo città e obbligatorio',
+            'city.regex' => 'Il campo città non può contenere numeri o cratteri speciali',
+            'city.min' => 'Il campo città deve contenere almeno :min caratteri',
+
+            'cap.required' => 'Il campo cap e obbligatorio',
+            'cap.numeric' => 'Il campo cap non può contenere lettere',
+            'cap.min' => 'Il campo cap deve contenere almeno :min caratteri',
+
             'image_path.image' => 'Il file caricato deve essere di tipo .jpg o .png',
 
             'is_visible' => 'La visibilità è un campo obbligatorio',
