@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ApartmentRequest;
 use App\Models\Apartment;
 use App\Functions\Helper;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentsController extends Controller
 {
@@ -59,10 +60,19 @@ class ApartmentsController extends Controller
         $data['longitude'] = json_decode($response)->results['0']->position->lon;
         // dd($data);
 
+        if (array_key_exists('image_path', $data)) {
+            $image_path = Storage::put('uploads', $data['image_path']);
+
+            $image_original_name = $request->file('image_path')->getClientOriginalName();
+
+            $data['image_path'] = $image_path;
+            $data['image_original_name'] = $image_original_name;
+        }
+
         // creo un nuovo appartamento
         $new_apartment = Apartment::create($data);
 
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.show', $new_apartment);
     }
 
     /**
@@ -141,9 +151,9 @@ class ApartmentsController extends Controller
     public function delete($id){
         $apartment = Apartment::withTrashed()->find($id);
 
-        // if ($apartment->img_path) {
-        //     Storage::delete($apartment->img_path);
-        // }
+        if ($apartment->img_path) {
+            Storage::delete($apartment->img_path);
+        }
 
         $apartment->forceDelete();
 
