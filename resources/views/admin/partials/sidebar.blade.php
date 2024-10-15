@@ -8,22 +8,22 @@
     <ul class="nav nav-pills flex-column mb-auto">
         <li>
             <a href="{{ route('admin.index') }}" class="nav-link text-white">
-                Home
+                <i class="fa-solid fa-house"> Home</i>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white">
-                Apartments
+            <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white d-flex">
+                <i class="fa-solid fa-list"> Appartamenti</i>
             </a>
         </li>
         <li>
             <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
-                New Apartment
+                <i class="fa-solid fa-plus"> Aggiungi Appartamento</i>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.apartments.trash')}}" class="nav-link text-white">
-                Trash
+            <a href="{{ route('admin.apartments.trash') }}" class="nav-link text-white">
+                <i class="fa-solid fa-trash"> Cestino</i>
             </a>
         </li>
     </ul>
