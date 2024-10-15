@@ -7,18 +7,18 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li>
-            <a href="#" class="nav-link text-white">
+            <a href="{{ route('admin.index') }}" class="nav-link text-white">
                 Home
             </a>
         </li>
         <li>
-            <a href="http://127.0.0.1:8000/admin/apartments" class="nav-link text-white">
-                Appartamenti
+            <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white">
+                Apartments
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
-                Link
+            <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
+                New Apartment
             </a>
         </li>
         <li>
