@@ -85,10 +85,11 @@
             {{-- immagine --}}
             <div class="mb-3">
                 <label for="image_path" class="form-label">Inserisci un'immagine</label>
-                <input class="form-control" type="file" id="image_path" name="image_path">
+                <input class="form-control" type="file" id="image_path" name="image_path" onchange="showImage(event)">
                 @error('image_path')
                   <small class="invalid-feedback">{{$message}}</small>
                 @enderror
+                <img src="/img/house-placeholder.jpg" alt="placeholder" id="thumb">
             </div>
 
             {{-- impostazione visibilità --}}
@@ -117,6 +118,13 @@
     </div>
 
 </div>
+
+<script>
+    function showImage(event){
+        const thumb = document.getElementById('thumb');
+        thumb.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
 
 @endsection
 
