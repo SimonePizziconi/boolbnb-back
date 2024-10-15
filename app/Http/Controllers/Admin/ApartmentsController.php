@@ -100,6 +100,8 @@ class ApartmentsController extends Controller
     {
         $data = $request->all();
 
+        $update_apartment = Apartment::find($id);
+
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
 
@@ -114,7 +116,14 @@ class ApartmentsController extends Controller
         $data['latitude'] = json_decode($response)->results['0']->position->lat;
         $data['longitude'] = json_decode($response)->results['0']->position->lon;
 
-        $update_apartment = Apartment::find($id);
+        if (array_key_exists('image_path', $data)) {
+            $image_path = Storage::put('uploads', $data['image_path']);
+
+            $image_original_name = $request->file('image_path')->getClientOriginalName();
+
+            $data['image_path'] = $image_path;
+            $data['image_original_name'] = $image_original_name;
+        }
 
         $update_apartment->fill($data);
 
