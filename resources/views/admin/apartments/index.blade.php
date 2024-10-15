@@ -23,8 +23,8 @@
                 <tr>
 
                     <td>{{ $apartment->title }}</td>
-                    <td class="w-25"><img src="{{ asset('img/' . $apartment->image_path) }}"
-                            alt="{{ $apartment->image_original_name }}" class="w-50"></td>
+                    <td class="w-25"><img src="{{ $apartment->image_path }}" alt="{{ $apartment->image_original_name }}"
+                            class="w-50"></td>
                     <td>{{ $apartment->rooms }}</td>
                     <td>{{ $apartment->beds }}</td>
                     <td>{{ $apartment->bathrooms }}</td>
