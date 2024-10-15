@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->string('image_original_name')->nullable();
             $table->boolean('is_visible')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
