@@ -45,7 +45,7 @@ class ApartmentsController extends Controller
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
 
         // elimino da data le voci città e cap che non servono più,
-        array_splice($data, 7, 2);
+        // array_splice($data, 7, 2);
 
         $queryAddress = Helper::convertAddressForQuery($data['address']);
 
@@ -73,15 +73,41 @@ class ApartmentsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $apartment = Apartment::find($id);
+
+        return view('admin.apartments.edit', compact('apartment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ApartmentRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        // richiamo la funzione pre creare concatenare tutti i dati dell'inidizzo in una sola stringa
+        $data['address'] = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
+
+        // genero lo slug
+        $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
+
+        // elimino da data le voci città e cap che non servono più,
+        // array_splice($data, 7, 2);
+
+        $queryAddress = Helper::convertAddressForQuery($data['address']);
+
+        $response = Helper::getApi($queryAddress);
+
+        $data['latitude'] = json_decode($response)->results['0']->position->lat;
+        $data['longitude'] = json_decode($response)->results['0']->position->lon;
+
+        $update_apartment = Apartment::find($id);
+
+        $update_apartment->fill($data);
+
+        $update_apartment->save();
+
+        return redirect()->route('admin.apartments.show', $update_apartment);
     }
 
     /**
