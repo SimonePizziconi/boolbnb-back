@@ -1,6 +1,6 @@
 <?php
 
-$services = [
+$the_services = [
     'WiFi',
     'Posto Macchina',
     'Piscina',
