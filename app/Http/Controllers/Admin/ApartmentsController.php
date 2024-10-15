@@ -62,8 +62,36 @@ class ApartmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return redirect()->route('admin.apartments.index')->with('deleted', $apartment->title . '" è stato spostato nel cestino');
     }
+
+    public function trash(){
+        $apartment = Apartment::onlyTrashed()->orderBy('id', 'desc')->get();
+
+        return view('admin.apartments.trash', compact('apartments'));
+    }
+
+    public function restore($id){
+        $apartment = Apartment::withTrashed()->find($id);
+        $apartment->restore();
+
+        return redirect()->route('admin.apartments.index')->with('restored', $apartment->title . '" è stato ripristinato correttamente');
+    }
+
+    public function delete($id){
+        $apartment = Apartment::withTrashed()->find($id);
+
+        // if ($apartment->img_path) {
+        //     Storage::delete($apartment->img_path);
+        // }
+
+        $apartment->forceDelete();
+
+        return redirect()->route('admin.apartments.index')->with('deleted', $apartment->title . '" è stato eliminato definitivamente');
+    }
+
 }
