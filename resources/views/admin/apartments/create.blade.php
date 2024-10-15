@@ -94,14 +94,14 @@
             {{-- impostazione visibilità --}}
             <div class="mb-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="true" checked>
+                    <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1" checked>
                     <label class="form-check-label" for="is_visible1">
                       Pubblico
                     </label>
                 </div>
 
                 <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="false">
+                <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0">
                 <label class="form-check-label" for="is_visible2">
                     Privato
                 </label>
