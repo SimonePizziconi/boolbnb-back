@@ -125,9 +125,9 @@ class ApartmentsController extends Controller
     public function delete($id){
         $apartment = Apartment::withTrashed()->find($id);
 
-        // if ($apartment->img_path) {
-        //     Storage::delete($apartment->img_path);
-        // }
+        if ($apartment->img_path) {
+            Storage::delete($apartment->img_path);
+        }
 
         $apartment->forceDelete();
 
