@@ -5,18 +5,12 @@
 }
 
 :root {
-    --primary : #1C1C1C;
+    --primary : #292929;
     --secondary : #006D77;
     --background : #D9D9D9;
     --accent : #556B2F;
     --neutral : #F0F0F0;
 }
-
-.my_side {
-    height: 100%;
-    box-shadow: var(--primary) 0px 5px 15px;
-}
-
 
 a {
     color: inherit;
@@ -63,9 +57,16 @@ a {
     overflow-y: hidden;
 
     .my_sidebar {
-        width: 200px;
+        width: 250px;
+        box-shadow: var(--primary) 0px 5px 15px;
         height: 100%;
         background-color: var(--primary);
+
+        .logo-container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
     }
 
     .my_container {
@@ -74,7 +75,7 @@ a {
     }
 
     #with_sidebar {
-        width: calc(100% - 200px);
+        width: calc(100% - 250px);
     }
 
 }
