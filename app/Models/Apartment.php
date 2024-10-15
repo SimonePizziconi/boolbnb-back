@@ -40,6 +40,8 @@ class Apartment extends Model
         'bathrooms',
         'square_meters',
         'address',
+        'city',
+        'cap',
         'latitude',
         'longitude',
         'image_path',

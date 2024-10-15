@@ -38,17 +38,17 @@ class ApartmentsController extends Controller
         // prendo tutti i dati validati
         $data = $request->all();
 
-        // richiamo la funzione pre creare concatenare tutti i dati dell'inidizzo in una sola stringa
-        $data['address'] = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
-
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
 
         // elimino da data le voci città e cap che non servono più,
         // array_splice($data, 7, 2);
 
+        // richiamo la funzione pre creare concatenare tutti i dati dell'inidizzo in una sola stringa
+        $addressToEncode = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
+
         // encode dato address
-        $queryAddress = Helper::convertAddressForQuery($data['address']);
+        $queryAddress = Helper::convertAddressForQuery($addressToEncode);
 
         // chiamata api per ricavare latitudine e longitudine
         $response = Helper::getApi($queryAddress);
@@ -57,7 +57,7 @@ class ApartmentsController extends Controller
         $data['latitude'] = json_decode($response)->results['0']->position->lat;
         // salvo la longitudine in una variabile
         $data['longitude'] = json_decode($response)->results['0']->position->lon;
-        // dd($data);
+        //dd($data);
 
         // creo un nuovo appartamento
         $new_apartment = Apartment::create($data);
@@ -90,17 +90,15 @@ class ApartmentsController extends Controller
     {
         $data = $request->all();
 
-        // richiamo la funzione pre creare concatenare tutti i dati dell'inidizzo in una sola stringa
-        $data['address'] = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
-
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
 
-        // elimino da data le voci città e cap che non servono più,
-        // array_splice($data, 7, 2);
+        $addressToEncode = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
 
-        $queryAddress = Helper::convertAddressForQuery($data['address']);
+        // encode dato address
+        $queryAddress = Helper::convertAddressForQuery($addressToEncode);
 
+        // chiamata api per ricavare latitudine e longitudine
         $response = Helper::getApi($queryAddress);
 
         $data['latitude'] = json_decode($response)->results['0']->position->lat;
