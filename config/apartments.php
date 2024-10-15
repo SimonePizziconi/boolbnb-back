@@ -12,7 +12,7 @@ return [
         "address" => "Via Garibaldi 1, Milano",
         "latitude" => 45.4642,
         "longitude" => 9.1900,
-        "image_path" => "/img/monolocale-moderno-in-centro.jpg",
+        "image_path" => "uploads/monolocale-moderno-in-centro.jpg",
         "image_original_name" => "monolocale moderno in centro",
         "is_visible" => true
     ],
@@ -27,7 +27,7 @@ return [
         "address" => "Viale dei Pini 15, Milano",
         "latitude" => 45.4770,
         "longitude" => 9.1812,
-        "image_path" => "/img/appartamento-spazioso-vicino-al-parco.jpg",
+        "image_path" => "uploads/appartamento-spazioso-vicino-al-parco.jpg",
         "image_original_name" => "appartamento spazioso vicino al parco",
         "is_visible" => true
     ],
@@ -42,7 +42,7 @@ return [
         "address" => "Via Dante 5, Firenze",
         "latitude" => 43.7696,
         "longitude" => 11.2558,
-        "image_path" => "/img/monolocale-in-zona-storica.jpg",
+        "image_path" => "uploads/monolocale-in-zona-storica.jpg",
         "image_original_name" => "monolocale in zona storica",
         "is_visible" => true
     ],
@@ -57,7 +57,7 @@ return [
         "address" => "Via Litoranea 10, Napoli",
         "latitude" => 40.8518,
         "longitude" => 14.2681,
-        "image_path" => "/img/trilocale-vicino-al-mare.jpg",
+        "image_path" => "uploads/trilocale-vicino-al-mare.jpg",
         "image_original_name" => "trilocale vicino al mare",
         "is_visible" => true
     ],
@@ -72,7 +72,7 @@ return [
         "address" => "Via Roma 18, Torino",
         "latitude" => 45.0703,
         "longitude" => 7.6869,
-        "image_path" => "/img/attico-di-lusso-con-terrazza.jpg",
+        "image_path" => "uploads/attico-di-lusso-con-terrazza.jpg",
         "image_original_name" => "attico di lusso con terrazza",
         "is_visible" => true
     ],
@@ -87,7 +87,7 @@ return [
         "address" => "Via della Rosa 4, Pisa",
         "latitude" => 43.7167,
         "longitude" => 10.4000,
-        "image_path" => "/img/bilocale-accogliente-con-giardino.jpg",
+        "image_path" => "uploads/bilocale-accogliente-con-giardino.jpg",
         "image_original_name" => "bilocale accogliente con giardino",
         "is_visible" => true
     ],
@@ -102,7 +102,7 @@ return [
         "address" => "Via delle Colline 12, Siena",
         "latitude" => 43.3188,
         "longitude" => 11.3308,
-        "image_path" => "/img/villa-indipendente-in-campagna.jpg",
+        "image_path" => "uploads/villa-indipendente-in-campagna.jpg",
         "image_original_name" => "villa indipendente in campagna",
         "is_visible" => true
     ],
@@ -117,7 +117,7 @@ return [
         "address" => "Via del Bosco 8, Arezzo",
         "latitude" => 43.4633,
         "longitude" => 11.8785,
-        "image_path" => "/img/appartamento-in-stile-rustico.jpg",
+        "image_path" => "uploads/appartamento-in-stile-rustico.jpg",
         "image_original_name" => "appartamento in stile rustico",
         "is_visible" => true
     ],
@@ -132,7 +132,7 @@ return [
         "address" => "Via del Mare 20, Rimini",
         "latitude" => 44.0633,
         "longitude" => 12.5808,
-        "image_path" => "/img/casa-al-mare-con-piscina.jpg",
+        "image_path" => "uploads/casa-al-mare-con-piscina.jpg",
         "image_original_name" => "casa al mare con piscina",
         "is_visible" => true
     ],
@@ -147,7 +147,7 @@ return [
         "address" => "Via Castello 30, Bologna",
         "latitude" => 44.4949,
         "longitude" => 11.3426,
-        "image_path" => "/img/appartamento-in-villa-storica.jpg",
+        "image_path" => "uploads/appartamento-in-villa-storica.jpg",
         "image_original_name" => "appartamento in villa storica",
         "is_visible" => true
     ],
@@ -162,7 +162,7 @@ return [
         "address" => "Via Verdi 15, Torino",
         "latitude" => 45.0703,
         "longitude" => 7.6869,
-        "image_path" => "/img/monolocale-accogliente-in-centro.jpg",
+        "image_path" => "uploads/monolocale-accogliente-in-centro.jpg",
         "image_original_name" => "monolocale accogliente in centro",
         "is_visible" => true
     ],
@@ -177,7 +177,7 @@ return [
         "address" => "Via del Panorama 12, Firenze",
         "latitude" => 43.7696,
         "longitude" => 11.2558,
-        "image_path" => "/img/appartamento-di-lusso-con-vista-panoramica.jpg",
+        "image_path" => "uploads/appartamento-di-lusso-con-vista-panoramica.jpg",
         "image_original_name" => "appartamento di lusso con vista panoramica",
         "is_visible" => true
     ],
@@ -192,7 +192,7 @@ return [
         "address" => "Via dei Fiori 25, Napoli",
         "latitude" => 40.8518,
         "longitude" => 14.2681,
-        "image_path" => "/img/bilocale-moderno-e-luminoso.jpg",
+        "image_path" => "uploads/bilocale-moderno-e-luminoso.jpg",
         "image_original_name" => "bilocale moderno e luminoso",
         "is_visible" => true
     ],
@@ -207,7 +207,7 @@ return [
         "address" => "Via delle Rose 5, Bari",
         "latitude" => 41.1256,
         "longitude" => 16.8661,
-        "image_path" => "/img/appartamento-con-terrazza-privata.jpg",
+        "image_path" => "uploads/appartamento-con-terrazza-privata.jpg",
         "image_original_name" => "appartamento con terrazza privata",
         "is_visible" => true
     ],
@@ -222,7 +222,7 @@ return [
         "address" => "Via Roma 22, Palermo",
         "latitude" => 38.1157,
         "longitude" => 13.3615,
-        "image_path" => "/img/trilocale-in-pieno-centro.jpg",
+        "image_path" => "uploads/trilocale-in-pieno-centro.jpg",
         "image_original_name" => "trilocale in pieno centro",
         "is_visible" => true
     ],
@@ -237,7 +237,7 @@ return [
         "address" => "Corso Vittorio Emanuele 12, Napoli",
         "latitude" => 40.8518,
         "longitude" => 14.2681,
-        "image_path" => "/img/appartamento-con-vista-sul-mare.jpg",
+        "image_path" => "uploads/appartamento-con-vista-sul-mare.jpg",
         "image_original_name" => "appartamento con vista sul mare",
         "is_visible" => true
     ],
@@ -252,7 +252,7 @@ return [
         "address" => "Piazza della Repubblica 7, Milano",
         "latitude" => 45.4845,
         "longitude" => 9.2000,
-        "image_path" => "/img/loft-moderno-nel-centro-di-milano.jpg",
+        "image_path" => "uploads/loft-moderno-nel-centro-di-milano.jpg",
         "image_original_name" => "loft moderno nel centro di milano",
         "is_visible" => true
     ],
@@ -267,7 +267,7 @@ return [
         "address" => "Piazza del Duomo 1, Firenze",
         "latitude" => 43.7696,
         "longitude" => 11.2558,
-        "image_path" => "/img/appartamento-elegante-a-firenze.jpg",
+        "image_path" => "uploads/appartamento-elegante-a-firenze.jpg",
         "image_original_name" => "appartamento elegante a firenze",
         "is_visible" => true
     ],
@@ -282,7 +282,7 @@ return [
         "address" => "Via della Libertà 20, Palermo",
         "latitude" => 38.1157,
         "longitude" => 13.3615,
-        "image_path" => "/img/appartamento-in-zona-tranquilla.jpg",
+        "image_path" => "uploads/appartamento-in-zona-tranquilla.jpg",
         "image_original_name" => "appartamento in zona tranquilla",
         "is_visible" => true
     ],
@@ -297,7 +297,7 @@ return [
         "address" => "Via dei Fori Imperiali 25, Roma",
         "latitude" => 41.8947,
         "longitude" => 12.4818,
-        "image_path" => "/img/trilocale-con-terrazzo-a-roma.jpg",
+        "image_path" => "uploads/trilocale-con-terrazzo-a-roma.jpg",
         "image_original_name" => "trilocale con terrazzo a roma",
         "is_visible" => true
     ],
@@ -312,7 +312,7 @@ return [
         "address" => "Strada del Vino 12, Siena",
         "latitude" => 43.3188,
         "longitude" => 11.3308,
-        "image_path" => "/img/appartamento-in-campagna.jpg",
+        "image_path" => "uploads/appartamento-in-campagna.jpg",
         "image_original_name" => "appartamento in campagna",
         "is_visible" => true
     ],
@@ -327,7 +327,7 @@ return [
         "address" => "Via Roma 45, Torino",
         "latitude" => 45.0703,
         "longitude" => 7.6869,
-        "image_path" => "/img/bilocale-ristrutturato-a-torino.jpg",
+        "image_path" => "uploads/bilocale-ristrutturato-a-torino.jpg",
         "image_original_name" => "bilocale ristrutturato a torino",
         "is_visible" => true
     ],
@@ -342,7 +342,7 @@ return [
         "address" => "Lungolago 15, Como",
         "latitude" => 45.5906,
         "longitude" => 9.0877,
-        "image_path" => "/img/casa-vacanze-al-lago.jpg",
+        "image_path" => "uploads/casa-vacanze-al-lago.jpg",
         "image_original_name" => "casa vacanze al lago",
         "is_visible" => true
     ],
@@ -357,7 +357,7 @@ return [
         "address" => "Via della Libertà 8, Bergamo",
         "latitude" => 45.6980,
         "longitude" => 9.6705,
-        "image_path" => "/img/villa-con-giardino-a-bergamo.jpg",
+        "image_path" => "uploads/villa-con-giardino-a-bergamo.jpg",
         "image_original_name" => "villa con giardino a bergamo",
         "is_visible" => true
     ],
@@ -372,7 +372,7 @@ return [
         "address" => "Piazza Garibaldi 1, Napoli",
         "latitude" => 40.8522,
         "longitude" => 14.2681,
-        "image_path" => "/img/appartamento-moderno-in-centro-citta.jpg",
+        "image_path" => "uploads/appartamento-moderno-in-centro-citta.jpg",
         "image_original_name" => "appartamento moderno in centro citta",
         "is_visible" => true
     ],
@@ -387,7 +387,7 @@ return [
         "address" => "Via dei Colli 10, Bologna",
         "latitude" => 44.4949,
         "longitude" => 11.3426,
-        "image_path" => "/img/attico-con-vista-panoramica.jpg",
+        "image_path" => "uploads/attico-con-vista-panoramica.jpg",
         "image_original_name" => "attico con vista panoramica",
         "is_visible" => true
     ],
@@ -402,7 +402,7 @@ return [
         "address" => "Corso d'Augusto 5, Rimini",
         "latitude" => 44.0679,
         "longitude" => 12.5674,
-        "image_path" => "/img/monolocale-a-rimini.jpg",
+        "image_path" => "uploads/monolocale-a-rimini.jpg",
         "image_original_name" => "monolocale a rimini",
         "is_visible" => true
     ],
@@ -417,7 +417,7 @@ return [
         "address" => "Via delle Belle Arti 4, Bologna",
         "latitude" => 44.4949,
         "longitude" => 11.3426,
-        "image_path" => "/img/appartamento-in-centro-storico.jpg",
+        "image_path" => "uploads/appartamento-in-centro-storico.jpg",
         "image_original_name" => "appartamento in centro storico",
         "is_visible" => true
     ],
@@ -432,7 +432,7 @@ return [
         "address" => "Via dei Cipressi 3, Arezzo",
         "latitude" => 43.4641,
         "longitude" => 11.8746,
-        "image_path" => "/img/villa-storica-in-campagna.jpg",
+        "image_path" => "uploads/villa-storica-in-campagna.jpg",
         "image_original_name" => "villa storica in campagna",
         "is_visible" => true
     ],
@@ -447,7 +447,7 @@ return [
         "address" => "Strada del Sole 5, Trento",
         "latitude" => 46.0743,
         "longitude" => 11.1216,
-        "image_path" => "/img/casa-in-montagna.jpg",
+        "image_path" => "uploads/casa-in-montagna.jpg",
         "image_original_name" => "casa in montagna",
         "is_visible" => true
     ],

@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="card" style="width: 18rem;">
-        <img src="{{ $apartment->image_path }}" class="card-img-top" alt="{{ $apartment->image_original_name }}">
+        <img src="{{ asset('storage/' . $apartment->image_path) }}" class="card-img-top" alt="{{ $apartment->image_original_name }}">
         <div class="card-body">
             <h5 class="card-title">{{ $apartment->title }}</h5>
             <p class="card-text">Indirizzo: {{ $apartment->address }}</p>
