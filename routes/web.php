@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ApartmentsController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +22,9 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
-    ->group(function(){
+    ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::resource('apartments', ApartmentsController::class);
     });
 
 Route::middleware('auth')->group(function () {
@@ -31,4 +33,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
