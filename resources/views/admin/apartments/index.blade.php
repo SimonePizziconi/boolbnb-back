@@ -2,6 +2,19 @@
 
 
 @section('content')
+
+    @if (session('deleted'))
+        <div class="alert alert-success" role="alert">
+            {{ session('deleted') }}
+        </div>
+    @endif
+
+    @if (session('restored'))
+        <div class="alert alert-success" role="alert">
+            {{ session('restored') }}
+        </div>
+    @endif
+
     <h1>Lista Appartamenti</h1>
     <table class="table">
         <thead>
@@ -42,14 +55,17 @@
                         <a class="btn btn-warning"
                             href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}"><i
                                 class="fa-solid fa-pen"></i></a>
-                        <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
+                        <form id="form-delete-{{$apartment->id}}" action="{{route('admin.apartments.destroy', $apartment)}}" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare {{$apartment->title}}?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
 
 
-                        {{-- DOBBIAMO CREARE IL DELETE PER USARE QUESTO --}}
-                        {{-- @include('admin.partials.formdelete', [
-                            'route' => route('admin.apartments.destroy', $apartment),
-                            'message' => "Sei sicuro di eliminare l'appartamento:  $apartment->title ?",
-                        ]) --}}
+
+
 
 
                     </td>

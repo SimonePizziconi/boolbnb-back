@@ -25,6 +25,8 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('/apartments/trash', [ApartmentsController::class, 'trash'])->name('apartments.trash');
+        Route::patch('/apartments/{apartment}/restore', [ApartmentsController::class, 'restore'])->name('apartments.restore');
+        Route::delete('/apartments/{apartment}/delete', [ApartmentsController::class, 'delete'])->name('apartments.delete');
         Route::resource('apartments', ApartmentsController::class);
     });
 

@@ -66,11 +66,11 @@ class ApartmentsController extends Controller
     {
         $apartment->delete();
 
-        return redirect()->route('admin.apartments.index')->with('deleted', $apartment->title . '" è stato spostato nel cestino');
+        return redirect()->route('admin.apartments.index')->with('deleted', '"'.$apartment->title . '" è stato spostato nel cestino');
     }
 
     public function trash(){
-        $apartment = Apartment::onlyTrashed()->orderBy('id', 'desc')->get();
+        $apartments = Apartment::onlyTrashed()->orderBy('id', 'desc')->get();
 
         return view('admin.apartments.trash', compact('apartments'));
     }
@@ -79,7 +79,7 @@ class ApartmentsController extends Controller
         $apartment = Apartment::withTrashed()->find($id);
         $apartment->restore();
 
-        return redirect()->route('admin.apartments.index')->with('restored', $apartment->title . '" è stato ripristinato correttamente');
+        return redirect()->route('admin.apartments.index')->with('restored', '"'.$apartment->title . '" è stato ripristinato correttamente');
     }
 
     public function delete($id){
@@ -91,7 +91,7 @@ class ApartmentsController extends Controller
 
         $apartment->forceDelete();
 
-        return redirect()->route('admin.apartments.index')->with('deleted', $apartment->title . '" è stato eliminato definitivamente');
+        return redirect()->route('admin.apartments.index')->with('deleted', '"'.$apartment->title . '" è stato eliminato definitivamente');
     }
 
 }

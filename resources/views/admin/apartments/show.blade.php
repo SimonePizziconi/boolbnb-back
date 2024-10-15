@@ -15,11 +15,12 @@
             <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn btn-warning"><i
                     class="fa-solid fa-pencil"></i>
             </a>
-            <form class="d-inline" action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
-                onsubmit="return confirm('Vuoi eliminare')">
+            <form class="d-inline" id="form-delete-{{$apartment->id}}" action="{{route('admin.apartments.destroy', $apartment)}}" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare {{$apartment->title}}?')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
             </form>
         </div>
     </div>

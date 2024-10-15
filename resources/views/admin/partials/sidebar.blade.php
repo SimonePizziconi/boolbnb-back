@@ -22,8 +22,8 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
-                Link
+            <a href="{{ route('admin.apartments.trash')}}" class="nav-link text-white">
+                Trash
             </a>
         </li>
     </ul>
