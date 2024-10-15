@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use App\Functions\Helper;
 
 class ApartmentsController extends Controller
 {
@@ -23,7 +24,7 @@ class ApartmentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.apartments.create');
     }
 
     /**
@@ -31,7 +32,10 @@ class ApartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $data['address'] = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
+        dd($data);
     }
 
     /**

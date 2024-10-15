@@ -22,5 +22,9 @@ class Helper {
         return $slug;
 
     }
-    
+
+    public static function getFullAddress($address, $city, $cap){
+        return $address = $address . ', ' . $city . ', ' . $cap;
+    }
+
 }
