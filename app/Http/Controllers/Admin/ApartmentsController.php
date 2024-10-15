@@ -47,14 +47,19 @@ class ApartmentsController extends Controller
         // elimino da data le voci città e cap che non servono più,
         array_splice($data, 7, 2);
 
+        // encode dato address
         $queryAddress = Helper::convertAddressForQuery($data['address']);
 
+        // chiamata api per ricavare latitudine e longitudine
         $response = Helper::getApi($queryAddress);
 
+        // salvo la latitudine in una variabile
         $data['latitude'] = json_decode($response)->results['0']->position->lat;
+        // salvo la longitudine in una variabile
         $data['longitude'] = json_decode($response)->results['0']->position->lon;
         // dd($data);
 
+        // creo un nuovo appartamento
         $new_apartment = Apartment::create($data);
 
         return redirect()->route('admin.apartments.index');
