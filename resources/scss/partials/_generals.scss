@@ -80,13 +80,44 @@ a {
         box-shadow: var(--primary) 0px 5px 15px;
         height: 100%;
         background-color: var(--primary);
+        transition: width 0.3s ease;
 
         .logo-container {
             width: 100%;
             display: flex;
             align-items: center;
         }
+
+        ul.nav-pills2 li a span {
+            display: none;
+        }
+
+        // Media query
+        @media (max-width: 568px) {
+            width: 80px;
+
+            .logo-container {
+                justify-content: center;
+            }
+
+            img {
+                width: 40px;
+            }
+
+            ul.nav-pills li a span {
+                display: none;
+            }
+
+            ul.nav-pills2 li a span {
+                display: block;
+            }
+
+            ul.nav-pills li a {
+                justify-content: center;
+            }
+        }
     }
+
 
     .my_container {
         width: 100%;
@@ -102,18 +133,18 @@ a {
 
 // REGOLE DASHBOARD
 
-input[type="checkbox"] + .btn-custom{
+input[type="checkbox"]+.btn-custom {
     border: 1px solid var(--primary);
     // background-color: var(--secondary);
     color: black;
 }
 
-input[type="checkbox"]:checked + .btn-custom {
-    background-color: var(--accent); /* Colore dopo il click */
+input[type="checkbox"]:checked+.btn-custom {
+    background-color: var(--accent);
+    /* Colore dopo il click */
     color: white;
 }
+
 // .btn{
 //     $btn-primary-bg :var(--secondary);
 // }
-
-
