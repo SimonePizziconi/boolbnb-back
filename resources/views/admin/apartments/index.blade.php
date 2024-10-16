@@ -50,17 +50,17 @@
                     </td> --}}
                     <td>
                         @forelse ($apartment->services as $service)
-                            <span class="badge text-bg-success ">{{ $service->name }}</span>
+                            <span class="badge text-bg-success custom-delete">{{ $service->name }}</span>
                         @empty
                             -
                         @endforelse
                     </td>
                     <td>
                         <div class="d-inline-flex gap-1">
-                            <a class="btn btn-success"
+                            <a class="btn custom-show"
                                 href="{{ route('admin.apartments.show', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-eye"></i></a>
-                            <a class="btn btn-warning"
+                            <a class="btn custom-edit"
                                 href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-pen"></i></a>
                             <form id="form-delete-{{ $apartment->id }}"
@@ -68,7 +68,7 @@
                                 onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn custom-delete">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </form>
