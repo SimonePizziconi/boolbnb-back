@@ -98,14 +98,14 @@
             {{-- impostazione visibilità --}}
             <div class="mb-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1" checked>
+                    <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"  {{ old('is_visible', $apartment->is_visible) == 1 ? 'checked' : '' }}>
                     <label class="form-check-label" for="is_visible1">
                       Pubblico
                     </label>
                 </div>
 
                 <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0">
+                <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0" {{ old('is_visible', $apartment->is_visible) == 0 ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_visible2">
                     Privato
                 </label>
