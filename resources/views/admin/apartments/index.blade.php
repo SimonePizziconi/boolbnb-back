@@ -46,7 +46,11 @@
                         <div id="map-{{ $apartment->id }}" style="width: 200px; height: 150px;"></div>
                     </td> --}}
                     <td>
-                        <span class="badge text-bg-success">Servizi</span>
+                        @forelse ($apartment->services as $service)
+                            <span class="badge text-bg-success ">{{ $service->name }}</span>
+                        @empty
+                            -
+                        @endforelse
                     </td>
                     <td>
                         <a class="btn btn-success"
