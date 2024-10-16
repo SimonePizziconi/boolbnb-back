@@ -1,6 +1,6 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white my_sidebar">
     <a id="logo_debug" href="http://localhost:5174/" class="align-items-center mb-3 mb-md-0 me-md-auto d-flex">
-        <img class="img-fluid w-28" src="{{ asset('img/logo-bool-bnb.png') }}" alt="logo">
+        <img class="img-fluid" src="{{ asset('img/logo-bool-bnb.png') }}" alt="logo">
     </a>
 
     {{-- <div id="logo_debug"></div> --}}
@@ -20,7 +20,7 @@
         </li>
         <li>
             <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
-                <span><i class="fa-solid fa-plus"></i> Aggiungi Appartamento</span>
+                <span><i class="fa-solid fa-plus"></i> Nuovo Appartamento</span>
 
             </a>
         </li>
