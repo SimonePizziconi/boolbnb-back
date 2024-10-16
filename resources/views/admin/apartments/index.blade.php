@@ -59,10 +59,10 @@
                     </td>
                     <td>
                         <div class="d-inline-flex gap-1">
-                            <a class="btn custom-show"
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Dettagli" class="btn custom-show"
                                 href="{{ route('admin.apartments.show', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-eye"></i></a>
-                            <a class="btn custom-edit"
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Modifica" class="btn custom-edit"
                                 href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-pen"></i></a>
                             <form id="form-delete-{{ $apartment->id }}"
@@ -70,7 +70,8 @@
                                 onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn custom-delete">
+                                <button data-bs-toggle="tooltip" data-bs-placement="top" title="Elimina" type="submit"
+                                    class="btn custom-delete">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </form>

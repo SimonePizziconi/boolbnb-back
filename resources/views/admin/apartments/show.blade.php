@@ -19,15 +19,16 @@
                     <span>Non è stato assegnato nessun servizio</span>
                 @endforelse
             </p>
-            <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn custom-edit"><i
-                    class="fa-solid fa-pencil"></i>
+            <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn custom-edit" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Modifica"><i class="fa-solid fa-pencil"></i>
             </a>
             <form class="d-inline" id="form-delete-{{ $apartment->id }}"
                 action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
                 onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn custom-delete">
+                <button type="submit" class="btn custom-delete" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Elimina">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </form>
