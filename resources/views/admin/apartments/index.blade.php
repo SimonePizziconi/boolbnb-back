@@ -2,7 +2,6 @@
 
 
 @section('content')
-
     @if (session('deleted'))
         <div class="alert alert-success" role="alert">
             {{ session('deleted') }}
@@ -36,8 +35,9 @@
                 <tr>
 
                     <td>{{ $apartment->title }}</td>
-                    <td class="w-25"><img src="{{ asset('storage/' . $apartment->image_path) }}" alt="{{ $apartment->image_original_name }}"
-                            class="w-50" onerror="this.src='/img/house-placeholder.jpg'"></td>
+                    <td class="w-25"><img src="{{ asset('storage/' . $apartment->image_path) }}"
+                            alt="{{ $apartment->image_original_name }}" class="w-50"
+                            onerror="this.src='/img/house-placeholder.jpg'"></td>
                     <td>{{ $apartment->rooms }}</td>
                     <td>{{ $apartment->beds }}</td>
                     <td>{{ $apartment->bathrooms }}</td>
@@ -55,7 +55,9 @@
                         <a class="btn btn-warning"
                             href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}"><i
                                 class="fa-solid fa-pen"></i></a>
-                        <form id="form-delete-{{$apartment->id}}" action="{{route('admin.apartments.destroy', $apartment)}}" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare {{$apartment->title}}?')">
+                        <form id="form-delete-{{ $apartment->id }}"
+                            action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
+                            onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">
@@ -80,5 +82,5 @@
 
 
 @section('title')
-    Apartments
+    Apartments List
 @endsection
