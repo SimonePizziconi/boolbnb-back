@@ -123,9 +123,9 @@
                 {{-- impostazione visibilità --}}
                 <div class="mb-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"
+                        <input class="form-check-input btn-custom" type="radio" name="is_visible" id="is_visible1" value="1"
                             checked>
-                        <label class="form-check-label" for="is_visible1">
+                        <label class="form-check-label btn-custom" for="is_visible1">
                             Pubblico
                         </label>
                     </div>
@@ -140,7 +140,7 @@
                 </div>
 
                 {{-- bottone invio --}}
-                <button type="submit" class="btn btn-primary">Invia</button>
+                <button type="submit" class="btn custom-show">Invia</button>
 
             </form>
 

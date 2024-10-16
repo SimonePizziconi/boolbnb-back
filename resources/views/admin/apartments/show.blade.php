@@ -19,7 +19,7 @@
                     <span>Non è stato assegnato nessun servizio</span>
                 @endforelse
             </p>
-            <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn btn-warning"><i
+            <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn custom-edit"><i
                     class="fa-solid fa-pencil"></i>
             </a>
             <form class="d-inline" id="form-delete-{{ $apartment->id }}"
@@ -27,7 +27,7 @@
                 onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn custom-delete">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </form>
