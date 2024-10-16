@@ -21,8 +21,9 @@ class ApartmentTableSeeder extends Seeder
 
         foreach ($apartments as $apartment) {
             $new_aparment = new Apartment();
+
             $new_aparment->title = $apartment['title'];
-            $new_aparment->slug = 
+            $new_aparment->slug =
                 Helper::generateSlug($new_aparment->title, Apartment::class);
             $new_aparment->rooms = $apartment['rooms'];
             $new_aparment->beds = $apartment['beds'];
@@ -33,7 +34,7 @@ class ApartmentTableSeeder extends Seeder
             $new_aparment->longitude = $apartment['longitude'];
             $new_aparment->image_path = $apartment['image_path'];
             $new_aparment->image_original_name = $apartment['image_original_name'];
-            $new_aparment->is_visible = $apartment['is_visible'];
+            $new_aparment->is_visible = $apartment['is_visible'] ?? 1;
             $new_aparment->save();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
