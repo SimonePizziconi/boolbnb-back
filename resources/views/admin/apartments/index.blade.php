@@ -55,7 +55,7 @@
                             -
                         @endforelse
                     </td>
-                    <td>
+                    <td class="d-flex gap-1">
                         <a class="btn btn-success"
                             href="{{ route('admin.apartments.show', ['apartment' => $apartment->id]) }}">
                             <i class="fa-solid fa-eye"></i></a>
@@ -63,7 +63,6 @@
                             href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                             <i class="fa-solid fa-pen"></i></a>
                         <form
-                            class="d-inline"
                             id="form-delete-{{ $apartment->id }}"
                             action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
                             onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
