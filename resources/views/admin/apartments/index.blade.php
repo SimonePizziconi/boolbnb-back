@@ -17,24 +17,24 @@
     <table class="table text-center">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Immagine</th>
+                <th scope="col" class="d-none d-md-table-cell">Id</th>
+                <th scope="col" class="d-none d-md-table-cell">Immagine</th>
                 <th scope="col">Titolo</th>
                 {{-- <th scope="col">Stanze</th>
                 <th scope="col">Camere</th>
                 <th scope="col">Bagni</th>
                 <th scope="col">Metri Quadri</th> --}}
-                <th scope="col">Indirizzo</th>
+                <th scope="col" class="d-none d-md-table-cell">Indirizzo</th>
                 {{-- <th scope="col">Mappa</th> --}}
-                <th scope="col">Servizi</th>
+                <th scope="col" class="d-none d-md-table-cell">Servizi</th>
                 <th scope="col">Azioni</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($apartments as $apartment)
                 <tr>
-                    <td>{{ $apartment->id }}</td>
-                    <td>
+                    <td class="d-none d-md-table-cell">{{ $apartment->id }}</td>
+                    <td class="d-none d-md-table-cell">
                         <div class="ratio ratio-1x1">
                             <img src="{{ asset('storage/' . $apartment->image_path) }}"
                                 alt="{{ $apartment->image_original_name }}" class="img-fluid object-fit-cover"
@@ -46,11 +46,11 @@
                     <td>{{ $apartment->beds }}</td>
                     <td>{{ $apartment->bathrooms }}</td>
                     <td>{{ $apartment->square_meters }}</td> --}}
-                    <td>{{ $apartment->address }}</td>
+                    <td class="d-none d-md-table-cell">{{ $apartment->address }}</td>
                     {{-- <td>
                         <div id="map-{{ $apartment->id }}" style="width: 200px; height: 150px;"></div>
                     </td> --}}
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         @forelse ($apartment->services as $service)
                             <span class="badge text-bg-success custom-delete">{{ $service->name }}</span>
                         @empty
@@ -62,12 +62,13 @@
                             <a data-bs-toggle="tooltip" data-bs-placement="top" title="Dettagli" class="btn custom-show"
                                 href="{{ route('admin.apartments.show', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-eye"></i></a>
-                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Modifica" class="btn custom-edit"
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Modifica" class="btn custom-edit d-none d-lg-inline-block"
                                 href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-pen"></i></a>
                             <form id="form-delete-{{ $apartment->id }}"
                                 action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
+                                onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')"
+                                class="d-none d-lg-inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button data-bs-toggle="tooltip" data-bs-placement="top" title="Elimina" type="submit"
