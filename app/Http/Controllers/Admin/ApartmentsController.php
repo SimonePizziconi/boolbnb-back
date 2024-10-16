@@ -162,7 +162,7 @@ class ApartmentsController extends Controller
 
     public function trash()
     {
-        $apartments = Apartment::onlyTrashed()->orderBy('id', 'desc')->get();
+        $apartments = Apartment::onlyTrashed()->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
 
         return view('admin.apartments.trash', compact('apartments'));
     }
