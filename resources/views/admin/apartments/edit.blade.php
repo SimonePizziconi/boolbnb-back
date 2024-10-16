@@ -26,34 +26,38 @@
                     @enderror
                 </div>
 
-                {{-- numero di camere --}}
-                <div class="mb-3">
-                    <label for="rooms" class="form-label">Numero di camere</label>
-                    <input type="number" required class="form-control @error('rooms') is-invalid @enderror" id="rooms"
-                        name="rooms" value="{{ old('rooms', $apartment->rooms) }}">
-                    @error('rooms')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                </div>
+                <div class="row">
 
-                {{-- numero di letti --}}
-                <div class="mb-3">
-                    <label for="beds" class="form-label">Numero di letti</label>
-                    <input type="number" required class="form-control @error('beds') is-invalid @enderror" id="beds"
-                        name="beds" value="{{ old('beds', $apartment->beds) }}">
-                    @error('beds')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                </div>
+                     {{-- numero di camere --}}
+                    <div class="col-lg-4 col-sm-12">
+                        <label for="rooms" class="form-label">Numero di camere</label>
+                        <input type="number" required class="form-control @error('rooms') is-invalid @enderror" id="rooms"
+                            name="rooms" value="{{ old('rooms', $apartment->rooms) }}">
+                        @error('rooms')
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
 
-                {{-- numero di bagni --}}
-                <div class="mb-3">
-                    <label for="bathrooms" class="form-label">Numero di bagni</label>
-                    <input type="number" required class="form-control @error('bathrooms') is-invalid @enderror"
-                        id="bathrooms" name="bathrooms" value="{{ old('bathrooms', $apartment->bathrooms) }}">
-                    @error('bathrooms', $apartment->bathrooms)
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
+                    {{-- numero di letti --}}
+                    <div class="col-lg-4 col-sm-12">
+                        <label for="beds" class="form-label">Numero di letti</label>
+                        <input type="number" required class="form-control @error('beds') is-invalid @enderror" id="beds"
+                            name="beds" value="{{ old('beds', $apartment->beds) }}">
+                        @error('beds')
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    {{-- numero di bagni --}}
+                    <div class="col-lg-4 col-sm-12">
+                        <label for="bathrooms" class="form-label">Numero di bagni</label>
+                        <input type="number" required class="form-control @error('bathrooms') is-invalid @enderror"
+                            id="bathrooms" name="bathrooms" value="{{ old('bathrooms', $apartment->bathrooms) }}">
+                        @error('bathrooms', $apartment->bathrooms)
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                 </div>
 
                 {{-- metri quadrati --}}
@@ -156,7 +160,7 @@
                 </div>
 
                 {{-- bottone invio --}}
-                <button type="submit" class="btn btn-primary">Invia</button>
+                <button type="submit" class="btn custom-show">Invia</button>
 
             </form>
 
