@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->decimal('current_price', 5, 2);
+            $table->unsignedTinyInteger('duration');
             $table->timestamps();
         });
     }

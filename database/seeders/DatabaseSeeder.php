@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Sponsorship;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             ServiceTableSeeder::class,
+            SponsorshipTableSeeder::class,
             ApartmentTableSeeder::class,
+            ApartmentServiceTableSeeder::class
         ]);
     }
 }
