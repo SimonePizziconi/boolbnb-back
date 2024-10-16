@@ -55,23 +55,24 @@
                             -
                         @endforelse
                     </td>
-                    <td class="d-flex gap-1">
-                        <a class="btn btn-success"
-                            href="{{ route('admin.apartments.show', ['apartment' => $apartment->id]) }}">
-                            <i class="fa-solid fa-eye"></i></a>
-                        <a class="btn btn-warning"
-                            href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
-                            <i class="fa-solid fa-pen"></i></a>
-                        <form
-                            id="form-delete-{{ $apartment->id }}"
-                            action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
-                            onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
+                    <td>
+                        <div class="d-inline-flex gap-1">
+                            <a class="btn btn-success"
+                                href="{{ route('admin.apartments.show', ['apartment' => $apartment->id]) }}">
+                                <i class="fa-solid fa-eye"></i></a>
+                            <a class="btn btn-warning"
+                                href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
+                                <i class="fa-solid fa-pen"></i></a>
+                            <form id="form-delete-{{ $apartment->id }}"
+                                action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach
