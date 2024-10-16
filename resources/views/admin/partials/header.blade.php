@@ -1,15 +1,10 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <div class="d-flex">
-                <a id="logo_debug" href="http://localhost:5174/" class="align-items-center mb-3 mb-md-0 me-md-auto d-flex">
-                    <img class="img-fluid w-25" src="{{ asset('img/logo-bool-bnb.png') }}" alt="logo">
-                </a>
-                <a class="navbar-brand d-flex align-items-center" href="{{ route('admin.index') }}">
+            
+                <a class="navbar-brand" href="{{ route('admin.index') }}">
                     <h2 class="my_txt_primary">Dashboard</h2>
                 </a>
-
-            </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -39,6 +34,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa-solid fa-user my_icon"></i>
+                                <span class="d-block mt-1">{{Auth::user()->first_name . ' ' . Auth::user()->last_name}}</span>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

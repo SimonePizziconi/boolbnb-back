@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 USE App\Models\Apartment;
 use Illuminate\Support\Facades\DB;
 use App\Functions\Helper;
+use App\Models\User;
 
 class ApartmentTableSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class ApartmentTableSeeder extends Seeder
 
         foreach ($apartments as $apartment) {
             $new_aparment = new Apartment();
-
+            $new_aparment->user_id = User::inRandomOrder()->first()->id;
             $new_aparment->title = $apartment['title'];
             $new_aparment->slug =
                 Helper::generateSlug($new_aparment->title, Apartment::class);

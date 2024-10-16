@@ -33,6 +33,37 @@
             </form>
         </div>
     </div>
+
+    <!-- Qui la mappa per il singolo appartamento -->
+    <div id="map" style="width: 200px; height: 150px;"></div>
+    </div>
+
+    <!-- Inclusione del CSS e JS di TomTom Maps -->
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.16.0/maps/maps.css" />
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.16.0/maps/maps-web.min.js"></script>
+
+    <script>
+        // Inserisci la tua chiave API di TomTom
+        var apiKey = 'd0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q';
+
+        // Controlla se l'appartamento ha coordinate valide prima di creare la mappa
+        @if ($apartment->latitude && $apartment->longitude)
+            var map = tt.map({
+                key: apiKey,
+                container: 'map',
+                center: [{{ $apartment->longitude }}, {{ $apartment->latitude }}],
+                zoom: 15
+            });
+
+            var marker = new tt.Marker()
+                .setLngLat([{{ $apartment->longitude }}, {{ $apartment->latitude }}])
+                .addTo(map);
+
+            console.log('Latitudine:', apartment.latitude, 'Longitudine:', apartment.longitude);
+        @else
+            console.log('Coordinate mancanti per questo appartamento.');
+        @endif
+    </script>
 @endsection
 
 
