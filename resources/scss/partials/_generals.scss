@@ -101,3 +101,19 @@ a {
 
 
 // REGOLE DASHBOARD
+
+input[type="checkbox"] + .btn-custom{
+    border: 1px solid var(--primary);
+    // background-color: var(--secondary);
+    color: black;
+}
+
+input[type="checkbox"]:checked + .btn-custom {
+    background-color: var(--accent); /* Colore dopo il click */
+    color: white;
+}
+// .btn{
+//     $btn-primary-bg :var(--secondary);
+// }
+
+

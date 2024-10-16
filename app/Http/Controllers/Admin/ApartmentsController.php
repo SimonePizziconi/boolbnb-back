@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ApartmentRequest;
 use App\Models\Apartment;
+use App\Models\Service;
 use App\Functions\Helper;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,8 +28,8 @@ class ApartmentsController extends Controller
      */
     public function create()
     {
-
-        return view('admin.apartments.create');
+        $services = Service::orderBy('name')->get();
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
@@ -41,9 +42,6 @@ class ApartmentsController extends Controller
 
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
-
-        // elimino da data le voci città e cap che non servono più,
-        // array_splice($data, 7, 2);
 
         // richiamo la funzione pre creare concatenare tutti i dati dell'inidizzo in una sola stringa
         $addressToEncode = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
@@ -71,6 +69,8 @@ class ApartmentsController extends Controller
 
         // creo un nuovo appartamento
         $new_apartment = Apartment::create($data);
+
+        $new_apartment->services()->attach($data['services']);
 
         return redirect()->route('admin.apartments.show', $new_apartment);
     }
