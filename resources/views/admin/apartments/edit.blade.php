@@ -156,7 +156,7 @@
                 </div>
 
                 {{-- bottone invio --}}
-                <button type="submit" class="btn btn-primary">Invia</button>
+                <button type="submit" class="btn custom-show">Invia</button>
 
             </form>
 

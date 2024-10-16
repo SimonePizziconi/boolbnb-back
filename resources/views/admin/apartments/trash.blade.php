@@ -14,7 +14,7 @@
                             <form class="d-inline" action="{{ route('admin.apartments.restore', $apartment) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn custom-show">
                                     <i class="fa-solid fa-trash-can-arrow-up"></i>
                                 </button>
                             </form>
@@ -23,7 +23,7 @@
                                 onsubmit="return confirm('Sei sicuro di voler eliminare definitivamente questo appartamento?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn custom-delete">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </form>
