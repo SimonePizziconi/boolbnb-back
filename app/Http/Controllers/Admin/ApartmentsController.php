@@ -16,7 +16,7 @@ class ApartmentsController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::orderBy('id', 'desc')->get();
+        $apartments = Apartment::orderBy('id', 'desc')->paginate(10);
 
 
         return view('admin.apartments.index', compact('apartments'));
@@ -139,23 +139,26 @@ class ApartmentsController extends Controller
     {
         $apartment->delete();
 
-        return redirect()->route('admin.apartments.index')->with('deleted', '"'.$apartment->title . '" è stato spostato nel cestino');
+        return redirect()->route('admin.apartments.index')->with('deleted', '"' . $apartment->title . '" è stato spostato nel cestino');
     }
 
-    public function trash(){
+    public function trash()
+    {
         $apartments = Apartment::onlyTrashed()->orderBy('id', 'desc')->get();
 
         return view('admin.apartments.trash', compact('apartments'));
     }
 
-    public function restore($id){
+    public function restore($id)
+    {
         $apartment = Apartment::withTrashed()->find($id);
         $apartment->restore();
 
-        return redirect()->route('admin.apartments.index')->with('restored', '"'.$apartment->title . '" è stato ripristinato correttamente');
+        return redirect()->route('admin.apartments.index')->with('restored', '"' . $apartment->title . '" è stato ripristinato correttamente');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $apartment = Apartment::withTrashed()->find($id);
 
         if ($apartment->img_path) {
@@ -164,7 +167,6 @@ class ApartmentsController extends Controller
 
         $apartment->forceDelete();
 
-        return redirect()->route('admin.apartments.index')->with('deleted', '"'.$apartment->title . '" è stato eliminato definitivamente');
+        return redirect()->route('admin.apartments.index')->with('deleted', '"' . $apartment->title . '" è stato eliminato definitivamente');
     }
-
 }
