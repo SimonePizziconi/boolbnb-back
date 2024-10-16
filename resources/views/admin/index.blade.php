@@ -8,5 +8,5 @@
 
 
 @section('title')
-    Dashboard
+    Dashboard - BoolBnB Admin Panel
 @endsection
