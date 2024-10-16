@@ -34,10 +34,12 @@
             @foreach ($apartments as $apartment)
                 <tr>
                     <td>{{ $apartment->id }}</td>
-                    <td class="w-25">
-                        <img src="{{ asset('storage/' . $apartment->image_path) }}"
-                            alt="{{ $apartment->image_original_name }}" class="w-50"
-                            onerror="this.src='/img/house-placeholder.jpg'">
+                    <td>
+                        <div class="ratio ratio-1x1">
+                            <img src="{{ asset('storage/' . $apartment->image_path) }}"
+                                alt="{{ $apartment->image_original_name }}" class="img-fluid object-fit-cover"
+                                onerror="this.src='/img/house-placeholder.jpg'">
+                        </div>
                     </td>
                     <td>{{ $apartment->title }}</td>
                     {{-- <td>{{ $apartment->rooms }}</td>
