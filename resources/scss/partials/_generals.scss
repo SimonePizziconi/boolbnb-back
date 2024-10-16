@@ -133,76 +133,67 @@ a {
 
 // REGOLE DASHBOARD
 
-input[type="checkbox"]+.btn-custom {
+input[type="checkbox"] + .btn-custom{
     border: 1px solid var(--primary);
     // background-color: var(--secondary);
     color: black;
 }
 
-input[type="checkbox"]:checked+.btn-custom {
+input[type="checkbox"]:checked + .btn-custom {
+    background-color: var(--secondary);
+    color: white;
+}
+
+// .btn{
+//     $btn-primary-bg :var(--secondary);
+// }
+
+div{
+    .form-check-input:checked{
+        background-color: var(--secondary); 
+        border-color: var(--secondary);
+    }
+}
+
+a.custom-show, button.custom-show{
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+    color: var(--neutral);
+
+    &:hover{
+        background-color: #048d9a;
+        border: 1px solid #048d9a;
+        color: var(--neutral);
+    }
+}
+
+a.custom-edit{
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    color: var(--neutral);
+
+    &:hover{
+        background-color: #4c4c4c;
+        border: 1px solid #4c4c4c;
+        color: var(--neutral);
+    }
+}
+
+button.custom-delete{
     background-color: var(--accent);
+    border: 1px solid var(--accent);
+    color: var(--neutral);
 
-    /* Colore dopo il click */
-    input[type="checkbox"]:checked+.btn-custom {
-        background-color: var(--secondary);
-        /* Colore dopo il click */
-        color: white;
-    }
-
-    // .btn{
-    //     $btn-primary-bg :var(--secondary);
-    // }
-    // }
-
-    div {
-        .form-check-input:checked {
-            background-color: var(--secondary);
-            /* Colore dopo il click */
-            border-color: var(--secondary);
-        }
-    }
-
-    a.custom-show,
-    button.custom-show {
-        background-color: var(--secondary);
-        border: 1px solid var(--secondary);
+    &:hover{
+        background-color: #6c873c;
+        border: 1px solid #556B2F;
         color: var(--neutral);
-
-        &:hover {
-            background-color: #048d9a;
-            border: 1px solid #048d9a;
-            color: var(--neutral);
-        }
     }
+}
 
-    a.custom-edit {
-        background-color: var(--primary);
-        border: 1px solid var(--primary);
-        color: var(--neutral);
-
-        &:hover {
-            background-color: #4c4c4c;
-            border: 1px solid #4c4c4c;
-            color: var(--neutral);
-        }
-    }
-
-    button.custom-delete {
-        background-color: var(--accent);
+td{
+    span.custom-delete{
+        background-color: var(--accent) !important;
         border: 1px solid var(--accent);
-        color: var(--neutral);
-
-        &:hover {
-            background-color: #6c873c;
-            border: 1px solid #556B2F;
-            color: var(--neutral);
-        }
-    }
-
-    td {
-        span.custom-delete {
-            background-color: var(--accent) !important;
-            border: 1px solid var(--accent);
-        }
     }
 }
