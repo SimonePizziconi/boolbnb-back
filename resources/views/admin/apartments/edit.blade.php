@@ -67,30 +67,60 @@
                     @enderror
                 </div>
 
-                {{-- indirizzo --}}
-                <div class="mb-3">
-                    <label for="address" class="form-label">Via</label>
-                    <input type="text" required class="form-control @error('address') is-invalid @enderror"
-                        id="address" name="address" value="{{ old('address', $apartment->address) }}">
-                    @error('address')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
+
+                <div class="mb-3 row">
+
+                    {{-- indirizzo --}}
+                    <div class="col-6">
+                        <label for="address" class="form-label">Via</label>
+                        <input type="text" required class="form-control @error('address') is-invalid @enderror"
+                            id="address" name="address" value="{{ old('address', $apartment->address) }}">
+                        @error('address')
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
 
                     {{-- città --}}
-                    <label for="city" class="form-label">Città</label>
-                    <input type="text" required class="form-control @error('city') is-invalid @enderror" id="city"
-                        name="city" value="{{ old('city', $apartment->city) }}">
-                    @error('city')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
+                    <div class="col">
+                        <label for="city" class="form-label">Città</label>
+                        <input type="text" required class="form-control @error('city') is-invalid @enderror" id="city"
+                            name="city" value="{{ old('city', $apartment->city) }}">
+                        @error('city')
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
 
                     {{-- cap --}}
-                    <label for="cap" class="form-label">Cap</label>
-                    <input type="text" required class="form-control @error('cap') is-invalid @enderror" id="cap"
-                        name="cap" value="{{ old('cap', $apartment->cap) }}">
-                    @error('cap')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
+                    <div class="col">
+                        <label for="cap" class="form-label">Cap</label>
+                        <input type="text" required class="form-control @error('cap') is-invalid @enderror" id="cap"
+                            name="cap" value="{{ old('cap', $apartment->cap) }}">
+                        @error('cap')
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+
+                {{-- servizi --}}
+                <div class="mb-3">
+
+                    <label for="type" class="form-label d-block">Servizi</label>
+                        @foreach ($services as $service)
+                           <input
+                             name="services[]"
+                             type="checkbox"
+                             class="btn-check"
+                             id="check-{{ $service->id }}"
+                             autocomplete="off"
+                             value="{{ $service->id }}"
+                             {{--
+                             validazione
+                             checked
+                             --}}
+                             @checked($apartment->services->contains($service))>
+                            <label class="btn m-1 btn-custom" for="check-{{ $service->id }}">{{ $service->name }}</label>
+                        @endforeach
+
                 </div>
 
                 {{-- immagine --}}

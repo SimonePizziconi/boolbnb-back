@@ -89,8 +89,9 @@ class ApartmentsController extends Controller
     public function edit(string $id)
     {
         $apartment = Apartment::find($id);
+        $services = Service::orderBy('name')->get();
 
-        return view('admin.apartments.edit', compact('apartment'));
+        return view('admin.apartments.edit', compact('apartment', 'services'));
     }
 
     /**
@@ -126,6 +127,7 @@ class ApartmentsController extends Controller
         }
 
         $update_apartment->fill($data);
+        $update_apartment->services()->sync($data['services']);
 
         $update_apartment->save();
 
