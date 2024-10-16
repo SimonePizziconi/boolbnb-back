@@ -7,7 +7,8 @@
 
         <div class="d-flex justify-content-around align-items-center flex-wrap my-5">
             <div class="col-md-5 col-12">
-                <img src="{{ asset('storage/' . $apartment->image_path) }}" class="img-fluid rounded shadow" alt="{{ $apartment->image_original_name }}" onerror="this.src='/img/house-placeholder.jpg'">
+                <img src="{{ asset('storage/' . $apartment->image_path) }}" class="img-fluid rounded shadow"
+                    alt="{{ $apartment->image_original_name }}" onerror="this.src='/img/house-placeholder.jpg'">
             </div>
 
             <div class="col-md-4 col-12 text-center">
@@ -19,8 +20,8 @@
                     <li class="list-group-item"><strong>Metri quadri:</strong> {{ $apartment->square_meters }}mq</li>
                     <li class="list-group-item">
                         <strong>Modifica:</strong>
-                        <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn custom-edit" data-bs-toggle="tooltip"
-                        data-bs-placement="top" title="Modifica">
+                        <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn custom-edit"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Modifica">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
                         ||
@@ -30,8 +31,8 @@
                             onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn custom-delete" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Elimina">
+                            <button type="submit" class="btn custom-delete" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Elimina">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </form>
@@ -49,11 +50,11 @@
                             <li>{{ $service->name }}</li>
                         @endforeach
                     </ul>
-                 @endif
+                @endif
             </div>
             <div class="col-md-5 col-12">
                 <!-- Qui la mappa per il singolo appartamento -->
-                <div id="map" style="width: 100%; aspect-ratio: 5/3;" class="img-fluid rounded shadow"></div>
+                <div id="map" style="width: 500px; height: 300px;" class="img-fluid rounded shadow"></div>
             </div>
         </div>
 
