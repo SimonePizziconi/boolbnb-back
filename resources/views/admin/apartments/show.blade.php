@@ -12,7 +12,13 @@
             <p class="card-text">Bagni: {{ $apartment->bathrooms }}</p>
             <p class="card-text">Posti letto: {{ $apartment->beds }}</p>
             <p class="card-text">Metri quadri: {{ $apartment->square_meters }}</p>
-            <p class="card-text">Servizi: ...</p>
+            <p class="card-text">Servizi:
+                @forelse ($apartment->services as $service)
+                    <span class="badge text-bg-success">{{ $service->name }}</span>
+                @empty
+                    <span>Non è stato assegnato nessun servizio</span>
+                @endforelse
+            </p>
             <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn btn-warning"><i
                     class="fa-solid fa-pencil"></i>
             </a>
