@@ -9,6 +9,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Functions\Helper;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentsController extends Controller
 {
@@ -39,6 +40,9 @@ class ApartmentsController extends Controller
     {
         // prendo tutti i dati validati
         $data = $request->all();
+
+        // prendo user id
+        $data['user_id'] = Auth::user()->id;
 
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
@@ -80,6 +84,9 @@ class ApartmentsController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        if ($apartment->user_id !== Auth::user()->id) {
+            abort(404);
+        }
         return view('admin.apartments.show', compact('apartment'));
     }
 
@@ -88,8 +95,13 @@ class ApartmentsController extends Controller
      */
     public function edit(string $id)
     {
+
         $apartment = Apartment::find($id);
         $services = Service::orderBy('name')->get();
+
+        if ($apartment->user_id !== Auth::user()->id) {
+            abort(404);
+        }
 
         return view('admin.apartments.edit', compact('apartment', 'services'));
     }
@@ -99,9 +111,14 @@ class ApartmentsController extends Controller
      */
     public function update(ApartmentRequest $request, string $id)
     {
+
         $data = $request->all();
 
         $update_apartment = Apartment::find($id);
+
+        if ($update_apartment->user_id !== Auth::user()->id) {
+            abort(404);
+        }
 
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
