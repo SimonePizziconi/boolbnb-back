@@ -2,42 +2,63 @@
 
 
 @section('content')
-    <div class="card" style="width: 18rem;">
-        <img src="{{ asset('storage/' . $apartment->image_path) }}" class="card-img-top"
-            alt="{{ $apartment->image_original_name }}" onerror="this.src='/img/house-placeholder.jpg'">
-        <div class="card-body">
-            <h5 class="card-title">{{ $apartment->title }}</h5>
-            <p class="card-text">Indirizzo: {{ $apartment->address }}</p>
-            <p class="card-text">Stanze: {{ $apartment->rooms }}</p>
-            <p class="card-text">Bagni: {{ $apartment->bathrooms }}</p>
-            <p class="card-text">Posti letto: {{ $apartment->beds }}</p>
-            <p class="card-text">Metri quadri: {{ $apartment->square_meters }}</p>
-            <p class="card-text">Servizi:
-                @forelse ($apartment->services as $service)
-                    <span class="badge text-bg-success">{{ $service->name }}</span>
-                @empty
-                    <span>Non è stato assegnato nessun servizio</span>
-                @endforelse
-            </p>
-            <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn custom-edit" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Modifica"><i class="fa-solid fa-pencil"></i>
-            </a>
-            <form class="d-inline" id="form-delete-{{ $apartment->id }}"
-                action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
-                onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn custom-delete" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Elimina">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </form>
+    <div class="container">
+        <h1>{{ $apartment->title }}</h1>
+
+        <div class="d-flex justify-content-around align-items-center flex-wrap my-5">
+            <div class="col-md-5 col-12">
+                <img src="{{ asset('storage/' . $apartment->image_path) }}" class="img-fluid rounded shadow" alt="{{ $apartment->image_original_name }}" onerror="this.src='/img/house-placeholder.jpg'">
+            </div>
+
+            <div class="col-md-4 col-12 text-center">
+                <ul class="list-group list-group-flush mt-3">
+                    <li class="list-group-item"><strong>Indirizzo:</strong> {{ $apartment->address }}</li>
+                    <li class="list-group-item"><strong>Stanze:</strong> {{ $apartment->rooms }}</li>
+                    <li class="list-group-item"><strong>Bagni:</strong> {{ $apartment->bathrooms }}</li>
+                    <li class="list-group-item"><strong>Posti letto:</strong> {{ $apartment->beds }}</li>
+                    <li class="list-group-item"><strong>Metri quadri:</strong> {{ $apartment->square_meters }}mq</li>
+                    <li class="list-group-item">
+                        <strong>Modifica:</strong>
+                        <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn custom-edit" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Modifica">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                        ||
+                        <strong>Elimina:</strong>
+                        <form class="d-inline" id="form-delete-{{ $apartment->id }}"
+                            action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
+                            onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn custom-delete" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Elimina">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <div class="d-flex justify-content-around align-items-center flex-wrap my-5">
+            <div class="col-md-4 col-12">
+                @if (!$apartment->services->isEmpty())
+                    <h3 class="mt-5 text-center">Servizi</h3>
+                    <ul class="mt-3">
+                        @foreach ($apartment->services as $service)
+                            <li>{{ $service->name }}</li>
+                        @endforeach
+                    </ul>
+                 @endif
+            </div>
+            <div class="col-md-5 col-12">
+                <!-- Qui la mappa per il singolo appartamento -->
+                <div id="map" style="width: 100%; aspect-ratio: 5/3;" class="img-fluid rounded shadow"></div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Qui la mappa per il singolo appartamento -->
-    <div id="map" style="width: 200px; height: 150px;"></div>
-    </div>
 
     <!-- Inclusione del CSS e JS di TomTom Maps -->
     <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.16.0/maps/maps.css" />
