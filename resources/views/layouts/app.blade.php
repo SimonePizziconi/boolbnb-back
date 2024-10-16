@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Admin | @yield('title')</title>
+    <link rel="icon" href="/img/small-logo.png">
 
 
     <!-- Fonts -->
