@@ -123,10 +123,10 @@ class ApartmentsController extends Controller
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
 
-        $addressToEncode = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
+        // $addressToEncode = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
 
         // encode dato address
-        $queryAddress = Helper::convertAddressForQuery($addressToEncode);
+        $queryAddress = Helper::convertAddressForQuery($data['address']);
 
         // chiamata api per ricavare latitudine e longitudine
         $response = Helper::getApi($queryAddress);
