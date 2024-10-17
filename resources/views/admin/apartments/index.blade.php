@@ -2,14 +2,32 @@
 
 @section('content')
     @if (session('deleted'))
-        <div class="alert alert-success" role="alert">
-            {{ session('deleted') }}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="deletedToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Notifica</strong>
+                    <small class="text-muted">Ora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('deleted') }}
+                </div>
+            </div>
         </div>
     @endif
 
     @if (session('restored'))
-        <div class="alert alert-success" role="alert">
-            {{ session('restored') }}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="restoredToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Notifica</strong>
+                    <small class="text-muted">Ora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('restored') }}
+                </div>
+            </div>
         </div>
     @endif
 
@@ -62,20 +80,15 @@
                             <a data-bs-toggle="tooltip" data-bs-placement="top" title="Dettagli" class="btn custom-show"
                                 href="{{ route('admin.apartments.show', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-eye"></i></a>
-                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Modifica" class="btn custom-edit d-none d-lg-inline-block"
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Modifica"
+                                class="btn custom-edit d-none d-lg-inline-block"
                                 href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-pen"></i></a>
-                            <form id="form-delete-{{ $apartment->id }}"
-                                action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')"
-                                class="d-none d-lg-inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button data-bs-toggle="tooltip" data-bs-placement="top" title="Elimina" type="submit"
-                                    class="btn custom-delete">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </form>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal" data-id="{{ $apartment->id }}"
+                                data-title="{{ $apartment->title }}">
+                                <i class="fa-solid fa-trash-can"></i> Elimina
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -86,6 +99,33 @@
     <div class="d-flex justify-content-center">
         {{ $apartments->links() }}
     </div>
+
+    <!-- Modale per conferma eliminazione -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Conferma Eliminazione</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Sei sicuro di voler eliminare <span id="apartmentTitle"></span>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <form id="form-delete-{{ $apartment->id }}"
+                        action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
+                        class="d-none d-lg-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Inclusione del CSS e JS di TomTom Maps -->
     <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.16.0/maps/maps.css" />
