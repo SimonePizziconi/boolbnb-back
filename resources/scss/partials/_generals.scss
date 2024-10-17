@@ -158,7 +158,7 @@ input[type="checkbox"]:checked + .btn-custom {
 
 div{
     .form-check-input:checked{
-        background-color: var(--secondary); 
+        background-color: var(--secondary);
         border-color: var(--secondary);
     }
 }
@@ -175,7 +175,7 @@ a.custom-show, button.custom-show{
     }
 }
 
-a.custom-edit{
+button.custom-edit, a.custom-edit{
     background-color: var(--primary);
     border: 1px solid var(--primary);
     color: var(--neutral);
@@ -187,7 +187,7 @@ a.custom-edit{
     }
 }
 
-button.custom-delete{
+a.custom-delete, button.custom-delete{
     background-color: var(--accent);
     border: 1px solid var(--accent);
     color: var(--neutral);

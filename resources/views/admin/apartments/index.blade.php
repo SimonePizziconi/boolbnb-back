@@ -84,9 +84,11 @@
                                 class="btn custom-edit d-none d-lg-inline-block"
                                 href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-pen"></i></a>
-                            <a href="#deleteModal{{ $apartment->id }}" class="btn btn-danger" data-bs-toggle="modal">
-                                <i class="fa-solid fa-trash-can"></i> Elimina
+                            <a href="#deleteModal{{ $apartment->id }}" class="btn custom-delete" data-bs-toggle="modal">
+                                <i class="fa-solid fa-trash-can"></i>
                             </a>
+
+                            {{-- Modale per eliminazione --}}
                             <div class="modal fade" id="deleteModal{{ $apartment->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -101,13 +103,13 @@
                                                 id="apartmentTitle">{{ $apartment->title }}</span>?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
+                                            <button type="button" class="btn custom-edit"
                                                 data-bs-dismiss="modal">Annulla</button>
                                             <form action="{{ route('admin.apartments.destroy', $apartment) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Elimina</button>
+                                                <button type="submit" class="btn custom-delete">Elimina</button>
                                             </form>
                                         </div>
                                     </div>
@@ -124,8 +126,6 @@
         {{ $apartments->links() }}
     </div>
 
-    <!-- Modale per conferma eliminazione -->
-    <!-- Modale per conferma eliminazione -->
 
 
 
