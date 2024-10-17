@@ -79,32 +79,10 @@
                     {{-- indirizzo --}}
                     <div class="col-12 address-search">
                         <label for="address" class="form-label">Via</label>
-                        {{-- <input type="text" required class="form-control @error('address') is-invalid @enderror"
-                            id="address" name="address" value="{{ old('address') }}"> --}}
                         @error('address')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
-
-                    {{-- città --}}
-                    {{-- <div class="col">
-                        <label for="city" class="form-label">Città</label>
-                        <input type="text" required class="form-control @error('city') is-invalid @enderror" id="city"
-                            name="city" value="{{ old('city') }}">
-                        @error('city')
-                            <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div> --}}
-
-                    {{-- cap --}}
-                    {{-- <div class="col">
-                        <label for="cap" class="form-label">Cap</label>
-                        <input type="text" required class="form-control @error('cap') is-invalid @enderror" id="cap"
-                            name="cap" value="{{ old('cap') }}">
-                        @error('cap')
-                            <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div> --}}
 
                 </div>
 
@@ -188,7 +166,7 @@
         var inputElement = document.querySelector('input.tt-search-box-input');
 
         // Impostare il valore dell'input
-        // inputElement.value = "{{ old('address') }}";
+        inputElement.value = "{{ old('address') }}";
         inputElement.id = "address";
         inputElement.name = "address";
 

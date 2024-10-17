@@ -73,33 +73,9 @@
 
 
                 <div class="mb-3 row">
-
-                    {{-- indirizzo --}}
-                    <div class="col-6">
+                    <div class="col-12 address-search">
                         <label for="address" class="form-label">Via</label>
-                        <input type="text" required class="form-control @error('address') is-invalid @enderror"
-                            id="address" name="address" value="{{ old('address', $apartment->address) }}">
                         @error('address')
-                            <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    {{-- città --}}
-                    <div class="col">
-                        <label for="city" class="form-label">Città</label>
-                        <input type="text" required class="form-control @error('city') is-invalid @enderror" id="city"
-                            name="city" value="{{ old('city', $apartment->city) }}">
-                        @error('city')
-                            <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    {{-- cap --}}
-                    <div class="col">
-                        <label for="cap" class="form-label">Cap</label>
-                        <input type="text" required class="form-control @error('cap') is-invalid @enderror" id="cap"
-                            name="cap" value="{{ old('cap', $apartment->cap) }}">
-                        @error('cap')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
@@ -173,6 +149,36 @@
             const thumb = document.getElementById('thumb');
             thumb.src = URL.createObjectURL(event.target.files[0]);
         }
+
+        // tomtom autocomplete
+        var options = {
+            searchOptions: {
+            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+            language: "it-IT",
+            limit: 5,
+            },
+            autocompleteOptions: {
+            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+            language: "it-IT",
+            },
+        }
+        var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+        var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+
+        const address = document.querySelector('.address-search');
+        address.append(searchBoxHTML)
+
+        // Selezionare l'input per id
+        var inputElement = document.querySelector('input.tt-search-box-input');
+
+        // Impostare il valore dell'input
+        inputElement.value = "{{ old('address', $apartment->address) }}";
+        inputElement.id = "address";
+        inputElement.name = "address";
+
+        const inputContainer = document.querySelector('.tt-search-box-input-container');
+        inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
+        inputContainer.style.borderRadius = 'var(--bs-border-radius)';
     </script>
 @endsection
 
