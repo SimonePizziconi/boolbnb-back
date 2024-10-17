@@ -10,14 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $apartments = Apartment::orderBy('id', 'desc')->with('services')->get();
 
-        if($apartments){
+        if ($apartments) {
             $success = true;
-            foreach($apartments as $apartment){
+            foreach ($apartments as $apartment) {
                 if (!$apartment->image_path) {
-                    $apartment->image_path = asset('img/placeholder.jpg');
+                    $apartment->image_path = '/img/house-placeholder.jpg';
                     $apartment->image_original_name = 'no image';
                 } else {
                     $apartment->image_path = Storage::url($apartment->image_path);
