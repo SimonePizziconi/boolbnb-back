@@ -20,8 +20,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('bathrooms');
             $table->unsignedSmallInteger('square_meters');
             $table->string('address');
-            $table->string('city')->nullable();
-            $table->string('cap')->nullable();
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->string('image_path')->nullable();

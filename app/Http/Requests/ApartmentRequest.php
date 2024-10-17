@@ -28,8 +28,8 @@ class ApartmentRequest extends FormRequest
             'bathrooms' => 'required|numeric|integer|gt:0',
             'square_meters' => 'required|numeric|integer|gt:0',
             'address' => 'required|min:5',
-            'city' => 'required|regex:/^[a-zA-Z\s]+$/|min:3',
-            'cap' => 'required|numeric|min:5',
+            // 'city' => 'required|regex:/^[a-zA-Z\s]+$/|min:3',
+            // 'cap' => 'required|numeric|min:5',
             'image_path' => 'image|mimes:png,jpg|max:5120',
             'is_visible' => 'required|boolean',
         ];
@@ -65,13 +65,13 @@ class ApartmentRequest extends FormRequest
             'address.required' => 'Il titolo è un campo obbligatorio',
             'address.min' => 'Il titolo deve contenere almeno :min caratteri',
 
-            'city.required' => 'Il campo città e obbligatorio',
-            'city.regex' => 'Il campo città non può contenere numeri o cratteri speciali',
-            'city.min' => 'Il campo città deve contenere almeno :min caratteri',
+            // 'city.required' => 'Il campo città e obbligatorio',
+            // 'city.regex' => 'Il campo città non può contenere numeri o cratteri speciali',
+            // 'city.min' => 'Il campo città deve contenere almeno :min caratteri',
 
-            'cap.required' => 'Il campo cap e obbligatorio',
-            'cap.numeric' => 'Il campo cap non può contenere lettere',
-            'cap.min' => 'Il campo cap deve contenere almeno :min caratteri',
+            // 'cap.required' => 'Il campo cap e obbligatorio',
+            // 'cap.numeric' => 'Il campo cap non può contenere lettere',
+            // 'cap.min' => 'Il campo cap deve contenere almeno :min caratteri',
 
             'image_path.image' => 'Il file caricato deve essere un\'immagine',
             'image_path.mimes' => 'Il file caricato deve essere di tipo .jpg o .png',
