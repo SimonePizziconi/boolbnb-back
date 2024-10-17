@@ -39,6 +39,7 @@ class ApartmentsController extends Controller
         // prendo tutti i dati validati
         $data = $request->all();
 
+        //dd($data);
         // prendo user id
         $data['user_id'] = Auth::user()->id;
 
@@ -46,10 +47,10 @@ class ApartmentsController extends Controller
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
 
         // richiamo la funzione pre creare concatenare tutti i dati dell'inidizzo in una sola stringa
-        $addressToEncode = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
+        // $addressToEncode = Helper::getFullAddress($data['address']);
 
         // encode dato address
-        $queryAddress = Helper::convertAddressForQuery($addressToEncode);
+        $queryAddress = Helper::convertAddressForQuery($data['address']);
 
         // chiamata api per ricavare latitudine e longitudine
         $response = Helper::getApi($queryAddress);

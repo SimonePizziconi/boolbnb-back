@@ -24,7 +24,7 @@
                 </div>
 
 
-                <div class="row">
+                <div class="row mb-3">
 
                     {{-- numero di camere --}}
                     <div class="col-lg-4 col-sm-12">
@@ -64,7 +64,6 @@
 
                 </div>
 
-
                 {{-- metri quadrati --}}
                 <div class="mb-3">
                     <label for="square_meters" class="form-label">Metri quadrati</label>
@@ -76,35 +75,36 @@
                 </div>
 
                 <div class="mb-3 row">
+
                     {{-- indirizzo --}}
-                    <div class="col-6">
+                    <div class="col-12 address-search">
                         <label for="address" class="form-label">Via</label>
-                        <input type="text" required class="form-control @error('address') is-invalid @enderror"
-                            id="address" name="address" value="{{ old('address') }}">
+                        {{-- <input type="text" required class="form-control @error('address') is-invalid @enderror"
+                            id="address" name="address" value="{{ old('address') }}"> --}}
                         @error('address')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
 
                     {{-- città --}}
-                    <div class="col">
+                    {{-- <div class="col">
                         <label for="city" class="form-label">Città</label>
                         <input type="text" required class="form-control @error('city') is-invalid @enderror" id="city"
                             name="city" value="{{ old('city') }}">
                         @error('city')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     {{-- cap --}}
-                    <div class="col">
+                    {{-- <div class="col">
                         <label for="cap" class="form-label">Cap</label>
                         <input type="text" required class="form-control @error('cap') is-invalid @enderror" id="cap"
                             name="cap" value="{{ old('cap') }}">
                         @error('cap')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -166,9 +166,36 @@
             thumb.src = URL.createObjectURL(event.target.files[0]);
         }
 
-        // function changeColor(){
-        //     const changeButton = document.
-        // }
+        // tomtom autocomplete
+        var options = {
+            searchOptions: {
+            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+            language: "it-IT",
+            limit: 5,
+            },
+            autocompleteOptions: {
+            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+            language: "it-IT",
+            },
+        }
+        var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+        var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+
+        const address = document.querySelector('.address-search');
+        address.append(searchBoxHTML)
+
+        // Selezionare l'input per id
+        var inputElement = document.querySelector('input.tt-search-box-input');
+
+        // Impostare il valore dell'input
+        // inputElement.value = "{{ old('address') }}";
+        inputElement.id = "address";
+        inputElement.name = "address";
+
+        const inputContainer = document.querySelector('.tt-search-box-input-container');
+        inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
+        inputContainer.style.borderRadius = 'var(--bs-border-radius)';
+
     </script>
 @endsection
 
