@@ -5,57 +5,60 @@
 
     {{-- <div id="logo_debug"></div> --}}
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li>
-            <a href="{{ route('admin.index') }}" class="nav-link text-white">
-                <span><i class="fa-solid fa-house"></i> Home</span>
+    <div class="d-flex justify-content-around align-items-center flex-wrap my-5 flex-reverse">
 
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white d-flex">
-                <span><i class="fa-solid fa-list"></i> Appartamenti</span>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li>
+                <a href="{{ route('admin.index') }}" class="nav-link text-white">
+                    <span><i class="fa-solid fa-house"></i> Home</span>
 
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
-                <span><i class="fa-solid fa-plus"></i> Nuovo Appartamento</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white d-flex">
+                    <span><i class="fa-solid fa-list"></i> Appartamenti</span>
 
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.apartments.trash') }}" class="nav-link text-white">
-                <span><i class="fa-solid fa-trash"></i> Cestino</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
+                    <span><i class="fa-solid fa-plus"></i> Nuovo Appartamento</span>
 
-            </a>
-        </li>
-    </ul>
-    <ul class="nav nav-pills2 flex-column mb-auto">
-        <li>
-            <a href="{{ route('admin.index') }}" class="nav-link text-white">
-                <span><i class="fa-solid fa-house"></i></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.apartments.trash') }}" class="nav-link text-white">
+                    <span><i class="fa-solid fa-trash"></i> Cestino</span>
 
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white d-flex">
-                <span><i class="fa-solid fa-list"></i></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills2 flex-column mb-auto">
+            <li>
+                <a href="{{ route('admin.index') }}" class="nav-link text-white">
+                    <span><i class="fa-solid fa-house"></i></span>
 
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
-                <span><i class="fa-solid fa-plus"></i></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white d-flex">
+                    <span><i class="fa-solid fa-list"></i></span>
 
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.apartments.trash') }}" class="nav-link text-white">
-                <span><i class="fa-solid fa-trash"></i></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
+                    <span><i class="fa-solid fa-plus"></i></span>
 
-            </a>
-        </li>
-    </ul>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.apartments.trash') }}" class="nav-link text-white">
+                    <span><i class="fa-solid fa-trash"></i></span>
+
+                </a>
+            </li>
+        </ul>
+    </div>
     <hr>
 </div>

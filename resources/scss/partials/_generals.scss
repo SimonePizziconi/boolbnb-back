@@ -80,7 +80,7 @@ a {
         box-shadow: var(--primary) 0px 5px 15px;
         height: 100%;
         background-color: var(--primary);
-        transition: width 0.3s ease;
+        transition: width 1s ease;
 
         .logo-container {
             width: 100%;
@@ -104,12 +104,13 @@ a {
                 width: 40px;
             }
 
-            ul.nav-pills li a span {
+            ul.nav-pills {
                 display: none;
             }
 
             ul.nav-pills2 li a span {
                 display: block;
+                font-size: 1.4rem;
             }
 
             ul.nav-pills li a {
@@ -118,17 +119,24 @@ a {
         }
     }
 
-
     .my_container {
         width: 100%;
         overflow-y: auto;
+        transition: width 1s ease;
     }
 
     #with_sidebar {
         width: calc(100% - 220px);
+        transition: width 1s ease;
     }
 
+    @media (max-width: 568px) {
+        #with_sidebar {
+            width: calc(100% - 80px);
+        }
+    }
 }
+
 
 
 // REGOLE DASHBOARD
