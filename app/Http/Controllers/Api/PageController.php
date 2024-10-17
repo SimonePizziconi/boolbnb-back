@@ -31,7 +31,24 @@ class PageController extends Controller
         return response()->json(compact('success', 'apartments'));
     }
 
-    // public function show(){
-    //     dd('SHOW');
-    // }
+    public function show($slug){
+
+        $apartment = Apartment::where('slug', $slug)->with('services')->first();
+
+        if ($apartment) {
+            $success = true;
+
+            if (!$apartment->image_path) {
+                $apartment->image_path = '/img/house-placeholder.jpg';
+                $apartment->image_original_name = 'no image';
+            } else {
+                $apartment->image_path = Storage::url($apartment->image_path);
+            }
+
+        } else {
+            $success = false;
+        }
+
+        return response()->json(compact('success','apartment'));
+    }
 }
