@@ -17,13 +17,14 @@
                                 <div class="col-md-6">
                                     <input id="first_name" type="text"
                                         class="form-control @error('first_name') is-invalid @enderror" name="first_name"
-                                        value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                        value="{{ old('first_name') }}" autocomplete="first_name" autofocus>
 
                                     @error('first_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span class="error-message text-danger" id="first_name_error"></span>
                                 </div>
                             </div>
 
@@ -33,13 +34,14 @@
                                 <div class="col-md-6">
                                     <input id="last_name" type="text"
                                         class="form-control @error('last_name') is-invalid @enderror" name="last_name"
-                                        value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                                        value="{{ old('last_name') }}" autocomplete="last_name" autofocus>
 
                                     @error('last_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span class="error-message text-danger" id="last_name_error"></span>
                                 </div>
                             </div>
 
@@ -50,13 +52,14 @@
                                 <div class="col-md-6">
                                     <input id="birth_date" type="date"
                                         class="form-control @error('birth_date') is-invalid @enderror" name="birth_date"
-                                        value="{{ old('birth_date') }}" required autocomplete="birth_date" autofocus>
+                                        value="{{ old('birth_date') }}" autocomplete="birth_date" autofocus>
 
                                     @error('birth_date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span class="error-message text-danger" id="birth_date_error"></span>
                                 </div>
                             </div>
 
@@ -74,6 +77,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span class="error-message text-danger" id="email_error"></span>
                                 </div>
                             </div>
 
@@ -91,6 +95,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span class="error-message text-danger" id="password_error"></span>
                                 </div>
                             </div>
 
@@ -101,6 +106,7 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
+                                    <span class="error-message text-danger" id="password_confirmation_error"></span>
                                 </div>
                             </div>
 
@@ -117,4 +123,98 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                let valid = true;
+
+                // Reset degli errori
+                const errorMessages = document.querySelectorAll(".error-message");
+                errorMessages.forEach(message => {
+                    message.innerHTML = "";
+                });
+
+                // Controllo per Nome
+                const firstName = document.getElementById("first_name");
+                if (firstName.value.trim() !== "") {
+                    if (firstName.value.length < 3) {
+                        valid = false;
+                        document.getElementById("first_name_error").innerHTML = "Il nome deve contenere almeno 3 caratteri.";
+                    } else if (firstName.value.length > 255) {
+                        valid = false;
+                        document.getElementById("first_name_error").innerHTML = "Il nome non può superare i 255 caratteri.";
+                    } else if (!/^[a-zA-Z]+$/.test(firstName.value)) {
+                        valid = false;
+                        document.getElementById("first_name_error").innerHTML = "Il Nome non deve contenere numeri o caratteri speciali";
+                    }
+                }
+
+                // Controllo per Cognome
+                const lastName = document.getElementById("last_name");
+                if (lastName.value.trim() !== "") {
+                    if (lastName.value.length < 3) {
+                        valid = false;
+                        document.getElementById("last_name_error").innerHTML = "Il cognome deve contenere almeno 3 caratteri.";
+                    } else if (lastName.value.length > 255) {
+                        valid = false;
+                        document.getElementById("last_name_error").innerHTML = "Il cognome non può superare i 255 caratteri.";
+                    } else if (!/^[a-zA-Z]+$/.test(lastName.value)) {
+                        valid = false;
+                        document.getElementById("last_name_error").innerHTML = "Il Cognome non deve contenere numeri o caratteri speciali";
+                    }
+                }
+
+                // Controllo per Data di Nascita
+                const birthDate = document.getElementById("birth_date");
+                if (birthDate.value.trim() !== "") {
+                    const today = new Date();
+                    const birth = new Date(birthDate.value);
+                    const age = today.getFullYear() - birth.getFullYear();
+                    const m = today.getMonth() - birth.getMonth();
+                    if (age < 18 || (age === 18 && m < 0)) {
+                        valid = false;
+                        document.getElementById("birth_date_error").innerHTML = "Devi avere almeno 18 anni per registrarti.";
+                    }
+                }
+
+                // Controllo per Email
+                const email = document.getElementById("email");
+                const emailPattern = /^[\w\.-]+@[\w\.-]+\.[a-zA-Z]{2,}$/; // Regex per email
+                if (email.value.trim() === "") {
+                    valid = false;
+                    document.getElementById("email_error").innerHTML = "L'email è obbligatoria.";
+                } else if (!emailPattern.test(email.value.trim())) {
+                    valid = false;
+                    document.getElementById("email_error").innerHTML = "Insserisci una mail valida";
+                } else if (email.value.length > 255) {
+                    valid = false;
+                    document.getElementById("email_error").innerHTML = "L'email non può superare i 255 caratteri.";
+                }
+
+                // Controllo per Password
+                const password = document.getElementById("password");
+                const passwordConfirm = document.getElementById("password-confirm");
+                if (password.value.trim() === "") {
+                    valid = false;
+                    document.getElementById("password_error").innerHTML = "La password è obbligatoria.";
+                } else if (password.value.length < 8) {
+                    valid = false;
+                    document.getElementById("password_error").innerHTML = "La password deve contenere almeno 8 caratteri.";
+                }
+                if (password.value !== passwordConfirm.value) {
+                    valid = false;
+                    document.getElementById("password_confirmation_error").innerHTML = "Le password non corrispondono.";
+                }
+
+                // Se uno dei controlli fallisce, impedisci l'invio del modulo
+                if (!valid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+
 @endsection
