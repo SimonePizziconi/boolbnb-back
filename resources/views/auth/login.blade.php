@@ -25,6 +25,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span class="error-message text-danger" id="email_error"></span>
                                 </div>
                             </div>
 
@@ -48,6 +49,8 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span class="error-message text-danger" id="password_error"></span>
+
                                 </div>
                             </div>
 
@@ -83,4 +86,58 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                let valid = true;
+
+                // Reset degli errori
+                const errorMessages = document.querySelectorAll(".error-message");
+                errorMessages.forEach(message => {
+                    message.innerHTML = "";
+                });
+
+                // Controllo per Email
+                const email = document.getElementById("email");
+                const emailPattern = /^[\w\.-]+@[\w\.-]+\.[a-zA-Z]{2,}$/; // Regex per email
+                if (email.value.trim() === "") {
+                    valid = false;
+                    document.getElementById("email_error").innerHTML = "L'email è obbligatoria.";
+                    email.classList.add('is-invalid'); // Aggiungi la classe is-invalid
+                } else if (!emailPattern.test(email.value.trim())) {
+                    valid = false;
+                    document.getElementById("email_error").innerHTML = "Inserisci una mail valida";
+                    email.classList.add('is-invalid'); // Aggiungi la classe is-invalid
+                } else if (email.value.length > 255) {
+                    valid = false;
+                    document.getElementById("email_error").innerHTML = "L'email non può superare i 255 caratteri.";
+                    email.classList.add('is-invalid'); // Aggiungi la classe is-invalid
+                } else {
+                    email.classList.remove('is-invalid'); // Rimuovi la classe is-invalid se non ci sono errori
+                }
+
+                // Controllo per Password
+                const password = document.getElementById("password");
+                if (password.value.trim() === "") {
+                    valid = false;
+                    document.getElementById("password_error").innerHTML = "La password è obbligatoria.";
+                    password.classList.add('is-invalid'); // Aggiungi la classe is-invalid
+                } else if (password.value.length < 8) {
+                    valid = false;
+                    document.getElementById("password_error").innerHTML = "La password deve contenere almeno 8 caratteri.";
+                    password.classList.add('is-invalid'); // Aggiungi la classe is-invalid
+                } else {
+                    password.classList.remove('is-invalid'); // Rimuovi la classe is-invalid se non ci sono errori
+                }
+                
+                // Se uno dei controlli fallisce, impedisci l'invio del modulo
+                if (!valid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+
 @endsection
