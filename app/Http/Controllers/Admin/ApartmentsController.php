@@ -75,7 +75,7 @@ class ApartmentsController extends Controller
 
         $new_apartment->services()->attach($data['services']);
 
-        return redirect()->route('admin.apartments.show', $new_apartment);
+        return redirect()->route('admin.apartments.show', $new_apartment)->with('success', '"' . $data['title'] .  '" è stato aggiunto correttamente');
     }
 
     /**
@@ -148,7 +148,7 @@ class ApartmentsController extends Controller
 
         $update_apartment->save();
 
-        return redirect()->route('admin.apartments.show', $update_apartment);
+        return redirect()->route('admin.apartments.show', $update_apartment)->with('success', '"' . $data['title'] .  '" è stato modificato correttamente');
     }
 
     /**
@@ -158,7 +158,7 @@ class ApartmentsController extends Controller
     {
         $apartment->delete();
 
-        return redirect()->route('admin.apartments.index')->with('deleted', '"' . $apartment->title . '" è stato eliminato');
+        return redirect()->route('admin.apartments.index')->with('deleted', '"' . $apartment->title . '" è stato eliminato correttamente');
     }
 
     // public function trash()

@@ -2,6 +2,22 @@
 
 
 @section('content')
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        @if (session('success'))
+            <div id="deletedToast" class="toast show bg-toast" role="alert" aria-live="assertive" aria-atomic="true"
+                data-bs-autohide="true" data-bs-delay="5000">
+                <div class="toast-header">
+                    <strong class="me-auto">Notifica</strong>
+                    <small class="text-muted">Ora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+    </div>
+
     <div class="container">
         <h1>{{ $apartment->title }}</h1>
 
@@ -105,6 +121,17 @@
         @else
             console.log('Coordinate mancanti per questo appartamento.');
         @endif
+    </script>
+    <script>
+        // Script per nascondere notifica toast dopo 5 secondi
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var toastElements = document.querySelectorAll('.toast');
+            toastElements.forEach(function(toastElement) {
+                var toast = new bootstrap.Toast(toastElement);
+                toast.show(); // Mostra la Toast
+            });
+        });
     </script>
 @endsection
 
