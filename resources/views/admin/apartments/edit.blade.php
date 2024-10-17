@@ -10,7 +10,7 @@
 
         <div>
 
-            <form action="{{ route('admin.apartments.update', $apartment) }}" method="POST" enctype="multipart/form-data">
+            <form id="apartment-form" action="{{ route('admin.apartments.update', $apartment) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 @method('PUT')
@@ -24,6 +24,7 @@
                     @error('title')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
+                    <small class="error-message text-danger" id="title_error"></small>
                 </div>
 
                 <div class="row">
@@ -36,6 +37,7 @@
                         @error('rooms')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
+                        <small class="error-message text-danger" id="rooms_error"></small>
                     </div>
 
                     {{-- numero di letti --}}
@@ -46,6 +48,7 @@
                         @error('beds')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
+                        <small class="error-message text-danger" id="beds_error"></small>
                     </div>
 
                     {{-- numero di bagni --}}
@@ -56,6 +59,7 @@
                         @error('bathrooms', $apartment->bathrooms)
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
+                        <small class="error-message text-danger" id="bathrooms_error"></small>
                     </div>
 
                 </div>
@@ -69,6 +73,7 @@
                     @error('square_meters')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
+                    <small class="error-message text-danger" id="square_meters_error"></small>
                 </div>
 
 
@@ -78,6 +83,7 @@
                         @error('address')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
+                        <small class="error-message text-danger" id="address_error"></small>
                     </div>
                 </div>
 
@@ -111,6 +117,7 @@
                     @error('image_path')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
+                    <small class="error-message text-danger" id="image_path_error"></small>
                     <img src="{{ asset('storage/' . $apartment->image_path) }}" id="thumb"
                         alt="{{ $apartment->image_original_name }}" onerror="this.src='/img/house-placeholder.jpg'">
                 </div>
@@ -132,7 +139,7 @@
                             Privato
                         </label>
                     </div>
-
+                    <small class="error-message text-danger" id="is_visible_error"></small>
                 </div>
 
                 {{-- bottone invio --}}
@@ -179,6 +186,94 @@
         const inputContainer = document.querySelector('.tt-search-box-input-container');
         inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
         inputContainer.style.borderRadius = 'var(--bs-border-radius)';
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('apartment-form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();  // Prevenire invio del form se ci sono errori
+            let isValid = true;
+
+            // Reset messaggi di errore
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+            // Titolo
+            const title = document.getElementById('title');
+            const titleError = document.getElementById('title_error');
+            const titleRegex = /^[a-zA-Z\s]+$/;
+            if (!title.value || title.value.length < 3 || !titleRegex.test(title.value)) {
+                isValid = false;
+                titleError.textContent = "Il titolo deve contenere almeno 3 caratteri e non può avere numeri o caratteri speciali.";
+            }
+
+            // Stanze
+            const rooms = document.getElementById('rooms');
+            const roomsError = document.getElementById('rooms_error');
+            if (rooms.value && (!Number.isInteger(+rooms.value) || +rooms.value <= 0)) {
+                isValid = false;
+                roomsError.textContent = "Il numero di stanze deve essere un numero intero maggiore di 0.";
+            }
+
+            // Letti
+            const beds = document.getElementById('beds');
+            const bedsError = document.getElementById('beds_error');
+            if (beds.value && (!Number.isInteger(+beds.value) || +beds.value <= 0)) {
+                isValid = false;
+                bedsError.textContent = "Il numero di letti deve essere un numero intero maggiore di 0.";
+            }
+
+            // Bagni
+            const bathrooms = document.getElementById('bathrooms');
+            const bathroomsError = document.getElementById('bathrooms_error');
+            if (bathrooms.value && (!Number.isInteger(+bathrooms.value) || +bathrooms.value <= 0)) {
+                isValid = false;
+                bathroomsError.textContent = "Il numero di bagni deve essere un numero intero maggiore di 0.";
+            }
+
+            // Metri quadri
+            const squareMeters = document.getElementById('square_meters');
+            const squareMetersError = document.getElementById('square_meters_error');
+            if (squareMeters.value && (!Number.isInteger(+squareMeters.value) || +squareMeters.value <= 0)) {
+                isValid = false;
+                squareMetersError.textContent = "I metri quadri devono essere un numero intero maggiore di 0.";
+            }
+
+            // Indirizzo
+            const address = document.getElementById('address');
+            const addressError = document.getElementById('address_error');
+            if (!address.value || address.value.length < 5) {
+                isValid = false;
+                addressError.textContent = "L'indirizzo deve contenere almeno 5 caratteri.";
+            }
+
+            // Immagine
+            const image = document.getElementById('image_path');
+            const imageError = document.getElementById('image_path_error');
+            if (image.files.length > 0) {
+                const file = image.files[0];
+                const validImageTypes = ['image/jpeg', 'image/png'];
+                if (!validImageTypes.includes(file.type) || file.size > 5120 * 1024) {
+                    isValid = false;
+                    imageError.textContent = "L'immagine deve essere un file .jpg o .png e non può superare i 5MB.";
+                }
+            }
+
+            // Visibilità
+            const visible1 = document.getElementById('is_visible1');
+            const visible2 = document.getElementById('is_visible2');
+            const visibleError = document.getElementById('is_visible_error');
+            if (!visible1.checked && !visible2.checked) {
+                isValid = false;
+                visibleError.textContent = "La visibilità è un campo obbligatorio.";
+            }
+
+            if (isValid) {
+                form.submit();  // Se tutto è valido, invia il form
+            }
+
+        });
+    });
+
     </script>
 @endsection
 
