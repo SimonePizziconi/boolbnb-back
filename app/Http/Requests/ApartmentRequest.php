@@ -56,9 +56,9 @@ class ApartmentRequest extends FormRequest
             'square_meters.integer' => 'Il numero di stanze deve essere un numero',
             'square_meters.gt' => 'Il numero di stanze deve essere almeno 1',
 
-            'address.required' => 'Il titolo è un campo obbligatorio',
-            'address.min' => 'Il titolo deve contenere almeno :min caratteri',
-
+            'address.required' => 'L\'indirizzo è un campo obbligatorio',
+            'address.min' => 'L\'indirizzo deve contenere almeno :min caratteri',
+            
             'image_path.image' => 'Il file caricato deve essere un\'immagine',
             'image_path.mimes' => 'Il file caricato deve essere di tipo .jpg o .png',
             'image_path.max' => 'Il file caricato deve essere al massimo di 5Mb',
