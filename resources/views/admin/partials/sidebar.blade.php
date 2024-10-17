@@ -26,12 +26,6 @@
 
                 </a>
             </li>
-            <li>
-                <a href="{{ route('admin.apartments.trash') }}" class="nav-link text-white">
-                    <span><i class="fa-solid fa-trash"></i> Cestino</span>
-
-                </a>
-            </li>
         </ul>
         <ul class="nav nav-pills2 flex-column mb-auto">
             <li>
@@ -49,13 +43,6 @@
             <li>
                 <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
                     <span><i class="fa-solid fa-plus"></i></span>
-
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.apartments.trash') }}" class="nav-link text-white">
-                    <span><i class="fa-solid fa-trash"></i></span>
-
                 </a>
             </li>
         </ul>

@@ -172,6 +172,8 @@
         // Selezionare l'input per id
         var inputElement = document.querySelector('input.tt-search-box-input');
 
+        // Impostare il valore dell'input
+        inputElement.value = "{{ old('address') }}";
         inputElement.id = "address";
         inputElement.name = "address";
         inputElement.required = true;
