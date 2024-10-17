@@ -39,15 +39,11 @@ class ApartmentsController extends Controller
         // prendo tutti i dati validati
         $data = $request->all();
 
-        //dd($data);
         // prendo user id
         $data['user_id'] = Auth::user()->id;
 
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
-
-        // richiamo la funzione pre creare concatenare tutti i dati dell'inidizzo in una sola stringa
-        // $addressToEncode = Helper::getFullAddress($data['address']);
 
         // encode dato address
         $queryAddress = Helper::convertAddressForQuery($data['address']);
@@ -55,9 +51,8 @@ class ApartmentsController extends Controller
         // chiamata api per ricavare latitudine e longitudine
         $response = Helper::getApi($queryAddress);
 
-        // salvo la latitudine in una variabile
+        // salvo la latitudine e longitudine in una variabile
         $data['latitude'] = json_decode($response)->results['0']->position->lat;
-        // salvo la longitudine in una variabile
         $data['longitude'] = json_decode($response)->results['0']->position->lon;
         //dd($data);
 
@@ -73,7 +68,10 @@ class ApartmentsController extends Controller
         // creo un nuovo appartamento
         $new_apartment = Apartment::create($data);
 
-        $new_apartment->services()->attach($data['services']);
+        if (array_key_exists('services', $data)) {
+
+            $new_apartment->services()->attach($data['services']);
+        }
 
         return redirect()->route('admin.apartments.show', $new_apartment);
     }
@@ -122,8 +120,6 @@ class ApartmentsController extends Controller
 
         // genero lo slug
         $data['slug'] = Helper::generateSlug($data['title'], Apartment::class);
-
-        // $addressToEncode = Helper::getFullAddress($data['address'], $data['city'], $data['cap']);
 
         // encode dato address
         $queryAddress = Helper::convertAddressForQuery($data['address']);

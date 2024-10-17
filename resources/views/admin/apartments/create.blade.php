@@ -10,7 +10,7 @@
 
         <div>
 
-            <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="apartment-form" action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 {{-- titolo --}}
@@ -21,6 +21,7 @@
                     @error('title')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
+                    <small class="error-message text-danger" id="title_error"></small>
                 </div>
 
 
@@ -30,11 +31,12 @@
                     <div class="col-lg-4 col-sm-12">
 
                         <label for="rooms" class="form-label">Numero di camere</label>
-                        <input type="number" required class="form-control @error('rooms') is-invalid @enderror" id="rooms"
+                        <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
                             name="rooms" value="{{ old('rooms') }}">
                         @error('rooms')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
+                        <small class="error-message text-danger" id="rooms_error"></small>
 
                     </div>
 
@@ -42,24 +44,24 @@
                     <div class="col-lg-4 col-sm-12">
 
                         <label for="beds" class="form-label">Numero di letti</label>
-                        <input type="number" required class="form-control @error('beds') is-invalid @enderror" id="beds"
+                        <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
                             name="beds" value="{{ old('beds') }}">
                         @error('beds')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-
+                        <small class="error-message text-danger" id="beds_error"></small>
                     </div>
 
                     {{-- numero di bagni --}}
                     <div class="col-lg-4 col-sm-12">
 
                         <label for="bathrooms" class="form-label">Numero di bagni</label>
-                        <input type="number" required class="form-control @error('bathrooms') is-invalid @enderror"
+                        <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
                             id="bathrooms" name="bathrooms" value="{{ old('bathrooms') }}">
                         @error('bathrooms')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-
+                        <small class="error-message text-danger" id="bathrooms_error"></small>
                     </div>
 
                 </div>
@@ -67,11 +69,12 @@
                 {{-- metri quadrati --}}
                 <div class="mb-3">
                     <label for="square_meters" class="form-label">Metri quadrati</label>
-                    <input type="number" required class="form-control @error('square_meters') is-invalid @enderror"
+                    <input type="number" class="form-control @error('square_meters') is-invalid @enderror"
                         id="square_meters" name="square_meters" value="{{ old('square_meters') }}">
                     @error('square_meters')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
+                    <small class="error-message text-danger" id="square_meters_error"></small>
                 </div>
 
                 <div class="mb-3 row">
@@ -79,32 +82,11 @@
                     {{-- indirizzo --}}
                     <div class="col-12 address-search">
                         <label for="address" class="form-label">Via</label>
-                        {{-- <input type="text" required class="form-control @error('address') is-invalid @enderror"
-                            id="address" name="address" value="{{ old('address') }}"> --}}
                         @error('address')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
+                        <small class="error-message text-danger" id="address_error"></small>
                     </div>
-
-                    {{-- città --}}
-                    {{-- <div class="col">
-                        <label for="city" class="form-label">Città</label>
-                        <input type="text" required class="form-control @error('city') is-invalid @enderror" id="city"
-                            name="city" value="{{ old('city') }}">
-                        @error('city')
-                            <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div> --}}
-
-                    {{-- cap --}}
-                    {{-- <div class="col">
-                        <label for="cap" class="form-label">Cap</label>
-                        <input type="text" required class="form-control @error('cap') is-invalid @enderror" id="cap"
-                            name="cap" value="{{ old('cap') }}">
-                        @error('cap')
-                            <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div> --}}
 
                 </div>
 
@@ -129,27 +111,30 @@
                     @error('image_path')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
+                    <small class="error-message text-danger" id="image_path_error"></small>
                     <img src="/img/house-placeholder.jpg" alt="placeholder" id="thumb">
                 </div>
 
                 {{-- impostazione visibilità --}}
                 <div class="mb-3">
                     <div class="form-check">
-                        <input class="form-check-input btn-custom" type="radio" name="is_visible" id="is_visible1" value="1"
-                            checked>
-                        <label class="form-check-label btn-custom" for="is_visible1">
+                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"
+                            {{ old('is_visible') == 1 ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_visible1">
                             Pubblico
                         </label>
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0">
+                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0"
+                            {{ old('is_visible') == 0 ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_visible2">
                             Privato
                         </label>
                     </div>
-
+                    <small class="error-message text-danger" id="is_visible_error"></small>
                 </div>
+
 
                 {{-- bottone invio --}}
                 <button type="submit" class="btn custom-show">Invia</button>
@@ -187,14 +172,100 @@
         // Selezionare l'input per id
         var inputElement = document.querySelector('input.tt-search-box-input');
 
-        // Impostare il valore dell'input
-        // inputElement.value = "{{ old('address') }}";
         inputElement.id = "address";
         inputElement.name = "address";
+        inputElement.required = true;
 
         const inputContainer = document.querySelector('.tt-search-box-input-container');
         inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
         inputContainer.style.borderRadius = 'var(--bs-border-radius)';
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('apartment-form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();  // Prevenire invio del form se ci sono errori
+            let isValid = true;
+
+            // Reset messaggi di errore
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+            // Titolo
+            const title = document.getElementById('title');
+            const titleError = document.getElementById('title_error');
+            const titleRegex = /^[a-zA-Z\s]+$/;
+            if (!title.value || title.value.length < 3 || !titleRegex.test(title.value)) {
+                isValid = false;
+                titleError.textContent = "Il titolo deve contenere almeno 3 caratteri e non può avere numeri o caratteri speciali.";
+            }
+
+            // Stanze
+            const rooms = document.getElementById('rooms');
+            const roomsError = document.getElementById('rooms_error');
+            if (rooms.value && (!Number.isInteger(+rooms.value) || +rooms.value <= 0)) {
+                isValid = false;
+                roomsError.textContent = "Il numero di stanze deve essere un numero intero maggiore di 0.";
+            }
+
+            // Letti
+            const beds = document.getElementById('beds');
+            const bedsError = document.getElementById('beds_error');
+            if (beds.value && (!Number.isInteger(+beds.value) || +beds.value <= 0)) {
+                isValid = false;
+                bedsError.textContent = "Il numero di letti deve essere un numero intero maggiore di 0.";
+            }
+
+            // Bagni
+            const bathrooms = document.getElementById('bathrooms');
+            const bathroomsError = document.getElementById('bathrooms_error');
+            if (bathrooms.value && (!Number.isInteger(+bathrooms.value) || +bathrooms.value <= 0)) {
+                isValid = false;
+                bathroomsError.textContent = "Il numero di bagni deve essere un numero intero maggiore di 0.";
+            }
+
+            // Metri quadri
+            const squareMeters = document.getElementById('square_meters');
+            const squareMetersError = document.getElementById('square_meters_error');
+            if (squareMeters.value && (!Number.isInteger(+squareMeters.value) || +squareMeters.value <= 0)) {
+                isValid = false;
+                squareMetersError.textContent = "I metri quadri devono essere un numero intero maggiore di 0.";
+            }
+
+            // Indirizzo
+            const address = document.getElementById('address');
+            const addressError = document.getElementById('address_error');
+            if (!address.value || address.value.length < 5) {
+                isValid = false;
+                addressError.textContent = "L'indirizzo deve contenere almeno 5 caratteri.";
+            }
+
+            // Immagine
+            const image = document.getElementById('image_path');
+            const imageError = document.getElementById('image_path_error');
+            if (image.files.length > 0) {
+                const file = image.files[0];
+                const validImageTypes = ['image/jpeg', 'image/png'];
+                if (!validImageTypes.includes(file.type) || file.size > 5120 * 1024) {
+                    isValid = false;
+                    imageError.textContent = "L'immagine deve essere un file .jpg o .png e non può superare i 5MB.";
+                }
+            }
+
+            // Visibilità
+            const visible1 = document.getElementById('is_visible1');
+            const visible2 = document.getElementById('is_visible2');
+            const visibleError = document.getElementById('is_visible_error');
+            if (!visible1.checked && !visible2.checked) {
+                isValid = false;
+                visibleError.textContent = "La visibilità è un campo obbligatorio.";
+            }
+
+            if (isValid) {
+                form.submit();  // Se tutto è valido, invia il form
+            }
+
+        });
+    });
 
     </script>
 @endsection
