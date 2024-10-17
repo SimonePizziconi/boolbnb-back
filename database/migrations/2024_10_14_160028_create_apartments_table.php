@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->unsignedTinyInteger('rooms');
-            $table->unsignedTinyInteger('beds');
-            $table->unsignedTinyInteger('bathrooms');
-            $table->unsignedSmallInteger('square_meters');
+            $table->unsignedTinyInteger('rooms')->nullable();
+            $table->unsignedTinyInteger('beds')->nullable();
+            $table->unsignedTinyInteger('bathrooms')->nullable();
+            $table->unsignedSmallInteger('square_meters')->nullable();
             $table->string('address');
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
