@@ -26,16 +26,35 @@
                         </a>
                         ||
                         <strong>Elimina:</strong>
-                        <form class="d-inline" id="form-delete-{{ $apartment->id }}"
-                            action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
-                            onsubmit="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn custom-delete" data-bs-toggle="tooltip"
-                                data-bs-placement="top" title="Elimina">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
+                        <a href="#deleteModal{{ $apartment->id }}" class="btn custom-delete" data-bs-toggle="modal"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Elimina">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                        <div class="modal fade" id="deleteModal{{ $apartment->id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Conferma Eliminazione</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Sei sicuro di voler eliminare <span
+                                            id="apartmentTitle">{{ $apartment->title }}</span>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn custom-edit"
+                                            data-bs-dismiss="modal">Annulla</button>
+                                        <form action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn custom-delete">Elimina</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

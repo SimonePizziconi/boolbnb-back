@@ -3,7 +3,7 @@
 @section('content')
     Benvenuto, {{ $userName }}
 
-    Ci sono {{ $apartmentCount }} <a href="{{ route('admin.apartments.index') }}">appartamenti</a> nel tuo DB
+    Ci sono {{ $apartmentCount }} <a href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
 @endsection
 
 

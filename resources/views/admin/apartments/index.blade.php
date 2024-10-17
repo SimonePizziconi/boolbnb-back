@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('deleted'))
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="deletedToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        @if (session('deleted'))
+            <div id="deletedToast" class="toast show bg-toast" role="alert" aria-live="assertive" aria-atomic="true"
+                data-bs-autohide="true" data-bs-delay="5000">
                 <div class="toast-header">
                     <strong class="me-auto">Notifica</strong>
                     <small class="text-muted">Ora</small>
@@ -13,23 +14,8 @@
                     {{ session('deleted') }}
                 </div>
             </div>
-        </div>
-    @endif
-
-    @if (session('restored'))
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="restoredToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Notifica</strong>
-                    <small class="text-muted">Ora</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    {{ session('restored') }}
-                </div>
-            </div>
-        </div>
-    @endif
+        @endif
+    </div>
 
     <h1>Lista Appartamenti</h1>
     <table class="table text-center">
@@ -38,6 +24,7 @@
                 <th scope="col" class="d-none d-md-table-cell">Id</th>
                 <th scope="col" class="d-none d-md-table-cell">Immagine</th>
                 <th scope="col">Titolo</th>
+                <th scope="col">Visibilità</th>
                 {{-- <th scope="col">Stanze</th>
                 <th scope="col">Camere</th>
                 <th scope="col">Bagni</th>
@@ -60,6 +47,7 @@
                         </div>
                     </td>
                     <td>{{ $apartment->title }}</td>
+                    <td>{{ $apartment->is_visible == 1 ? 'Pubblica' : 'Privata' }}</td>
                     {{-- <td>{{ $apartment->rooms }}</td>
                     <td>{{ $apartment->beds }}</td>
                     <td>{{ $apartment->bathrooms }}</td>
@@ -84,7 +72,8 @@
                                 class="btn custom-edit d-none d-lg-inline-block"
                                 href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-pen"></i></a>
-                            <a href="#deleteModal{{ $apartment->id }}" class="btn custom-delete" data-bs-toggle="modal">
+                            <a href="#deleteModal{{ $apartment->id }}" class="btn custom-delete" data-bs-toggle="modal"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Elimina">
                                 <i class="fa-solid fa-trash-can"></i>
                             </a>
 
@@ -158,6 +147,16 @@
             } else {
                 console.log('Coordinate mancanti per l\'appartamento con ID: ' + apartment.id);
             }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toastElements = document.querySelectorAll('.toast');
+            toastElements.forEach(function(toastElement) {
+                var toast = new bootstrap.Toast(toastElement);
+                toast.show(); // Mostra la Toast
+            });
         });
     </script>
 @endsection
