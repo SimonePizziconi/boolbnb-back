@@ -84,11 +84,35 @@
                                 class="btn custom-edit d-none d-lg-inline-block"
                                 href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}">
                                 <i class="fa-solid fa-pen"></i></a>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal" data-id="{{ $apartment->id }}"
-                                data-title="{{ $apartment->title }}">
+                            <a href="#deleteModal{{ $apartment->id }}" class="btn btn-danger" data-bs-toggle="modal">
                                 <i class="fa-solid fa-trash-can"></i> Elimina
-                            </button>
+                            </a>
+                            <div class="modal fade" id="deleteModal{{ $apartment->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Conferma Eliminazione</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Sei sicuro di voler eliminare <span
+                                                id="apartmentTitle">{{ $apartment->title }}</span>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Annulla</button>
+                                            <form action="{{ route('admin.apartments.destroy', $apartment) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Elimina</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -101,30 +125,9 @@
     </div>
 
     <!-- Modale per conferma eliminazione -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Conferma Eliminazione</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Sei sicuro di voler eliminare <span id="apartmentTitle"></span>?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <form id="form-delete-{{ $apartment->id }}"
-                        action="{{ route('admin.apartments.destroy', $apartment) }}" method="POST"
-                        class="d-none d-lg-inline-block">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Elimina</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Modale per conferma eliminazione -->
+
+
 
 
     <!-- Inclusione del CSS e JS di TomTom Maps -->
