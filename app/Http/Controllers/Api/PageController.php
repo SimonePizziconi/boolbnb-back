@@ -51,4 +51,12 @@ class PageController extends Controller
 
         return response()->json(compact('success','apartment'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('q');
+        $apartments = Apartment::where('address', 'LIKE', "%$query%")->get(); 
+
+        return response()->json(compact('apartments'));
+    }
 }

@@ -19,3 +19,5 @@ Route::get('/apartments', [PageController::class, 'index']);
 
 Route::get('/apartment/{slug}', [PageController::class, 'show']);
 
+Route::get('/apartments/search', [PageController::class, 'search']);
+
