@@ -127,7 +127,7 @@
 
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0"
-                            {{ old('is_visible') == 0 ? 'checked' : '' }} disabled>
+                            {{ old('is_visible') == 0 ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_visible2">
                             Privato
                         </label>
@@ -152,14 +152,11 @@
 
             const imageInput = document.getElementById('image_path');
             const isVisible1 = document.getElementById('is_visible1');
-            const isVisible2 = document.getElementById('is_visible2');
 
             if (imageInput.files.length > 0) {
                 isVisible1.disabled = false;
-                isVisible2.disabled = false;
             } else {
                 isVisible1.disabled = true;
-                isVisible2.disabled = true;
             }
         }
 
