@@ -119,7 +119,7 @@
                 <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"
-                            {{ old('is_visible') == 1 ? 'checked' : '' }}>
+                            {{ old('is_visible') == 1 ? 'checked' : '' }} disabled>
                         <label class="form-check-label" for="is_visible1">
                             Pubblico
                         </label>
@@ -127,7 +127,7 @@
 
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0"
-                            {{ old('is_visible') == 0 ? 'checked' : '' }}>
+                            {{ old('is_visible') == 0 ? 'checked' : '' }} disabled>
                         <label class="form-check-label" for="is_visible2">
                             Privato
                         </label>
@@ -149,6 +149,18 @@
         function showImage(event) {
             const thumb = document.getElementById('thumb');
             thumb.src = URL.createObjectURL(event.target.files[0]);
+
+            const imageInput = document.getElementById('image_path');
+            const isVisible1 = document.getElementById('is_visible1');
+            const isVisible2 = document.getElementById('is_visible2');
+
+            if (imageInput.files.length > 0) {
+                isVisible1.disabled = false;
+                isVisible2.disabled = false;
+            } else {
+                isVisible1.disabled = true;
+                isVisible2.disabled = true;
+            }
         }
 
         // tomtom autocomplete
