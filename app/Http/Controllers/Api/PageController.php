@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $apartments = Apartment::orderBy('id', 'desc')->with('services')->get();
+        $apartments = Apartment::where('is_visible', true)->orderBy('id', 'desc')->with('services')->get();
 
         if ($apartments) {
             $success = true;
