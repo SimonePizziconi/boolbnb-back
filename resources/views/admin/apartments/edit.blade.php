@@ -125,7 +125,7 @@
                 {{-- impostazione visibilità --}}
                 <div class="mb-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"
+                        <input disabled class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"
                             {{ old('is_visible', $apartment->is_visible) == 1 ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_visible1">
                             Pubblico
@@ -155,7 +155,17 @@
         function showImage(event) {
             const thumb = document.getElementById('thumb');
             thumb.src = URL.createObjectURL(event.target.files[0]);
+
+            const imageInput = document.getElementById('image_path');
+            const isVisible1 = document.getElementById('is_visible1');
+
+            if (imageInput.files.length > 0) {
+                isVisible1.disabled = false;
+            } else {
+                isVisible1.disabled = true;
+            }
         }
+
 
         // tomtom autocomplete
         var options = {
