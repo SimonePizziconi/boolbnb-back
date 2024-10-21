@@ -54,9 +54,35 @@ class PageController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->get('q');
-        $apartments = Apartment::where('address', 'LIKE', "%$query%")->get(); 
+        $lat = $request->get('lat');
+        $lng = $request->get('lng');
+        $radius = $request->get('radius', 20); // Valore di default a 20 km se non specificato
 
-        return response()->json(compact('apartments'));
+        // Query per filtrare gli appartamenti entro il raggio specificato
+        $apartments = Apartment::select('*')
+            ->selectRaw(
+                "( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance",
+                [$lat, $lng, $lat]
+            )
+            ->having('distance', '<=', $radius)
+            ->orderBy('distance')
+            ->with('services')
+            ->get();
+
+        if ($apartments->isEmpty()) {
+            $success = false;
+        } else {
+            $success = true;
+            foreach ($apartments as $apartment) {
+                if (!$apartment->image_path) {
+                    $apartment->image_path = '/img/house-placeholder.jpg';
+                    $apartment->image_original_name = 'no image';
+                } else {
+                    $apartment->image_path = Storage::url($apartment->image_path);
+                }
+            }
+        }
+
+        return response()->json(compact('success', 'apartments'));
     }
 }
