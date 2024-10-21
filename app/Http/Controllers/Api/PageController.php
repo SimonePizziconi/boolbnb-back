@@ -40,7 +40,7 @@ class PageController extends Controller
 
     public function show($slug){
 
-        $apartment = Apartment::where('slug', $slug)->with('services')->first();
+        $apartment = Apartment::where('slug', $slug, 'AND', 'is_visible', true)->with('services')->first();
 
         if ($apartment) {
             $success = true;
