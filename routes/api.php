@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/apartments', [PageController::class, 'index']);
 
+Route::get('/services', [PageController::class, 'services']);
+
 Route::get('/apartment/{slug}', [PageController::class, 'show']);
 
 Route::get('/apartments/search', [PageController::class, 'search']);

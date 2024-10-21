@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Service;
 
 
 class PageController extends Controller
@@ -29,6 +30,12 @@ class PageController extends Controller
         }
 
         return response()->json(compact('success', 'apartments'));
+    }
+
+    public function services(){
+        $services = Service::all();
+
+        return response()->json(compact('services'));
     }
 
     public function show($slug){
@@ -57,6 +64,9 @@ class PageController extends Controller
         $lat = $request->get('lat');
         $lng = $request->get('lng');
         $radius = $request->get('radius', 20); // Valore di default a 20 km se non specificato
+        $rooms = $request->get('rooms', 1);
+        $beds = $request->get('beds', 1);
+        $servicesIds = $request->get('services', []);
 
         // Query per filtrare gli appartamenti entro il raggio specificato
         $apartments = Apartment::select('*')
@@ -66,8 +76,17 @@ class PageController extends Controller
             )
             ->having('distance', '<=', $radius)
             ->orderBy('distance')
-            ->with('services')
-            ->get();
+            ->where('rooms', '>=', $rooms)
+            ->where('beds', '>=', $beds)
+            ->with('services');
+            // Aggiunge il filtro per i servizi se ci sono ID specificati
+            if (!empty($servicesIds)) {
+                $apartments->whereHas('services', function ($query) use ($servicesIds) {
+                    $query->whereIn('services.id', $servicesIds);
+                });
+            }
+
+            $apartments = $apartments->get();
 
         if ($apartments->isEmpty()) {
             $success = false;
