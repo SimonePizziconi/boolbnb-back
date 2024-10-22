@@ -12,4 +12,12 @@ class Message extends Model
     public function apartment(){
         return $this->belongsTo(Apartment::class);
     }
+
+    protected $fillable = [
+        'apartment_id',
+        'first_name',
+        'last_name',
+        'email',
+        'message'
+    ];
 }

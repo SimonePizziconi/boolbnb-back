@@ -23,3 +23,7 @@ Route::get('/services', [PageController::class, 'services']);
 Route::get('/apartment/{slug}', [PageController::class, 'show']);
 
 Route::get('/apartments/search', [PageController::class, 'search']);
+
+Route::get('/user', [PageController::class, 'getUser']);
+
+Route::post('/message/{slug}', [PageController::class, 'message']);
