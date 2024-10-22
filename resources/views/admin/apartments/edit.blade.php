@@ -164,30 +164,45 @@
     </div>
 
     <script>
+        // Funzione che gestisce la visualizzazione dell'immagine e lo stato del pulsante Pubblico
         function showImage(event) {
             const thumb = document.getElementById('thumb');
             const isVisible1 = document.getElementById('is_visible1');
 
-            // Mostra l'anteprima dell'immagine caricata
-            thumb.src = URL.createObjectURL(event.target.files[0]);
-
-            // Controlla se l'input immagine è stato riempito
-            if (event.target.files.length > 0 || thumb.src.includes('storage/')) {
-                isVisible1.disabled = false;
+            // Se l'utente carica un file, mostriamo l'anteprima
+            if (event.target.files.length > 0) {
+                thumb.src = URL.createObjectURL(event.target.files[0]);
+                isVisible1.disabled = false;  // Abilitiamo il bottone "Pubblico"
             } else {
-                isVisible1.disabled = true;
+                // Se non c'è immagine, mostriamo il placeholder
+                thumb.src = '/img/house-placeholder.jpg';
+                isVisible1.disabled = true;  // Disabilitiamo il bottone "Pubblico"
             }
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            const isVisible1 = document.getElementById('is_visible1');
             const thumb = document.getElementById('thumb');
+            const isVisible1 = document.getElementById('is_visible1');
+            const imageInput = document.getElementById('image_path');
 
-            // Abilita Pubblico se esiste già un'immagine (presente o caricata)
-            if (thumb.src.includes('storage/')) {
-                isVisible1.disabled = false;
+            // Verifica se un'immagine è già stata caricata nel database
+            const imagePath = "{{ old('image_path', $apartment->image_path) }}"; // Otteniamo il percorso dell'immagine
+            const isImagePresent = imagePath && imagePath !== 'null'; // Verifica se l'immagine è già presente
+
+            if (isImagePresent) {
+                // Se esiste già un'immagine, mostriamo quella
+                thumb.src = "{{ asset('storage/' . $apartment->image_path) }}";
+                isVisible1.disabled = false; // Abilitiamo il bottone "Pubblico"
+            } else if (imageInput.files.length > 0) {
+                // Se l'utente ha caricato un'immagine tramite file input, mostriamo quella
+                thumb.src = URL.createObjectURL(imageInput.files[0]);
+                isVisible1.disabled = false; // Abilitiamo il bottone "Pubblico"
+            } else {
+                // Se non c'è immagine né caricata né presente nel database, mostriamo il placeholder
+                thumb.src = '/img/house-placeholder.jpg';
+                isVisible1.disabled = true; // Disabilitiamo il bottone "Pubblico"
             }
-        })
+        });
 
         // tomtom autocomplete
         var options = {
