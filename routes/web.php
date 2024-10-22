@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ApartmentsController;
+use App\Http\Controllers\Admin\SponsorshipController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::middleware(['auth', 'verified'])
         Route::get('/apartments/trash', [ApartmentsController::class, 'trash'])->name('apartments.trash');
         Route::patch('/apartments/{apartment}/restore', [ApartmentsController::class, 'restore'])->name('apartments.restore');
         Route::delete('/apartments/{apartment}/delete', [ApartmentsController::class, 'delete'])->name('apartments.delete');
+        Route::get('/sponsorships/payment', [SponsorshipController::class, 'showPaymentForm'])->name('sponsorships.payment');
+        Route::post('/sponsorships/process', [SponsorshipController::class, 'processPayment'])->name('sponsorships.process');
         Route::resource('apartments', ApartmentsController::class);
     });
 

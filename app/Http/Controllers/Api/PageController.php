@@ -13,7 +13,13 @@ class PageController extends Controller
 {
     public function index()
     {
-        $apartments = Apartment::where('is_visible', true)->orderBy('id', 'desc')->with('services')->get();
+        $apartments = Apartment::where('is_visible', true)
+            ->leftJoin('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+            ->leftJoin('sponsorships', 'apartment_sponsorship.sponsorship_id', '=', 'sponsorships.id')
+            ->select('apartments.*', 'apartment_sponsorship.end_date')
+            ->orderBy('apartment_sponsorship.end_date', 'desc')
+            ->with('services', 'sponsorships')
+            ->get();
 
         if ($apartments) {
             $success = true;
@@ -32,13 +38,15 @@ class PageController extends Controller
         return response()->json(compact('success', 'apartments'));
     }
 
-    public function services(){
+    public function services()
+    {
         $services = Service::all();
 
         return response()->json(compact('services'));
     }
 
-    public function show($slug){
+    public function show($slug)
+    {
 
         $apartment = Apartment::where('slug', $slug)->where('is_visible', true)->with('services')->first();
 
@@ -51,12 +59,11 @@ class PageController extends Controller
             } else {
                 $apartment->image_path = Storage::url($apartment->image_path);
             }
-
         } else {
             $success = false;
         }
 
-        return response()->json(compact('success','apartment'));
+        return response()->json(compact('success', 'apartment'));
     }
 
     public function search(Request $request)
@@ -79,14 +86,14 @@ class PageController extends Controller
             ->where('rooms', '>=', $rooms)
             ->where('beds', '>=', $beds)
             ->with('services');
-            // Aggiunge il filtro per i servizi se ci sono ID specificati
-            if (!empty($servicesIds)) {
-                $apartments->whereHas('services', function ($query) use ($servicesIds) {
-                    $query->whereIn('services.id', $servicesIds);
-                });
-            }
+        // Aggiunge il filtro per i servizi se ci sono ID specificati
+        if (!empty($servicesIds)) {
+            $apartments->whereHas('services', function ($query) use ($servicesIds) {
+                $query->whereIn('services.id', $servicesIds);
+            });
+        }
 
-            $apartments = $apartments->get();
+        $apartments = $apartments->get();
 
         if ($apartments->isEmpty()) {
             $success = false;

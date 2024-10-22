@@ -87,10 +87,6 @@
                     </ul>
                 @endif
             </div>
-            {{-- <div class="col-md-5 col-12">
-                <!-- Qui la mappa per il singolo appartamento -->
-                <div id="map" style="width: 500px; height: 300px;" class="img-fluid rounded shadow"></div>
-            </div> --}}
         </div>
 
     </div>

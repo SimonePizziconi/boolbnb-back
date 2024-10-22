@@ -17,18 +17,18 @@ class SponsorshipTableSeeder extends Seeder
         $sponsorships = [
             [
                 'name' => 'Basic',
-                'current_price' => 19.99,
+                'current_price' => 2.99,
                 'duration' => 24,
             ],
             [
                 'name' => 'Standard',
-                'current_price' => 39.99,
+                'current_price' => 5.99,
                 'duration' => 72,
             ],
             [
                 'name' => 'Premium',
-                'current_price' => 79.99,
-                'duration' => 168,
+                'current_price' => 9.99,
+                'duration' => 144,
             ]
         ];
 

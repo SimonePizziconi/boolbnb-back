@@ -30,6 +30,7 @@
                 <th scope="col">Bagni</th>
                 <th scope="col">Metri Quadri</th> --}}
                 <th scope="col" class="d-none d-md-table-cell">Indirizzo</th>
+                <th scope="col" class="d-none d-md-table-cell">Sponsorizzazione</th>
                 {{-- <th scope="col">Mappa</th> --}}
                 <th scope="col" class="d-none d-md-table-cell">Servizi</th>
                 <th scope="col">Azioni</th>
@@ -56,6 +57,13 @@
                     {{-- <td>
                         <div id="map-{{ $apartment->id }}" style="width: 200px; height: 150px;"></div>
                     </td> --}}
+                    <td class="d-none d-md-table-cell">
+                        @forelse ($apartment->sponsorships as $sponsorship)
+                            <span class="badge text-bg-success custom-delete">{{ $sponsorship->name }}</span>
+                        @empty
+                            -
+                        @endforelse
+                    </td>
                     <td class="d-none d-md-table-cell">
                         @forelse ($apartment->services as $service)
                             <span class="badge text-bg-success custom-delete">{{ $service->name }}</span>

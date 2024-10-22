@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PageController;
+use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,3 @@ Route::get('/services', [PageController::class, 'services']);
 Route::get('/apartment/{slug}', [PageController::class, 'show']);
 
 Route::get('/apartments/search', [PageController::class, 'search']);
-
