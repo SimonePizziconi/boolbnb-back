@@ -102,6 +102,8 @@ class PageController extends Controller
             }
         }
 
-        return response()->json(compact('success', 'apartments'));
+        $count = $apartments->count();
+
+        return response()->json(compact('success', 'apartments', 'count'));
     }
 }
