@@ -54,6 +54,14 @@ class SponsorshipController extends Controller
             return redirect()->back()->with('error', 'Pacchetto sponsorizzazione non valido.');
         }
 
+        $currentSponsorship = $apartment->sponsorships()
+            ->wherePivot('end_date', '>', Carbon::now())
+            ->first();
+
+        if ($currentSponsorship) {
+            return redirect()->route('admin.apartments.show', $apartment)->with('error', 'Questo appartamento ha già una sponsorizzazione attiva.'); // Messaggio di errore
+        }
+
         // Inizio sponsorizzazione
         $start_date = Carbon::now();
 

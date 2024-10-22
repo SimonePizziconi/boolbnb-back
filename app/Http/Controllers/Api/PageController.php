@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
@@ -87,7 +88,7 @@ class PageController extends Controller
             ->orderBy('distance')
             ->where('rooms', '>=', $rooms)
             ->where('beds', '>=', $beds)
-            ->with('services');
+            ->with('services', 'sponsorships');
         // Aggiunge il filtro per i servizi se ci sono ID specificati
         if (!empty($servicesIds)) {
             $apartments->whereHas('services', function ($query) use ($servicesIds) {
@@ -116,25 +117,32 @@ class PageController extends Controller
         return response()->json(compact('success', 'apartments', 'count'));
     }
 
-    public function getUser(){
-        if(Auth::check()){
+    public function getUser()
+    {
+        if (Auth::check()) {
             $user = Auth::user()->email;
-        }else{
+        } else {
             $user = 'utente non loggato';
         }
 
         return response()->json(compact('user'));
     }
 
-    public function message(Request $request, $slug){
+    public function message(Request $request, $slug)
+    {
 
         $data = $request->all();
 
-        $validator = Validator::make($data,
+        $validator = Validator::make(
+            $data,
             [
                 'first_name' => 'required|min:3|regex:/^[a-zA-Z\s]+$/',
                 'last_name' => 'required|min:3|regex:/^[a-zA-Z\s]+$/',
-                'email' => 'required', 'string', 'lowercase', 'email', 'max:255',
+                'email' => 'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
                 'message' => 'required|min:10',
             ],
             [
@@ -157,7 +165,7 @@ class PageController extends Controller
             ]
         );
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $success = false;
             $errors = $validator->errors();
             return response()->json(compact('success', 'errors'));
