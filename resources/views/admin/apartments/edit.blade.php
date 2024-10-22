@@ -8,6 +8,17 @@
             <h2>Modifica Appartamento</h2>
         </div>
 
+        <div class="m-3">
+            <ul>
+                <li>
+                    <small>I campi contrassegnati da * sono obbligatori</small>
+                </li>
+                <li>
+                    <small>Per rendere pubblico l'appartamento, carica un'immagine valida</small>
+                </li>
+            </ul>
+        </div>
+
         <div>
 
             <form id="apartment-form" action="{{ route('admin.apartments.update', $apartment) }}" method="POST" enctype="multipart/form-data">
@@ -18,7 +29,7 @@
 
                 {{-- titolo --}}
                 <div class="mb-3">
-                    <label for="title" class="form-label">Titolo</label>
+                    <label for="title" class="form-label">Titolo*</label>
                     <input type="text" required class="form-control @error('title') is-invalid @enderror" id="title"
                         name="title" value="{{ old('title', $apartment->title) }}">
                     @error('title')
@@ -79,7 +90,7 @@
 
                 <div class="mb-3 row">
                     <div class="col-12 address-search">
-                        <label for="address" class="form-label">Via</label>
+                        <label for="address" class="form-label">Via*</label>
                         @error('address')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -125,8 +136,9 @@
                 {{-- impostazione visibilità --}}
                 <div class="mb-3">
                     <div class="form-check">
-                        <input disabled class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"
-                            {{ old('is_visible', $apartment->is_visible) == 1 ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible1" value="1"
+                            {{ old('is_visible', $apartment->is_visible) == 1 ? 'checked' : '' }}
+                            {{ !$apartment->image_path ? 'disabled' : '' }}>
                         <label class="form-check-label" for="is_visible1">
                             Pubblico
                         </label>
@@ -143,7 +155,7 @@
                 </div>
 
                 {{-- bottone invio --}}
-                <button type="submit" class="btn custom-show">Invia</button>
+                <button type="submit" class="btn custom-show">Salva</button>
 
             </form>
 
@@ -154,18 +166,28 @@
     <script>
         function showImage(event) {
             const thumb = document.getElementById('thumb');
-            thumb.src = URL.createObjectURL(event.target.files[0]);
-
-            const imageInput = document.getElementById('image_path');
             const isVisible1 = document.getElementById('is_visible1');
 
-            if (imageInput.files.length > 0) {
+            // Mostra l'anteprima dell'immagine caricata
+            thumb.src = URL.createObjectURL(event.target.files[0]);
+
+            // Controlla se l'input immagine è stato riempito
+            if (event.target.files.length > 0 || thumb.src.includes('storage/')) {
                 isVisible1.disabled = false;
             } else {
                 isVisible1.disabled = true;
             }
         }
 
+        document.addEventListener('DOMContentLoaded', function () {
+            const isVisible1 = document.getElementById('is_visible1');
+            const thumb = document.getElementById('thumb');
+
+            // Abilita Pubblico se esiste già un'immagine (presente o caricata)
+            if (thumb.src.includes('storage/')) {
+                isVisible1.disabled = false;
+            }
+        })
 
         // tomtom autocomplete
         var options = {

@@ -10,15 +10,14 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -31,13 +30,13 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password">
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="current-password">
                                         <div class="input-group-append">
                                             <button id="togglePassword" type="button" class="btn btn-outline-secondary">
                                                 <i class="far fa-eye"></i>
@@ -48,8 +47,8 @@
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
-                                    <span class="error-message text-danger" id="password_error"></span>
+                                        @enderror
+                                        <span class="error-message text-danger" id="password_error"></span>
 
                                 </div>
                             </div>
@@ -58,7 +57,7 @@
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                            {{ old('remember') ? 'checked' : '' }}>
+                                        {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
                                             {{ __('Ricordami') }}
@@ -74,14 +73,17 @@
                                     </button>
 
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Recupera La Tua Password?') }}
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Recupera La Tua Password?') }}
                                         </a>
                                     @endif
                                 </div>
                             </div>
                         </form>
                     </div>
+                </div>
+                <div class="m-4">
+                    <small>I campi contrassegnati da * sono obbligatori</small>
                 </div>
             </div>
         </div>
@@ -131,7 +133,7 @@
                 } else {
                     password.classList.remove('is-invalid'); // Rimuovi la classe is-invalid se non ci sono errori
                 }
-                
+
                 // Se uno dei controlli fallisce, impedisci l'invio del modulo
                 if (!valid) {
                     event.preventDefault();

@@ -8,6 +8,17 @@
             <h2>Nuovo Appartamento</h2>
         </div>
 
+        <div class="m-3">
+            <ul>
+                <li>
+                    <small>I campi contrassegnati da * sono obbligatori</small>
+                </li>
+                <li>
+                    <small>Per rendere pubblico l'appartamento, carica un'immagine valida</small>
+                </li>
+            </ul>
+        </div>
+
         <div>
 
             <form id="apartment-form" action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
@@ -15,9 +26,9 @@
 
                 {{-- titolo --}}
                 <div class="mb-3">
-                    <label for="title" class="form-label">Titolo</label>
+                    <label for="title" class="form-label">Titolo*</label>
                     <input type="text" required class="form-control @error('title') is-invalid @enderror" id="title"
-                        name="title" value="{{ old('title') }}">
+                        name="title" value="{{ old('title') }}" autocomplete="off">
                     @error('title')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -32,7 +43,7 @@
 
                         <label for="rooms" class="form-label">Numero di camere</label>
                         <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
-                            name="rooms" value="{{ old('rooms') }}">
+                            name="rooms" value="{{ old('rooms') }}" autocomplete="off">
                         @error('rooms')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -45,7 +56,7 @@
 
                         <label for="beds" class="form-label">Numero di letti</label>
                         <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
-                            name="beds" value="{{ old('beds') }}">
+                            name="beds" value="{{ old('beds') }}" autocomplete="off">
                         @error('beds')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -57,7 +68,7 @@
 
                         <label for="bathrooms" class="form-label">Numero di bagni</label>
                         <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
-                            id="bathrooms" name="bathrooms" value="{{ old('bathrooms') }}">
+                            id="bathrooms" name="bathrooms" value="{{ old('bathrooms') }}" autocomplete="off">
                         @error('bathrooms')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -70,7 +81,7 @@
                 <div class="mb-3">
                     <label for="square_meters" class="form-label">Metri quadrati</label>
                     <input type="number" class="form-control @error('square_meters') is-invalid @enderror"
-                        id="square_meters" name="square_meters" value="{{ old('square_meters') }}">
+                        id="square_meters" name="square_meters" value="{{ old('square_meters') }}" autocomplete="off">
                     @error('square_meters')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -81,7 +92,7 @@
 
                     {{-- indirizzo --}}
                     <div class="col-12 address-search">
-                        <label for="address" class="form-label">Via</label>
+                        <label for="address" class="form-label">Via*</label>
                         @error('address')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -137,12 +148,10 @@
 
 
                 {{-- bottone invio --}}
-                <button type="submit" class="btn custom-show">Invia</button>
+                <button type="submit" class="btn custom-show">Salva</button>
 
             </form>
-
         </div>
-
     </div>
 
     <script>
@@ -163,13 +172,13 @@
         // tomtom autocomplete
         var options = {
             searchOptions: {
-            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
-            language: "it-IT",
-            limit: 5,
+                key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+                language: "it-IT",
+                limit: 5,
             },
             autocompleteOptions: {
-            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
-            language: "it-IT",
+                key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+                language: "it-IT",
             },
         }
         var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
@@ -186,6 +195,7 @@
         inputElement.id = "address";
         inputElement.name = "address";
         inputElement.required = true;
+        inputElement.autocomplete = "off"
 
         const inputContainer = document.querySelector('.tt-search-box-input-container');
         inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
