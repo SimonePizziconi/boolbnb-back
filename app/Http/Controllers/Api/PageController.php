@@ -10,23 +10,35 @@ use App\Models\Apartment;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Service;
 use App\Models\Message;
+use Carbon\Carbon;
 
 
 class PageController extends Controller
 {
+
     public function index()
     {
+        $currentTime = Carbon::now(); // Ottieni il tempo corrente
+
         $apartments = Apartment::where('is_visible', true)
-            ->leftJoin('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+            ->leftJoin('apartment_sponsorship', function ($join) use ($currentTime) {
+                // Uniamo solo le sponsorizzazioni non scadute
+                $join->on('apartments.id', '=', 'apartment_sponsorship.apartment_id')
+                    ->where('apartment_sponsorship.end_date', '>', $currentTime);
+            })
             ->leftJoin('sponsorships', 'apartment_sponsorship.sponsorship_id', '=', 'sponsorships.id')
             ->select('apartments.*', 'apartment_sponsorship.end_date')
-            ->orderBy('apartment_sponsorship.end_date', 'desc')
-            ->with('services', 'sponsorships')
+            // Ordina prima per le sponsorizzazioni attive, poi per altri criteri
+            ->orderBy('apartment_sponsorship.end_date', 'desc')  // Sponsorizzati in cima
+            ->orderBy('apartments.created_at', 'desc') // Appartamenti non sponsorizzati ordinati per data di creazione
+            ->with('services', 'sponsorships') // Carica anche le relazioni
             ->get();
 
-        if ($apartments) {
+        if ($apartments->isNotEmpty()) {
             $success = true;
+
             foreach ($apartments as $apartment) {
+                // Gestisci immagine placeholder
                 if (!$apartment->image_path) {
                     $apartment->image_path = '/img/house-placeholder.jpg';
                     $apartment->image_original_name = 'no image';
@@ -40,6 +52,7 @@ class PageController extends Controller
 
         return response()->json(compact('success', 'apartments'));
     }
+
 
     public function services()
     {
@@ -84,11 +97,16 @@ class PageController extends Controller
                 "( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance",
                 [$lat, $lng, $lat]
             )
+            ->leftJoin('apartment_sponsorship', function ($join) {
+                $join->on('apartments.id', '=', 'apartment_sponsorship.apartment_id')
+                    ->where('apartment_sponsorship.end_date', '>', Carbon::now()); // Sponsorizzazioni non scadute
+            })
             ->having('distance', '<=', $radius)
-            ->orderBy('distance')
+            ->orderBy('apartment_sponsorship.end_date', 'desc') // Ordina prima quelli sponsorizzati
             ->where('rooms', '>=', $rooms)
             ->where('beds', '>=', $beds)
             ->with('services', 'sponsorships');
+
         // Aggiunge il filtro per i servizi se ci sono ID specificati
         if (!empty($servicesIds)) {
             $apartments->whereHas('services', function ($query) use ($servicesIds) {
@@ -116,6 +134,8 @@ class PageController extends Controller
 
         return response()->json(compact('success', 'apartments', 'count'));
     }
+
+
 
     public function getUser()
     {
