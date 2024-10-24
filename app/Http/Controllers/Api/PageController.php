@@ -140,9 +140,9 @@ class PageController extends Controller
     public function getUser()
     {
         if (Auth::check()) {
-            $user = Auth::user()->email;
+            $user = Auth::user();
         } else {
-            $user = 'utente non loggato';
+            $user = false;
         }
 
         return response()->json(compact('user'));

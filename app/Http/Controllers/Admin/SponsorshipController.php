@@ -23,7 +23,7 @@ class SponsorshipController extends Controller
             'privateKey' => config('services.braintree.private_key')
         ]);
 
-        $apartments = Apartment::orderBy('id', 'desc')->where('user_id', Auth::user()->id)->get();
+        $apartments = Apartment::where('user_id', Auth::user()->id)->where('is_visible', true)->orderBy('id', 'desc')->get();
 
         // Otteniamo il client token per il front-end (necessario per il form)
         $clientToken = $gateway->clientToken()->generate();
