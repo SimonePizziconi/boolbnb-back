@@ -14,12 +14,15 @@ class ApartmentServiceTableSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 0; $i < 50; $i++){
+        for ($i = 0; $i < 50; $i++) {
+            // Seleziona un appartamento casuale
             $apartment = Apartment::inRandomOrder()->first();
 
-            $service_id = Service::inRandomOrder()->first()->id;
+            // Seleziona un servizio casuale
+            $service = Service::inRandomOrder()->first();
 
-            $apartment->services()->attach($service_id);
+            // Usa syncWithoutDetaching per evitare duplicati
+            $apartment->services()->syncWithoutDetaching($service->id);
         }
     }
 }
