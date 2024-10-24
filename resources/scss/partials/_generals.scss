@@ -199,6 +199,25 @@ a.custom-delete, button.custom-delete{
     }
 }
 
+a.custom-link{
+    color: var(--primary);
+    text-decoration: underline;
+
+    &:hover{
+        color: var(--secondary);
+    }
+}
+
+.form-control:focus {
+    border-color: var(--accent) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--accent) !important;
+}
+
+.form-check-input:focus{
+    border-color: var(--secondary) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--secondary) !important;
+}
+
 td{
     span.custom-delete{
         background-color: var(--accent) !important;
@@ -220,3 +239,22 @@ td{
     }
 }
 
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    z-index: 3;
+    color: var(--neutral) !important;
+    background-color:var(--secondary);
+    border-color: var(--neutral);
+}
+
+.page-link.active, .active > .page-link{
+    background-color: var(--secondary) !important;
+    border: var(--neutral);
+    color: var(--neutral) !important;
+}
+
+.page-link{
+    color: var(--primary) !important;
+}

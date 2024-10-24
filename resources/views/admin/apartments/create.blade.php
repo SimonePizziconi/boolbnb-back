@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="wrapper p-5">
+    <div class="wrapper p-5 container">
 
         <div class="label top">
             <h2>Nuovo Appartamento</h2>

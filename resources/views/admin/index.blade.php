@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    Benvenuto, {{ $userName }}
 
-    Ci sono {{ $apartmentCount }} <a href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
+    <div class="container">
+        Benvenuto, {{ $userName }}
+
+        Ci sono {{ $apartmentCount }} <a href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
+    </div>
+
 @endsection
 
 

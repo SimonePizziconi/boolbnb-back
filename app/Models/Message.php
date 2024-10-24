@@ -20,4 +20,9 @@ class Message extends Model
         'email',
         'message'
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y H:m',
+    ];
+
 }
