@@ -32,6 +32,12 @@
 
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.messagges.index') }}" class="nav-link text-white">
+                    <span><i class="fa-solid fa-envelope"></i> Messaggi</span>
+
+                </a>
+            </li>
         </ul>
         <ul class="nav nav-pills2 flex-column mb-auto">
             <li>

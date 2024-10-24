@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ApartmentsController;
 use App\Http\Controllers\Admin\SponsorshipController;
+use App\Http\Controllers\Admin\MessaggesController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::middleware(['auth', 'verified'])
         Route::delete('/apartments/{apartment}/delete', [ApartmentsController::class, 'delete'])->name('apartments.delete');
         Route::get('/sponsorships/payment', [SponsorshipController::class, 'showPaymentForm'])->name('sponsorships.payment');
         Route::post('/sponsorships/process', [SponsorshipController::class, 'processPayment'])->name('sponsorships.process');
+        Route::get('/messagges', [MessaggesController::class, 'showMessagges'])->name('messagges.index');
         Route::resource('apartments', ApartmentsController::class);
     });
 
