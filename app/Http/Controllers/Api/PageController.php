@@ -103,6 +103,7 @@ class PageController extends Controller
             })
             ->having('distance', '<=', $radius)
             ->orderBy('apartment_sponsorship.end_date', 'desc') // Ordina prima quelli sponsorizzati
+            ->orderBy('distance')
             ->where('rooms', '>=', $rooms)
             ->where('beds', '>=', $beds)
             ->with('services', 'sponsorships');

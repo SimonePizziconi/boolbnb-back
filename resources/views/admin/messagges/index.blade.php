@@ -30,6 +30,8 @@
                     <th scope="col" class="d-none d-md-table-cell">Nome utente</th>
                     <th scope="col">Email</th>
                     <th scope="col">Messaggio</th>
+                    <th scope="col">Ora</th>
+                    <th scope="col">Data</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,13 +56,11 @@
                             </td>
                             <td>{{$message->email}}</td>
                             <td>{{$message->message}}</td>
+                            <td>{{($message->created_at)->format('H:m')}}</td>
+                            <td>{{($message->created_at)->format('d/m/Y')}}</td>
                         </tr>
 
                     @endforeach
-                    {{-- @if(isset($apartment->message->first_name)): --}}
-
-
-                    {{-- @endif --}}
 
                 @endforeach
             </tbody>

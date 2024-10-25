@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="container">
+
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         @if (session('deleted'))
             <div id="deletedToast" class="toast show bg-toast" role="alert" aria-live="assertive" aria-atomic="true"
@@ -130,7 +133,7 @@
         {{ $apartments->links() }}
     </div>
 
-
+</div>
 
 
 
