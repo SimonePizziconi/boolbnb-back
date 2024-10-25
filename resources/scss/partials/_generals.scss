@@ -94,7 +94,7 @@ a {
 
         // Media query
         @media (max-width: 568px) {
-            width: 80px;
+            width: 50px;
 
             .logo-container {
                 justify-content: center;
@@ -137,17 +137,64 @@ a {
     }
 }
 
+@media (max-width: 568px) {
+
+    .btn-resp {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .wrapper {
+        padding: 0;
+    }
+
+    .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+
+        .row {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .col {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .col-12 {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .col-6 {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .col-4 {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .col-3 {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    }
+}
+
 
 
 // REGOLE DASHBOARD
 
-input[type="checkbox"] + .btn-custom{
+input[type="checkbox"]+.btn-custom {
     border: 1px solid var(--primary);
     // background-color: var(--secondary);
     color: black;
 }
 
-input[type="checkbox"]:checked + .btn-custom {
+input[type="checkbox"]:checked+.btn-custom {
     background-color: var(--secondary);
     color: white;
 }
@@ -156,85 +203,69 @@ input[type="checkbox"]:checked + .btn-custom {
 //     $btn-primary-bg :var(--secondary);
 // }
 
-div{
-    .form-check-input:checked{
+div {
+    .form-check-input:checked {
         background-color: var(--secondary);
         border-color: var(--secondary);
     }
 }
 
-a.custom-show, button.custom-show{
+a.custom-show,
+button.custom-show {
     background-color: var(--secondary);
     border: 1px solid var(--secondary);
     color: var(--neutral);
 
-    &:hover{
+    &:hover {
         background-color: #048d9a;
         border: 1px solid #048d9a;
         color: var(--neutral);
     }
 }
 
-button.custom-edit, a.custom-edit{
+button.custom-edit,
+a.custom-edit {
     background-color: var(--primary);
     border: 1px solid var(--primary);
     color: var(--neutral);
 
-    &:hover{
+    &:hover {
         background-color: #4c4c4c;
         border: 1px solid #4c4c4c;
         color: var(--neutral);
     }
 }
 
-a.custom-delete, button.custom-delete{
+a.custom-delete,
+button.custom-delete {
     background-color: var(--accent);
     border: 1px solid var(--accent);
     color: var(--neutral);
 
-    &:hover{
+    &:hover {
         background-color: #6c873c;
         border: 1px solid #556B2F;
         color: var(--neutral);
     }
 }
 
-a.custom-link{
-    color: var(--primary);
-    text-decoration: underline;
-
-    &:hover{
-        color: var(--secondary);
-    }
-}
-
-.form-control:focus {
-    border-color: var(--accent) !important;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--accent) !important;
-}
-
-.form-check-input:focus{
-    border-color: var(--secondary) !important;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--secondary) !important;
-}
-
-td{
-    span.custom-delete{
+td {
+    span.custom-delete {
         background-color: var(--accent) !important;
         border: 1px solid var(--accent);
     }
 }
 
-.bg-toast{
+.bg-toast {
     background-color: var(--accent) !important;
-    color:#F0F0F0 !important;
+    color: #F0F0F0 !important;
 }
 
-.pic{
+.pic {
     width: 30% !important;
     margin: 0 auto;
 
-    img{
+    img {
         height: 100%;
     }
 }

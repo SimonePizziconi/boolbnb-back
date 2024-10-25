@@ -2,160 +2,165 @@
 
 
 @section('content')
-    <div class="wrapper p-5 container">
-
-        <div class="label top">
-            <h2>Nuovo Appartamento</h2>
-        </div>
-
-        <div class="m-3">
-            <ul>
-                <li>
-                    <small>I campi contrassegnati da * sono obbligatori</small>
-                </li>
-                <li>
-                    <small>Per rendere pubblico l'appartamento, carica un'immagine valida</small>
-                </li>
-            </ul>
-        </div>
-
-        <div>
-
-            <form id="apartment-form" action="{{ route('admin.apartments.store') }}" method="POST"
-                enctype="multipart/form-data">
-                @csrf
-
-                {{-- titolo --}}
-                <div class="mb-3">
-                    <label for="title" class="form-label">Titolo*</label>
-                    <input type="text" required class="form-control @error('title') is-invalid @enderror" id="title"
-                        name="title" value="{{ old('title') }}" autocomplete="off">
-                    @error('title')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                    <small class="error-message text-danger" id="title_error"></small>
-                </div>
+    <div class="container-fluid">
 
 
-                <div class="row mb-3">
 
-                    {{-- numero di camere --}}
-                    <div class="col-lg-4 col-sm-12">
+        <div class="wrapper">
 
-                        <label for="rooms" class="form-label">Numero di camere</label>
-                        <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
-                            name="rooms" value="{{ old('rooms') }}" autocomplete="off">
-                        @error('rooms')
+            <div class="col-12 label top">
+                <h2>Nuovo Appartamento</h2>
+            </div>
+
+            <div class="m-3">
+
+
+                <div><small>I campi contrassegnati da * sono obbligatori</small></div>
+
+
+                <div><small>Per rendere pubblico l'appartamento, carica un'immagine valida</small></div>
+
+
+            </div>
+
+            <div>
+
+                <form id="apartment-form" action="{{ route('admin.apartments.store') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+
+                    {{-- titolo --}}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Titolo*</label>
+                        <input type="text" required class="form-control @error('title') is-invalid @enderror"
+                            id="title" name="title" value="{{ old('title') }}" autocomplete="off">
+                        @error('title')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-                        <small class="error-message text-danger" id="rooms_error"></small>
+                        <small class="error-message text-danger" id="title_error"></small>
+                    </div>
+
+
+                    <div class="row mb-3">
+
+                        {{-- numero di camere --}}
+                        <div class="col-lg-4 col-sm-12">
+
+                            <label for="rooms" class="form-label">Numero di camere</label>
+                            <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
+                                name="rooms" value="{{ old('rooms') }}" autocomplete="off">
+                            @error('rooms')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                            <small class="error-message text-danger" id="rooms_error"></small>
+
+                        </div>
+
+                        {{-- numero di letti --}}
+                        <div class="col-lg-4 col-sm-12">
+
+                            <label for="beds" class="form-label">Numero di letti</label>
+                            <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
+                                name="beds" value="{{ old('beds') }}" autocomplete="off">
+                            @error('beds')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                            <small class="error-message text-danger" id="beds_error"></small>
+                        </div>
+
+                        {{-- numero di bagni --}}
+                        <div class="col-lg-4 col-sm-12">
+
+                            <label for="bathrooms" class="form-label">Numero di bagni</label>
+                            <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
+                                id="bathrooms" name="bathrooms" value="{{ old('bathrooms') }}" autocomplete="off">
+                            @error('bathrooms')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                            <small class="error-message text-danger" id="bathrooms_error"></small>
+                        </div>
 
                     </div>
 
-                    {{-- numero di letti --}}
-                    <div class="col-lg-4 col-sm-12">
-
-                        <label for="beds" class="form-label">Numero di letti</label>
-                        <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
-                            name="beds" value="{{ old('beds') }}" autocomplete="off">
-                        @error('beds')
+                    {{-- metri quadrati --}}
+                    <div class="mb-3">
+                        <label for="square_meters" class="form-label">Metri quadrati</label>
+                        <input type="number" class="form-control @error('square_meters') is-invalid @enderror"
+                            id="square_meters" name="square_meters" value="{{ old('square_meters') }}" autocomplete="off">
+                        @error('square_meters')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-                        <small class="error-message text-danger" id="beds_error"></small>
+                        <small class="error-message text-danger" id="square_meters_error"></small>
                     </div>
 
-                    {{-- numero di bagni --}}
-                    <div class="col-lg-4 col-sm-12">
+                    <div class="mb-3 row">
 
-                        <label for="bathrooms" class="form-label">Numero di bagni</label>
-                        <input type="number" class="form-control @error('bathrooms') is-invalid @enderror" id="bathrooms"
-                            name="bathrooms" value="{{ old('bathrooms') }}" autocomplete="off">
-                        @error('bathrooms')
+                        {{-- indirizzo --}}
+                        <div class="col-12 address-search">
+                            <label for="address" class="form-label">Via*</label>
+                            <input type="hidden" id="address_validated" name="address_validated" value="">
+
+                            @error('address')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                            <small class="error-message text-danger" id="address_error"></small>
+                        </div>
+
+
+                    </div>
+
+                    {{-- servizi --}}
+                    <div class="mb-3">
+
+                        <label for="type" class="form-label d-block">Servizi</label>
+                        @foreach ($services as $service)
+                            <input name="services[]" type="checkbox" class="btn-check" id="check-{{ $service->id }}"
+                                autocomplete="off" value="{{ $service->id }}" {{-- validazione checked --}}
+                                @checked(in_array($service->id, old('services', [])))>
+                            <label class="btn m-1 btn-custom" for="check-{{ $service->id }}">{{ $service->name }}</label>
+                        @endforeach
+
+                    </div>
+
+
+                    {{-- immagine --}}
+                    <div class="mb-3">
+                        <label for="image_path" class="form-label">Inserisci un'immagine</label>
+                        <input class="form-control" type="file" id="image_path" name="image_path"
+                            onchange="showImage(event)">
+                        @error('image_path')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-                        <small class="error-message text-danger" id="bathrooms_error"></small>
+                        <small class="error-message text-danger" id="image_path_error"></small>
+                        <img src="/img/house-placeholder.jpg" alt="placeholder" id="thumb">
                     </div>
 
-                </div>
+                    {{-- impostazione visibilità --}}
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_visible" id="is_visible1"
+                                value="1" {{ old('is_visible') == 1 ? 'checked' : '' }} disabled>
+                            <label class="form-check-label" for="is_visible1">
+                                Pubblico
+                            </label>
+                        </div>
 
-                {{-- metri quadrati --}}
-                <div class="mb-3">
-                    <label for="square_meters" class="form-label">Metri quadrati</label>
-                    <input type="number" class="form-control @error('square_meters') is-invalid @enderror"
-                        id="square_meters" name="square_meters" value="{{ old('square_meters') }}" autocomplete="off">
-                    @error('square_meters')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                    <small class="error-message text-danger" id="square_meters_error"></small>
-                </div>
-
-                <div class="mb-3 row">
-
-                    {{-- indirizzo --}}
-                    <div class="col-12 address-search">
-                        <label for="address" class="form-label">Via*</label>
-                        <input type="hidden" id="address_validated" name="address_validated" value="">
-
-                        @error('address')
-                            <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                        <small class="error-message text-danger" id="address_error"></small>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_visible" id="is_visible2"
+                                value="0" {{ old('is_visible') == 0 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_visible2">
+                                Privato
+                            </label>
+                        </div>
+                        <small class="error-message text-danger" id="is_visible_error"></small>
                     </div>
 
 
-                </div>
+                    {{-- bottone invio --}}
+                    <button type="submit" class="btn custom-show">Salva</button>
 
-                {{-- servizi --}}
-                <div class="mb-3">
-
-                    <label for="type" class="form-label d-block">Servizi</label>
-                    @foreach ($services as $service)
-                        <input name="services[]" type="checkbox" class="btn-check" id="check-{{ $service->id }}"
-                            autocomplete="off" value="{{ $service->id }}" {{-- validazione checked --}}
-                            @checked(in_array($service->id, old('services', [])))>
-                        <label class="btn m-1 btn-custom" for="check-{{ $service->id }}">{{ $service->name }}</label>
-                    @endforeach
-
-                </div>
-
-
-                {{-- immagine --}}
-                <div class="mb-3">
-                    <label for="image_path" class="form-label">Inserisci un'immagine</label>
-                    <input class="form-control" type="file" id="image_path" name="image_path"
-                        onchange="showImage(event)">
-                    @error('image_path')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                    <small class="error-message text-danger" id="image_path_error"></small>
-                    <img src="/img/house-placeholder.jpg" alt="placeholder" id="thumb">
-                </div>
-
-                {{-- impostazione visibilità --}}
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible1"
-                            value="1" {{ old('is_visible') == 1 ? 'checked' : '' }} disabled>
-                        <label class="form-check-label" for="is_visible1">
-                            Pubblico
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible2"
-                            value="0" {{ old('is_visible') == 0 ? 'checked' : '' }}>
-                        <label class="form-check-label" for="is_visible2">
-                            Privato
-                        </label>
-                    </div>
-                    <small class="error-message text-danger" id="is_visible_error"></small>
-                </div>
-
-
-                {{-- bottone invio --}}
-                <button type="submit" class="btn custom-show">Salva</button>
-
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
