@@ -258,3 +258,46 @@ td{
 .page-link{
     color: var(--primary) !important;
 }
+
+
+
+// pagina messaggi
+
+.messages-title{
+    display: inline-block;
+}
+
+span.number{
+    background-color: var(--accent);
+    border-radius: 50%;
+    padding: 0.2em 0.7em;
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+}
+
+table{
+
+    .message-cell{
+        padding: 5em 0 !important;
+
+        // i{
+        //     font-size: 20px;
+        // }
+    }
+
+}
+
+.modal{
+    .message-date{
+        font-size: 14px;
+    }
+
+    .message-text{
+        border-bottom: var(--bs-modal-header-border-width) solid var(--accent);
+        border-top: var(--bs-modal-header-border-width) solid var(--accent);
+        padding: 2em  0;
+        max-height: 800px;
+        overflow: auto;
+    }
+}

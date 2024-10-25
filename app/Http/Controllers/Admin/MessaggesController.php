@@ -12,19 +12,29 @@ class MessaggesController extends Controller
 {
     public function showMessagges(){
 
-        //$messagges = Message::orderBy('id', 'desc')->with('apartment')->where('user_id', Auth::user()->id)->get();
+        $userId = Auth::id();
+        $messages = Message::whereHas('apartment', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->orderBy('created_at', 'desc')->with('apartment')->get();
 
-        $data = Apartment::orderBy('id', 'desc')->where('user_id', Auth::user()->id)->with('messages')->get();
+        foreach($messages as $message){
+            $message->status = 'close';
+        };
 
-        $apartments = [];
+        $messagesNumber = count($messages);
 
-        foreach($data as $apartment){
-            if(count($apartment->messages) !== 0){
-                $apartments[] = $apartment;
-            }
-        }
-
-        //dd($apartments);
-        return view('admin.messagges.index', compact('apartments'));
+        //dd($messages);
+        return view('admin.messagges.index', compact('messages', 'messagesNumber'));
     }
+
+    // public function openMessages(Request $request){
+
+    //     dd($request->data);
+    //     if($message->stauts = 'close'){
+    //         $message->status = 'open';
+    //     };
+
+
+    //     return view('admin.messagges.index', compact('message'));
+    // }
 }

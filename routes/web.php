@@ -32,6 +32,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/sponsorships/payment', [SponsorshipController::class, 'showPaymentForm'])->name('sponsorships.payment');
         Route::post('/sponsorships/process', [SponsorshipController::class, 'processPayment'])->name('sponsorships.process');
         Route::get('/messagges', [MessaggesController::class, 'showMessagges'])->name('messagges.index');
+        // Route::get('/messagges/{message}/open', [MessaggesController::class, 'openMessages'])->name('messages.open');
         Route::resource('apartments', ApartmentsController::class);
     });
 
