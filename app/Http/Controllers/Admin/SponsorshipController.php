@@ -24,12 +24,13 @@ class SponsorshipController extends Controller
         ]);
 
         $apartments = Apartment::where('user_id', Auth::user()->id)->where('is_visible', true)->orderBy('id', 'desc')->get();
+        $sponsorships = Sponsorship::all();
 
         // Otteniamo il client token per il front-end (necessario per il form)
         $clientToken = $gateway->clientToken()->generate();
 
         // Passiamo il client token al form di pagamento
-        return view('admin.sponsorships.payment', compact('apartments', 'clientToken'));
+        return view('admin.sponsorships.payment', compact('apartments', 'sponsorships', 'clientToken'));
     }
 
 

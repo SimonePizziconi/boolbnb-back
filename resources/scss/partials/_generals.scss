@@ -40,6 +40,14 @@ a {
     color: var(--primary);
 }
 
+.my_txt_secondary {
+    color: var(--secondary);
+}
+
+.my_txt_accent {
+    color: var(--accent);
+}
+
 .my_bg {
     background-color: var(--background);
     color: var(--primary);
@@ -223,6 +231,22 @@ button.custom-show {
     }
 }
 
+button.custom-show-reverse {
+    background-color: var(--neutral);
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+
+    &:hover {
+        background-color: var(--secondary);
+        border: 1px solid var(--secondary);
+        color: var(--neutral);
+    }
+}
+
+.sponsorship-card.selected {
+    border: 2px solid var(--secondary);
+}
+
 button.custom-edit,
 a.custom-edit {
     background-color: var(--primary);
@@ -267,5 +291,11 @@ td {
 
     img {
         height: 100%;
+    }
+}
+
+.my_border_hover {
+    &:hover {
+        border: 2px solid var(--secondary) !important;
     }
 }
