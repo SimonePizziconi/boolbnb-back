@@ -33,6 +33,12 @@
 
     <div class="container">
         <h1>{{ $apartment->title }}</h1>
+        <span>Sponsorizzazione:</span>
+        @forelse ($apartment->sponsorships as $sponsorship)
+            <span class="badge text-bg-success custom-delete">{{ $sponsorship->name }}</span>
+        @empty
+            Questo apppartamento non è ancora sponsorizzato
+        @endforelse
 
         <div class="d-flex justify-content-around align-items-center flex-wrap my-5">
             <div class="col-md-5 col-12">

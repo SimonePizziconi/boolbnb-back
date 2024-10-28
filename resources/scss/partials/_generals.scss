@@ -273,11 +273,9 @@ button.custom-delete {
     }
 }
 
-td {
-    span.custom-delete {
-        background-color: var(--accent) !important;
-        border: 1px solid var(--accent);
-    }
+span.custom-delete {
+    background-color: var(--accent) !important;
+    border: 1px solid var(--accent);
 }
 
 .bg-toast {
