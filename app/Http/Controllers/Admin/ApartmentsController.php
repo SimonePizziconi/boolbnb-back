@@ -141,7 +141,7 @@ class ApartmentsController extends Controller
 
         $update_apartment->fill($data);
 
-        if(array_key_exists('services', $data)){
+        if (array_key_exists('services', $data)) {
             $update_apartment->services()->sync($data['services']);
         } else {
             $update_apartment->services()->sync([]);
