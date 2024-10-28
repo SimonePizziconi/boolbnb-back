@@ -200,36 +200,17 @@
 
         // Selezionare l'input per id
         var inputElement = document.querySelector('input.tt-search-box-input');
-        var validatedField = document.getElementById('address_validated');
 
-        // Impostare il valore dell'input usando old('address')
-        document.addEventListener('DOMContentLoaded', function() {
-            const oldAddress = "{{ old('address') }}";
-            if (oldAddress) {
-                inputElement.value = oldAddress;
-                validatedField.value = oldAddress; // Mantieni il valore anche nel campo validato
-            }
-        });
+        // Impostare il valore dell'input
+        inputElement.value = "{{ old('address') }}";
+        inputElement.id = "address";
+        inputElement.name = "address";
+        inputElement.required = true;
+        inputElement.autocomplete = 'off';
 
-        // Quando l'utente seleziona un indirizzo dai suggerimenti
-        ttSearchBox.on('tomtom.searchbox.resultselected', function(data) {
-            const selectedAddress = data.data.result.address.freeformAddress;
-            inputElement.value = selectedAddress; // Aggiorna l'input visivo
-            validatedField.value = selectedAddress; // Indica che l'indirizzo è valido
-        });
-
-        // Controlla l'input per prevenire l'invio del form se l'indirizzo non è validato
-        const form = document.getElementById('apartment-form');
-        form.addEventListener('submit', function(event) {
-            // Se l'input non è validato
-            if (!validatedField.value) {
-                event.preventDefault();
-                alert("Seleziona un indirizzo valido dall'elenco suggerito.");
-                return false;
-            }
-        });
-
-
+        const inputContainer = document.querySelector('.tt-search-box-input-container');
+        inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
+        inputContainer.style.borderRadius = 'var(--bs-border-radius)';
 
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('apartment-form');

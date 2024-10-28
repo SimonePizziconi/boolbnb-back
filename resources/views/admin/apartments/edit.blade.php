@@ -230,6 +230,7 @@
         inputElement.id = "address";
         inputElement.name = "address";
         inputElement.required = true;
+        inputElement.autocomplete = 'off';
 
         const inputContainer = document.querySelector('.tt-search-box-input-container');
         inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
