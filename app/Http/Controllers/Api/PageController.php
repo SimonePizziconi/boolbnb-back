@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Service;
 use App\Models\Message;
 use Carbon\Carbon;
+use App\Models\Statistic;
 
 
 class PageController extends Controller
@@ -203,5 +204,37 @@ class PageController extends Controller
 
 
         return response()->json(compact('success'));
+    }
+
+    public function storeStatistic(Request $request)
+    {
+        // Valida la richiesta per assicurarsi che `apartment_id` sia presente
+        $validatedData = $request->validate([
+            'apartment_id' => 'required|exists:apartments,id',
+        ]);
+
+        // Ottieni l'IP dell'utente e la data odierna
+        $ipAddress = $request->ip();
+        $today = Carbon::today();
+
+        // Verifica se esiste già una statistica per questo `apartment_id` e `ip_address` nella data odierna
+        $existingStatistic = Statistic::where('apartment_id', $validatedData['apartment_id'])
+            ->where('ip_address', $ipAddress)
+            ->whereDate('created_at', $today)
+            ->exists();
+
+        // Se esiste già, restituisce una risposta di successo senza creare una nuova statistica
+        if ($existingStatistic) {
+            return response()->json(['message' => 'Visualizzazione già registrata per oggi'], 200);
+        }
+
+        // Crea una nuova voce in `statistics` con l'indirizzo IP
+        Statistic::create([
+            'apartment_id' => $validatedData['apartment_id'],
+            'ip_address' => $ipAddress,
+        ]);
+
+        // Restituisce una risposta di successo
+        return response()->json(['message' => 'Visualizzazione registrata con successo'], 201);
     }
 }
