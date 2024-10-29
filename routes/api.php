@@ -27,3 +27,5 @@ Route::get('/apartments/search', [PageController::class, 'search']);
 Route::middleware('web')->get('/user', [PageController::class, 'getUser']);
 
 Route::post('/message/{slug}', [PageController::class, 'message']);
+
+Route::post('/statistics', [PageController::class, 'storeStatistic']);

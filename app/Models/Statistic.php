@@ -12,4 +12,9 @@ class Statistic extends Model
     public function apartment(){
         return $this->belongsTo(Apartment::class);
     }
+
+    protected $fillable = [
+        'apartment_id',
+        'ip_address'
+    ];
 }
