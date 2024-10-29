@@ -101,29 +101,8 @@ a {
         }
 
         // Media query
-        @media (max-width: 700px) {
-            width: 80px;
-
-            .logo-container {
-                justify-content: center;
-            }
-
-            img {
-                width: 40px;
-            }
-
-            ul.nav-pills {
-                display: none;
-            }
-
-            ul.nav-pills2 li a span {
-                display: block;
-                font-size: 1.4rem;
-            }
-
-            ul.nav-pills li a {
-                justify-content: center;
-            }
+        @media (max-width: 767px) {
+            display: none;
         }
     }
 
@@ -138,59 +117,55 @@ a {
         transition: width 1s ease;
     }
 
-    @media (max-width: 568px) {
-        #with_sidebar {
-            width: calc(100% - 80px);
-        }
-    }
 }
 
-@media (max-width: 568px) {
 
-    .btn-resp {
-        display: flex;
-        flex-wrap: wrap;
-    }
+// @media (max-width: 568px) {
 
-    .wrapper {
-        padding: 0;
-    }
+//     .btn-resp {
+//         display: flex;
+//         flex-wrap: wrap;
+//     }
 
-    .container-fluid {
-        padding: 0 !important;
-        margin: 0 !important;
+//     .wrapper {
+//         padding: 0;
+//     }
 
-        .row {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
+//     .container-fluid {
+//         padding: 0 !important;
+//         margin: 0 !important;
 
-        .col {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
+//         .row {
+//             padding: 0 !important;
+//             margin: 0 !important;
+//         }
 
-        .col-12 {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
+//         .col {
+//             padding: 0 !important;
+//             margin: 0 !important;
+//         }
 
-        .col-6 {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
+//         .col-12 {
+//             padding: 0 !important;
+//             margin: 0 !important;
+//         }
 
-        .col-4 {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
+//         .col-6 {
+//             padding: 0 !important;
+//             margin: 0 !important;
+//         }
 
-        .col-3 {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-    }
-}
+//         .col-4 {
+//             padding: 0 !important;
+//             margin: 0 !important;
+//         }
+
+//         .col-3 {
+//             padding: 0 !important;
+//             margin: 0 !important;
+//         }
+//     }
+// }
 
 
 
