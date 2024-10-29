@@ -105,7 +105,8 @@ class PageController extends Controller
                     ->where('apartment_sponsorship.end_date', '>', Carbon::now()); // Sponsorizzazioni non scadute
             })
             ->having('distance', '<=', $radius)
-            ->orderBy('apartment_sponsorship.end_date', 'desc') // Ordina prima quelli sponsorizzati
+            ->orderByRaw('apartment_sponsorship.end_date IS NULL')
+            ->orderBy('apartment_sponsorship.end_date') // Ordina prima quelli sponsorizzati
             ->orderBy('distance')
             ->where('rooms', '>=', $rooms)
             ->where('beds', '>=', $beds)
