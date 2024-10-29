@@ -36,7 +36,7 @@
                                 </div>
                             </td>
 
-                            <td class="message-cell">
+                            <td class="message-cell d-none d-md-table-cell">
                                 {{ $message->first_name }} {{ $message->last_name}}
                             </td>
                             <td class="message-cell">{{($message->created_at)->format('H:m')}}</td>

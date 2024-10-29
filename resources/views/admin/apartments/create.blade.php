@@ -6,7 +6,7 @@
 
 
 
-        <div class="wrapper">
+        <div class="wrapper container">
 
             <div class="col-12 label top">
                 <h2>Nuovo Appartamento</h2>

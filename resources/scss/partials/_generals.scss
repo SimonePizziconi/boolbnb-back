@@ -101,8 +101,8 @@ a {
         }
 
         // Media query
-        @media (max-width: 568px) {
-            width: 50px;
+        @media (max-width: 700px) {
+            width: 80px;
 
             .logo-container {
                 justify-content: center;
@@ -312,6 +312,10 @@ span.custom-delete {
     color: var(--primary) !important;
 }
 
+.form-control:focus{
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 0.25rem rgba(85, 107, 47, 0.6) !important;
+}
 
 
 // pagina messaggi
