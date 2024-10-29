@@ -38,38 +38,6 @@
 
                 </a>
             </li>
-        </ul>
-        <ul class="nav nav-pills2 flex-column mb-auto">
-            <li>
-                <a href="{{ route('admin.index') }}" class="nav-link text-white">
-                    <span><i class="fa-solid fa-house"></i></span>
-
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.apartments.index') }}" class="nav-link text-white d-flex">
-                    <span><i class="fa-solid fa-list"></i></span>
-
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.apartments.create') }}" class="nav-link text-white">
-                    <span><i class="fa-solid fa-plus"></i></span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.sponsorships.payment') }}" class="nav-link text-white">
-                    <span><i class="fa-solid fa-star"></i></span>
-
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.messagges.index') }}" class="nav-link text-white">
-                    <span><i class="fa-solid fa-envelope"></i></span>
-
-                </a>
-            </li>
-        </ul>
     </div>
     <hr>
 </div>
