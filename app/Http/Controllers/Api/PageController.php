@@ -12,6 +12,8 @@ use App\Models\Service;
 use App\Models\Message;
 use Carbon\Carbon;
 use App\Models\Statistic;
+use App\Mail\NewMessage;
+use Illuminate\Support\Facades\Mail;
 
 
 class PageController extends Controller
@@ -202,6 +204,10 @@ class PageController extends Controller
         $new_message->apartment_id = $apartment->id;
         $new_message->save();
 
+        $apartment = Apartment::find( $new_message->apartment_id);
+        $hostEmail = $apartment->user->email;
+
+        Mail::to($hostEmail)->send(new NewMessage($new_message));
 
         return response()->json(compact('success'));
     }
