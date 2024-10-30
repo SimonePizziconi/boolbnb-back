@@ -153,3 +153,7 @@
         });
     </script>
 @endsection
+
+@section('title')
+    Sponsorizzazioni
+@endsection

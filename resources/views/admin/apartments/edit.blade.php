@@ -21,7 +21,8 @@
 
         <div>
 
-            <form id="apartment-form" action="{{ route('admin.apartments.update', $apartment) }}" method="POST" enctype="multipart/form-data">
+            <form id="apartment-form" action="{{ route('admin.apartments.update', $apartment) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
 
                 @method('PUT')
@@ -40,7 +41,7 @@
 
                 <div class="row">
 
-                     {{-- numero di camere --}}
+                    {{-- numero di camere --}}
                     <div class="col-lg-4 col-sm-12">
                         <label for="rooms" class="form-label">Numero di camere</label>
                         <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
@@ -65,8 +66,8 @@
                     {{-- numero di bagni --}}
                     <div class="col-lg-4 col-sm-12">
                         <label for="bathrooms" class="form-label">Numero di bagni</label>
-                        <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
-                            id="bathrooms" name="bathrooms" value="{{ old('bathrooms', $apartment->bathrooms) }}">
+                        <input type="number" class="form-control @error('bathrooms') is-invalid @enderror" id="bathrooms"
+                            name="bathrooms" value="{{ old('bathrooms', $apartment->bathrooms) }}">
                         @error('bathrooms', $apartment->bathrooms)
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -102,21 +103,15 @@
                 <div class="mb-3">
 
                     <label for="type" class="form-label d-block">Servizi</label>
-                        @foreach ($services as $service)
-                           <input
-                             name="services[]"
-                             type="checkbox"
-                             class="btn-check"
-                             id="check-{{ $service->id }}"
-                             autocomplete="off"
-                             value="{{ $service->id }}"
-                             {{--
+                    @foreach ($services as $service)
+                        <input name="services[]" type="checkbox" class="btn-check" id="check-{{ $service->id }}"
+                            autocomplete="off" value="{{ $service->id }}" {{--
                              validazione
                              checked
                              --}}
-                             @checked($apartment->services->contains($service))>
-                            <label class="btn m-1 btn-custom" for="check-{{ $service->id }}">{{ $service->name }}</label>
-                        @endforeach
+                            @checked($apartment->services->contains($service))>
+                        <label class="btn m-1 btn-custom" for="check-{{ $service->id }}">{{ $service->name }}</label>
+                    @endforeach
 
                 </div>
 
@@ -145,8 +140,8 @@
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible2" value="0"
-                            {{ old('is_visible', $apartment->is_visible) == 0 ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="is_visible" id="is_visible2"
+                            value="0" {{ old('is_visible', $apartment->is_visible) == 0 ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_visible2">
                             Privato
                         </label>
@@ -172,21 +167,22 @@
             // Se l'utente carica un file, mostriamo l'anteprima
             if (event.target.files.length > 0) {
                 thumb.src = URL.createObjectURL(event.target.files[0]);
-                isVisible1.disabled = false;  // Abilitiamo il bottone "Pubblico"
+                isVisible1.disabled = false; // Abilitiamo il bottone "Pubblico"
             } else {
                 // Se non c'è immagine, mostriamo il placeholder
                 thumb.src = '/img/house-placeholder.jpg';
-                isVisible1.disabled = true;  // Disabilitiamo il bottone "Pubblico"
+                isVisible1.disabled = true; // Disabilitiamo il bottone "Pubblico"
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const thumb = document.getElementById('thumb');
             const isVisible1 = document.getElementById('is_visible1');
             const imageInput = document.getElementById('image_path');
 
             // Verifica se un'immagine è già stata caricata nel database
-            const imagePath = "{{ old('image_path', $apartment->image_path) }}"; // Otteniamo il percorso dell'immagine
+            const imagePath =
+            "{{ old('image_path', $apartment->image_path) }}"; // Otteniamo il percorso dell'immagine
             const isImagePresent = imagePath && imagePath !== 'null'; // Verifica se l'immagine è già presente
 
             if (isImagePresent) {
@@ -207,13 +203,13 @@
         // tomtom autocomplete
         var options = {
             searchOptions: {
-            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
-            language: "it-IT",
-            limit: 5,
+                key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+                language: "it-IT",
+                limit: 5,
             },
             autocompleteOptions: {
-            key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
-            language: "it-IT",
+                key: "d0Xq2xNT1UVJmJOO7pFoBBiHcFLGGy2Q",
+                language: "it-IT",
             },
         }
         var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
@@ -236,98 +232,104 @@
         inputContainer.style.border = 'var(--bs-border-width) solid var(--bs-border-color)';
         inputContainer.style.borderRadius = 'var(--bs-border-radius)';
 
-        document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('apartment-form');
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('apartment-form');
 
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();  // Prevenire invio del form se ci sono errori
-            let isValid = true;
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevenire invio del form se ci sono errori
+                let isValid = true;
 
-            // Reset messaggi di errore
-            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+                // Reset messaggi di errore
+                document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 
-            // Titolo
-            const title = document.getElementById('title');
-            const titleError = document.getElementById('title_error');
-            const titleRegex = /^[a-zA-Z\s]+$/;
-            if (!title.value || title.value.length < 3 || !titleRegex.test(title.value)) {
-                isValid = false;
-                titleError.textContent = "Il titolo deve contenere almeno 3 caratteri e non può avere numeri o caratteri speciali.";
-            }
-
-            // Stanze
-            const rooms = document.getElementById('rooms');
-            const roomsError = document.getElementById('rooms_error');
-            if (rooms.value && (!Number.isInteger(+rooms.value) || +rooms.value <= 0)) {
-                isValid = false;
-                roomsError.textContent = "Il numero di stanze deve essere un numero intero maggiore di 0.";
-            }
-
-            // Letti
-            const beds = document.getElementById('beds');
-            const bedsError = document.getElementById('beds_error');
-            if (beds.value && (!Number.isInteger(+beds.value) || +beds.value <= 0)) {
-                isValid = false;
-                bedsError.textContent = "Il numero di letti deve essere un numero intero maggiore di 0.";
-            }
-
-            // Bagni
-            const bathrooms = document.getElementById('bathrooms');
-            const bathroomsError = document.getElementById('bathrooms_error');
-            if (bathrooms.value && (!Number.isInteger(+bathrooms.value) || +bathrooms.value <= 0)) {
-                isValid = false;
-                bathroomsError.textContent = "Il numero di bagni deve essere un numero intero maggiore di 0.";
-            }
-
-            // Metri quadri
-            const squareMeters = document.getElementById('square_meters');
-            const squareMetersError = document.getElementById('square_meters_error');
-            if (squareMeters.value && (!Number.isInteger(+squareMeters.value) || +squareMeters.value <= 0)) {
-                isValid = false;
-                squareMetersError.textContent = "I metri quadri devono essere un numero intero maggiore di 0.";
-            }
-
-            // Indirizzo
-            const address = document.getElementById('address');
-            const addressError = document.getElementById('address_error');
-            if (!address.value || address.value.length < 5) {
-                isValid = false;
-                addressError.textContent = "L'indirizzo deve contenere almeno 5 caratteri.";
-            }
-
-            // Immagine
-            const image = document.getElementById('image_path');
-            const imageError = document.getElementById('image_path_error');
-
-            if (image.files.length > 0) {
-                const file = image.files[0];
-                const validImageTypes = ['image/jpeg', 'image/png'];
-                if (!validImageTypes.includes(file.type) || file.size > 5120 * 1024) {
+                // Titolo
+                const title = document.getElementById('title');
+                const titleError = document.getElementById('title_error');
+                const titleRegex = /^[a-zA-Z\s]+$/;
+                if (!title.value || title.value.length < 3 || !titleRegex.test(title.value)) {
                     isValid = false;
-                    imageError.textContent = "L'immagine deve essere un file .jpg o .png e non può superare i 5MB.";
+                    titleError.textContent =
+                        "Il titolo deve contenere almeno 3 caratteri e non può avere numeri o caratteri speciali.";
                 }
-            }
 
-            // Visibilità
-            const visible1 = document.getElementById('is_visible1');
-            const visible2 = document.getElementById('is_visible2');
-            const visibleError = document.getElementById('is_visible_error');
-            if (!visible1.checked && !visible2.checked) {
-                isValid = false;
-                visibleError.textContent = "La visibilità è un campo obbligatorio.";
-            }
+                // Stanze
+                const rooms = document.getElementById('rooms');
+                const roomsError = document.getElementById('rooms_error');
+                if (rooms.value && (!Number.isInteger(+rooms.value) || +rooms.value <= 0)) {
+                    isValid = false;
+                    roomsError.textContent =
+                        "Il numero di stanze deve essere un numero intero maggiore di 0.";
+                }
 
-            if (isValid) {
-                form.submit();  // Se tutto è valido, invia il form
-            }
+                // Letti
+                const beds = document.getElementById('beds');
+                const bedsError = document.getElementById('beds_error');
+                if (beds.value && (!Number.isInteger(+beds.value) || +beds.value <= 0)) {
+                    isValid = false;
+                    bedsError.textContent =
+                    "Il numero di letti deve essere un numero intero maggiore di 0.";
+                }
 
+                // Bagni
+                const bathrooms = document.getElementById('bathrooms');
+                const bathroomsError = document.getElementById('bathrooms_error');
+                if (bathrooms.value && (!Number.isInteger(+bathrooms.value) || +bathrooms.value <= 0)) {
+                    isValid = false;
+                    bathroomsError.textContent =
+                        "Il numero di bagni deve essere un numero intero maggiore di 0.";
+                }
+
+                // Metri quadri
+                const squareMeters = document.getElementById('square_meters');
+                const squareMetersError = document.getElementById('square_meters_error');
+                if (squareMeters.value && (!Number.isInteger(+squareMeters.value) || +squareMeters.value <=
+                        0)) {
+                    isValid = false;
+                    squareMetersError.textContent =
+                        "I metri quadri devono essere un numero intero maggiore di 0.";
+                }
+
+                // Indirizzo
+                const address = document.getElementById('address');
+                const addressError = document.getElementById('address_error');
+                if (!address.value || address.value.length < 5) {
+                    isValid = false;
+                    addressError.textContent = "L'indirizzo deve contenere almeno 5 caratteri.";
+                }
+
+                // Immagine
+                const image = document.getElementById('image_path');
+                const imageError = document.getElementById('image_path_error');
+
+                if (image.files.length > 0) {
+                    const file = image.files[0];
+                    const validImageTypes = ['image/jpeg', 'image/png'];
+                    if (!validImageTypes.includes(file.type) || file.size > 5120 * 1024) {
+                        isValid = false;
+                        imageError.textContent =
+                            "L'immagine deve essere un file .jpg o .png e non può superare i 5MB.";
+                    }
+                }
+
+                // Visibilità
+                const visible1 = document.getElementById('is_visible1');
+                const visible2 = document.getElementById('is_visible2');
+                const visibleError = document.getElementById('is_visible_error');
+                if (!visible1.checked && !visible2.checked) {
+                    isValid = false;
+                    visibleError.textContent = "La visibilità è un campo obbligatorio.";
+                }
+
+                if (isValid) {
+                    form.submit(); // Se tutto è valido, invia il form
+                }
+
+            });
         });
-    });
-
     </script>
 @endsection
 
 
 @section('title')
-    Edit Apartment
+    Modifica Appartamento
 @endsection

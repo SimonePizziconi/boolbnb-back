@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container">
         <h1 class="my-3">Visualizzazioni per Appartamento</h1>
 
-        Benvenuto, {{ $userName }}! Ci sono {{ $apartmentCount }} <a href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
+        Benvenuto, {{ $userName }}! Ci sono {{ $apartmentCount }} <a
+            href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
 
 
         <div class="container mt-5">
             <div class="row justify-content-between flex-wrap">
-                @foreach($data as $index => $apartmentData)
+                @foreach ($data as $index => $apartmentData)
                     @if ($apartmentData['monthly_views']->isNotEmpty())
                         <div class="col col-xl-6 my-4 px-lg-5 ratio-4x3">
                             <h3>{{ $apartmentData['title'] }}</h3>
@@ -33,8 +33,19 @@
                                     },
                                     options: {
                                         scales: {
-                                            x: { title: { display: true, text: 'Mese' } },
-                                            y: { title: { display: true, text: 'Visualizzazioni' }, beginAtZero: true }
+                                            x: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Mese'
+                                                }
+                                            },
+                                            y: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Visualizzazioni'
+                                                },
+                                                beginAtZero: true
+                                            }
                                         }
                                     }
                                 });
@@ -45,10 +56,9 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 
 @section('title')
-    Dashboard - BoolBnB Admin Panel
+    Dashboard
 @endsection

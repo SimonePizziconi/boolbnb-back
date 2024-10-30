@@ -27,7 +27,9 @@
             <div class="row justify-content-end">
                 <div class="col-3 col-md-2 text-center me-3">
                     <div>
-                        <a href="{{ route('admin.apartments.create') }}" class="btn custom-edit ms-sm-2 add-button"><i class="fa-solid fa-plus"></i><span class="d-none d-xl-inline ps-2">Nuovo Appartamento</span></a>
+                        <a href="{{ route('admin.apartments.create') }}" class="btn custom-edit ms-sm-2 add-button"><i
+                                class="fa-solid fa-plus"></i><span class="d-none d-xl-inline ps-2">Nuovo
+                                Appartamento</span></a>
                     </div>
 
                 </div>
@@ -64,7 +66,8 @@
                                 </div>
                             </td>
                             <td class="mytable-cell">{{ $apartment->title }}</td>
-                            <td class="d-none d-md-table-cell mytable-cell">{{ $apartment->is_visible == 1 ? 'Pubblica' : 'Privata' }}
+                            <td class="d-none d-md-table-cell mytable-cell">
+                                {{ $apartment->is_visible == 1 ? 'Pubblica' : 'Privata' }}
                             </td>
                             {{-- <td>{{ $apartment->rooms }}</td>
                         <td>{{ $apartment->beds }}</td>
@@ -196,5 +199,5 @@
 @endsection
 
 @section('title')
-    Apartments List
+    I tuoi Appartamenti
 @endsection
