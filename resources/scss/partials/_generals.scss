@@ -374,10 +374,29 @@ table{
 
 // Regole Header
 
+.main-container{
+
+    padding-top: 120px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+
+    @media (max-width: 767px) {
+        padding-top: 80px;
+    }
+}
+
 header{
+
     nav{
+        margin-left: 220px; /* Stessa larghezza della sidebar */
+        width: calc(100% - 220px); /* Adatta la larghezza */
+        z-index: 1030;
         background-color: var(--primary) !important;
         color: var(--neutral) !important;
+        @media (max-width: 767px) {
+            margin-left: 0;
+            width: 100%;
+        }
 
         a{
             color: var(--neutral) !important;

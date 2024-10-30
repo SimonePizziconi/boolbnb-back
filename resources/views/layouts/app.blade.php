@@ -52,7 +52,7 @@
         @endauth
         <div class="my_container">
             @include('admin.partials.header')
-            <div class="main p-md-5">
+            <div class="main-container">
                 @yield('content')
             </div>
         </div>

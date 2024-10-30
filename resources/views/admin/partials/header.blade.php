@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-md d-flex align-items-center navbar-light shadow-sm">
+    <nav class="navbar fixed-top navbar-expand-md d-flex align-items-center navbar-light shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('admin.index') }}">Dashboard</a>
 

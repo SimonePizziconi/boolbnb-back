@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             @if (session('deleted'))
@@ -20,8 +20,8 @@
         </div>
         <div class="container-fluid">
 
-            <div class="row">
-                <h1 class="my-5">Lista Appartamenti</h1>
+            <div class="col-12 label top">
+                <h2>Nuovo Appartamento</h2>
             </div>
 
             <div class="row justify-content-end">
