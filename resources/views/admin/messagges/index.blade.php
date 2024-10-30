@@ -12,6 +12,7 @@
         <table class="table text-center">
             <thead>
                 <tr>
+                    <th scope="col" class="d-none d-md-table-cell">Immagine</th>
                     <th scope="col" class="d-none d-md-table-cell">Appartamento</th>
                     <th scope="col" class="d-none d-md-table-cell">Nome utente</th>
                     <th scope="col">Ora</th>
@@ -25,8 +26,7 @@
                     {{-- @foreach ( $apartment->messages as $message ) --}}
 
                         <tr>
-                            <td class="d-none d-md-table-cell">
-                                <div class="mb-2"><strong>{{$message->apartment->title}}</strong></div>
+                            <td class="d-none d-md-table-cell apartment-cell">
                                 <div class="ratio ratio-1x1 pic">
                                     <a href="{{ route('admin.apartments.show', ['apartment' => $message->apartment->id]) }}">
                                         <img src="{{ asset('storage/' . $message->apartment->image_path) }}"
@@ -34,6 +34,10 @@
                                             onerror="this.src='/img/house-placeholder.jpg'">
                                     </a>
                                 </div>
+                            </td>
+
+                            <td class="d-none d-md-table-cell apartment-cell message-cell">
+                                <a href="{{ route('admin.apartments.show', ['apartment' => $message->apartment->id]) }}"><strong>{{$message->apartment->title}}</strong></a>
                             </td>
 
                             <td class="message-cell d-none d-md-table-cell">

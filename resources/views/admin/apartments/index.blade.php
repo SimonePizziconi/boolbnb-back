@@ -19,11 +19,19 @@
             @endif
         </div>
         <div class="container-fluid">
-            <div class="row">
-                <a href="{{ route('admin.apartments.create') }}" class="btn btn-custom">+ Nuovo Appartamento</a>
-            </div>
+
             <div class="row">
                 <h1 class="my-5">Lista Appartamenti</h1>
+            </div>
+
+            <div class="row justify-content-end">
+                <div class="col-3 col-md-2 text-center me-3">
+                    <div>
+                        <a href="{{ route('admin.apartments.create') }}" class="btn custom-edit ms-sm-2 add-button"><i class="fa-solid fa-plus"></i><span class="d-none d-xl-inline ps-2">Nuovo Appartamento</span></a>
+                    </div>
+
+                </div>
+
             </div>
 
             <table class="table text-center">
@@ -115,7 +123,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     Sei sicuro di voler eliminare <span
-                                                        id="apartmentTitle">{{ $apartment->title }}</span>?
+                                                        id="apartmentTitle"><strong>{{ $apartment->title }}</strong></span>?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn custom-edit"
