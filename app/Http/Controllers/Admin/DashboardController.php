@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $apartmentCount = Apartment::where('user_id', Auth::user()->id)->count();
 
         // Recupera gli appartamenti con le statistiche
-        $apartments = Apartment::where('user_id', Auth::user()->id)->with('statistics')->get();
+        $apartments = Apartment::where('user_id', Auth::user()->id)->where('is_visible', 1)->with('statistics')->get();
 
         // Organizza i dati per visualizzazioni mensili per ciascun appartamento
         $data = $apartments->map(function ($apartment) {
@@ -31,6 +31,7 @@ class DashboardController extends Controller
             });
 
             return [
+                'apartment_id' => $apartment->id,
                 'title' => $apartment->title,
                 'monthly_views' => $monthlyViews
             ];
@@ -38,6 +39,6 @@ class DashboardController extends Controller
 
         $userName = Auth::user()->first_name;
 
-        return view('admin.index', compact('apartmentCount', 'userName', 'data'));
+        return view('admin.index', compact('apartmentCount', 'userName', 'data', 'apartments'));
     }
 }
