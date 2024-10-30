@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Apartment;
 use App\Models\Sponsorship;
@@ -19,17 +18,29 @@ class ApartmentSponsorshipTableSeeder extends Seeder
             $apartment = Apartment::inRandomOrder()->first();
             $sponsorship = Sponsorship::inRandomOrder()->first();
 
-            // Imposta la data di inizio come data attuale
-            $startDate = Carbon::now();
+            // Controlla se l'appartamento ha già una sponsorizzazione attiva
+            $activeSponsorship = $apartment->sponsorships()
+                ->wherePivot('end_date', '>', Carbon::now())
+                ->first();
 
-            // Calcola la data di fine aggiungendo la durata della sponsorizzazione
-            $endDate = $startDate->copy()->addHours($sponsorship->duration);
+            // Se esiste una sponsorizzazione attiva, estendila
+            if ($activeSponsorship) {
+                $newEndDate = Carbon::parse($activeSponsorship->pivot->end_date)
+                    ->addHours($sponsorship->duration);
 
-            // Associa l'appartamento alla sponsorizzazione con le date
-            $apartment->sponsorships()->attach($sponsorship->id, [
-                'start_date' => $startDate,
-                'end_date' => $endDate,
-            ]);
+                $apartment->sponsorships()->updateExistingPivot($activeSponsorship->id, [
+                    'end_date' => $newEndDate,
+                ]);
+            } else {
+                // Altrimenti, imposta una nuova sponsorizzazione
+                $startDate = Carbon::now();
+                $endDate = $startDate->copy()->addHours($sponsorship->duration);
+
+                $apartment->sponsorships()->attach($sponsorship->id, [
+                    'start_date' => $startDate,
+                    'end_date' => $endDate,
+                ]);
+            }
         }
     }
 }
