@@ -287,6 +287,13 @@ span.custom-delete {
     }
 }
 
+// select.form-control{
+//     option:hover {
+//         color: var(--primary) !important;
+//         background: var(--accent) !important;
+//     }
+// }
+
 .pagination > li > a:focus,
 .pagination > li > a:hover,
 .pagination > li > span:focus,
@@ -323,8 +330,9 @@ span.number{
     background-color: var(--accent);
     border-radius: 50%;
     padding: 0.2em 0.7em;
+    display: inline-block;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
     color: white;
 }
 
@@ -352,6 +360,10 @@ table{
         max-height: 800px;
         overflow: auto;
     }
+}
+
+.messages-list-show{
+    list-style: none;
 }
 
 .my_border_hover {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ApartmentRequest;
 use App\Models\Apartment;
+use App\Models\Message;
 use App\Models\Service;
 use App\Functions\Helper;
 use Illuminate\Support\Facades\Storage;
@@ -101,7 +102,11 @@ class ApartmentsController extends Controller
             'monthly_views' => $monthlyViews
         ];
 
-        return view('admin.apartments.show', compact('apartment', 'data'));
+        $messages = Message::where('apartment_id', $apartment->id)->orderBy('created_at')->get();
+
+        $messagesNumber = count($messages);
+
+        return view('admin.apartments.show', compact('apartment', 'data', 'messages', 'messagesNumber'));
     }
 
     /**

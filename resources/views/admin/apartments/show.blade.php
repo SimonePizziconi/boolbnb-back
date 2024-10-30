@@ -40,7 +40,7 @@
             Questo apppartamento non è ancora sponsorizzato
         @endforelse
 
-        <div class="d-flex justify-content-around align-items-center flex-wrap my-5">
+        <div class="d-flex justify-content-around align-items-center flex-wrap my-5 border-bottom border-secondary pb-5">
             <div class="col-md-5 col-12">
                 <img src="{{ asset('storage/' . $apartment->image_path) }}" class="img-fluid rounded shadow"
                     alt="{{ $apartment->image_original_name }}" onerror="this.src='/img/house-placeholder.jpg'">
@@ -95,8 +95,8 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-around align-items-center flex-wrap my-5">
-            <div class="col-md-4 col-12">
+        <div class="d-flex justify-content-around align-items-start flex-wrap my-5 border-bottom border-secondary pb-5">
+            <div class="col-md-6 col-12">
                 @if (!$apartment->services->isEmpty())
                     <h3 class="mt-5 text-center">Servizi</h3>
                     <ul class="mt-3">
@@ -104,6 +104,75 @@
                             <li>{{ $service->name }}</li>
                         @endforeach
                     </ul>
+                @endif
+            </div>
+            <div class="col-md-6 col-12">
+                <h3 class="mt-5 me-2 text-center">Messaggi - <span class="number">{{$messagesNumber}}</span></h3>
+
+
+                @if(!empty($messages))
+                    <ul class="messages-list-show text-xl-center">
+                        @foreach ($messages as $message )
+                            <li class="border-seconday border-bottom border-top pt-3 pb-3">
+                                <span class="d-none d-md-inline"><strong>Ora: </strong> {{($message->created_at)->format('H:m')}}</span>
+                                <span class="pe-5 mt-md-2 mb-md-2 pe-md-5 d-md-inline-block ps-md-0 pe-md-5"><strong>Data: </strong>{{($message->created_at)->format('d/m/Y')}}</span>
+                                <span>
+                                    <a href="#readModal{{ $message->id }}" data-bs-toggle="modal"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Leggi" class="btn custom-show close" {{-- {{route('admin.messages.open', $message)}} --}} >
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </a>
+
+                                    {{-- Modale messaggio --}}
+                                    <div class="modal fade" id="readModal{{ $message->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                        <div class="modal-dialog" role="document">
+
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">{{$message->apartment->title}}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+
+                                                <div class="modal-body text-start">
+
+                                                    <div class="m-3 d-flex justify-content-between">
+
+                                                        <span>Inviato da - <strong>{{$message->first_name}} {{$message->last_name}}</strong></span>
+
+                                                        <div class="message-date">
+                                                            <span>{{($message->created_at)->format('d/m/Y')}} -</span>
+                                                            <span>{{($message->created_at)->format('H:m')}}</span>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="message-text">
+                                                        <p class="ms-3 mb-0">{{$message->message}}</p>
+                                                    </div>
+
+                                                    <div class="m-3 text-end">
+                                                        <span><strong>{{$message->email}}</strong> - Indirizzo Email</span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn custom-edit"
+                                                        data-bs-dismiss="modal">Annulla</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </span>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                @else
+                    <h4>Non hai ricevuto messaggi per questo appartamento </h4>
                 @endif
             </div>
         </div>

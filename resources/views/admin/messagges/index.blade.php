@@ -114,7 +114,7 @@
 
     </div>
 
-    <script>
+    {{-- <script>
 
         const messagesButtons = document.getElementsByClassName("close");
 
@@ -138,7 +138,7 @@
         }
 
 
-    </script>
+    </script> --}}
 
 @endsection
 
