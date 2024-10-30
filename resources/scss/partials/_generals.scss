@@ -429,4 +429,21 @@ header{
     }
 }
 
+.my_number {
+    width: 50px;
+    aspect-ratio: 1/1;
+    background-color: var(--accent);
+    border-radius: 50%;
+    position: relative;
+
+    span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--neutral);
+        font-size: 20px;
+    }
+}
+
 
