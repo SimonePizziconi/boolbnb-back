@@ -70,7 +70,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="off">
+                                        value="{{ old('email') }}" required autocomplete="off" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -130,6 +130,18 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const form = document.querySelector("form");
+
+            // Calcola la data massima per l'età di 18 anni
+            const today = new Date();
+            const minAge = 18;
+            const maxDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+
+            // Formatta la data in "YYYY-MM-DD"
+            const formattedMaxDate = maxDate.toISOString().split("T")[0];
+
+            // Imposta il valore "max" nell'input per la data di nascita
+            document.getElementById("birth_date").setAttribute("max", formattedMaxDate);
+
 
             form.addEventListener("submit", function (event) {
                 let valid = true;
