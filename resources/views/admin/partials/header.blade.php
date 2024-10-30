@@ -57,7 +57,33 @@
                                     <span><i class="fa-solid fa-envelope"></i> Messaggi</span>
                                 </a>
                             </li>
-                            <li class="nav-item dropstart text-md-center">
+                            <li class="nav-item text-md-center">
+                                <div class="btn-group my-dropdown">
+                                    <a  class="nav-link" href="#" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                                        <i class="fa-solid fa-user my_icon d-none d-md-inline-block d-lg-inline-block"></i>
+                                        <span class="d-block fw-bold fs-5 d-md-none">{{ Auth::user()->email }}</span>
+                                        <span
+                                        class="d-none d-md-block mt-1">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="{{ route('admin.index') }}">{{ __('Dashboard') }}</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
+                                  </div>
+                            </li>
+                            {{-- <li class="nav-item dropstart text-md-center">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa-solid fa-user my_icon d-none d-md-inline-block d-lg-inline-block"></i>
@@ -65,7 +91,7 @@
                                     <span
                                         class="d-none d-md-block mt-1">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
                                 </a>
-                                <ul class="dropdown-menu ">
+                                <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item"
                                             href="{{ route('admin.index') }}">{{ __('Dashboard') }}</a>
@@ -81,7 +107,7 @@
                                         </form>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
                         @endguest
                     </ul>
                 </div>

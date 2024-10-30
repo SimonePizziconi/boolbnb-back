@@ -374,6 +374,15 @@ table{
 
 // Regole Header
 
+@media (max-width: 767px) {
+    .navbar-nav .dropdown-menu {
+        position: absolute !important;
+        left: 0 !important;
+    }
+}
+
+
+
 header{
     nav{
         background-color: var(--primary) !important;
