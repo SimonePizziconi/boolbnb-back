@@ -108,6 +108,63 @@
             </div>
         </div>
 
+        <div class="text-center my-4 px-lg-5">
+            <canvas id="apartmentChart"></canvas>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const apartmentChartCanvas = document.getElementById('apartmentChart');
+
+                    // Dati JSON per ogni appartamento
+                    let apartmentData = @json($data);
+                    console.log(apartmentData);
+
+                    // Crea il grafico all'inizio con dati vuoti
+                    let apartmentChart = new Chart(apartmentChartCanvas, {
+                        type: 'line',
+                        data: {
+                            labels: Object.keys(apartmentData.monthly_views),
+                            datasets: [{
+                                label: 'Visualizzazioni Mensili',
+                                data: Object.values(apartmentData.monthly_views),
+                                borderColor: '#006D77',
+                                backgroundColor: '#D9D9D9',
+                                borderWidth: 2,
+                                fill: true,
+                                responsive: true
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: { title: { display: true, text: 'Mese' } },
+                                y: { title: { display: true, text: 'Visualizzazioni' }, beginAtZero: true }
+                            }
+                        }
+                    });
+
+                    // function updateChart(apartmentId) {
+                    //     const selectedApartmentData = apartmentData.find(apartment => apartment.apartment_id == apartmentId);
+
+                    //     if (selectedApartmentData) {
+                    //         // Aggiorna i dati del grafico
+                    //         apartmentChart.data.labels = Object.keys(selectedApartmentData.monthly_views);
+                    //         apartmentChart.data.datasets[0].data = Object.values(selectedApartmentData.monthly_views);
+                    //         apartmentChart.update();
+                    //         console.log(selectedApartmentData.title);
+                    //     }
+                    // }
+
+                    // // Evento di cambio select
+                    // apartmentSelect.addEventListener('change', function () {
+                    //     updateChart(this.value);
+                    // });
+
+                    // // Inizializza il grafico con il primo appartamento
+                    // updateChart(apartmentSelect.value);
+                });
+            </script>
+        </div>
+
+
     </div>
 
 

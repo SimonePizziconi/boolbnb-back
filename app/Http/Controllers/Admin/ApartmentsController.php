@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Functions\Helper;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class ApartmentsController extends Controller
 {
@@ -85,7 +86,22 @@ class ApartmentsController extends Controller
             abort(404);
         }
 
-        return view('admin.apartments.show', compact('apartment'));
+        $monthlyViews = $apartment->statistics->groupBy(function ($statistic) {
+            // Raggruppa per anno e mese
+            return Carbon::parse($statistic->created_at)->format('Y-m');
+        })->map(function ($statsPerMonth) {
+            // Conta le visualizzazioni per ogni mese
+            return $statsPerMonth->count();
+        });
+
+        // Organizza i dati per il grafico come array associativo
+        $data = [
+            'apartment_id' => $apartment->id,
+            'title' => $apartment->title,
+            'monthly_views' => $monthlyViews
+        ];
+
+        return view('admin.apartments.show', compact('apartment', 'data'));
     }
 
     /**
