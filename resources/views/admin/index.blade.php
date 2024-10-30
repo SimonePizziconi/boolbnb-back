@@ -2,10 +2,34 @@
 
 @section('content')
     <div class="container">
-        <h1 class="my-3">Visualizzazioni per Appartamento</h1>
+        <h1 class="my-3">Benvenuto, <strong>{{ $userName }}</strong>!</h1>
 
-        Benvenuto, {{ $userName }}! Ci sono {{ $apartmentCount }} <a
-            href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
+        <div class="row my-4 justify-content-between align-items-md-stretch">
+            <div class="col-12 col-xl-3 p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="col-2">Appartamenti Caricati</h4>
+                    <div class="my_number">
+                        <span> {{ $apartmentCount }} </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="col-2">Appartamenti Pubblici</h4>
+                    <div class="my_number">
+                        <span> {{ $publicApartmentsCount }} </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="col-2">Appartamenti Privati</h4>
+                    <div class="my_number">
+                        <span> {{ $privateApartmentsCount }} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Seleziona l'appartamento -->
         <div class="form-group">

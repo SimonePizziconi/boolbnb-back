@@ -9,6 +9,7 @@ use App\Models\Statistic;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use App\Models\Message;
 
 
 class DashboardController extends Controller
@@ -16,6 +17,8 @@ class DashboardController extends Controller
     public function index()
     {
         $apartmentCount = Apartment::where('user_id', Auth::user()->id)->count();
+        $publicApartmentsCount = Apartment::where('user_id', Auth::user()->id)->where('is_visible', 1)->count();
+        $privateApartmentsCount = Apartment::where('user_id', Auth::user()->id)->where('is_visible', 0)->count();
 
         // Recupera gli appartamenti con le statistiche
         $apartments = Apartment::where('user_id', Auth::user()->id)->where('is_visible', 1)->with('statistics')->get();
@@ -39,6 +42,6 @@ class DashboardController extends Controller
 
         $userName = Auth::user()->first_name;
 
-        return view('admin.index', compact('apartmentCount', 'userName', 'data', 'apartments'));
+        return view('admin.index', compact('apartmentCount', 'userName', 'data', 'apartments', 'publicApartmentsCount', 'privateApartmentsCount'));
     }
 }
