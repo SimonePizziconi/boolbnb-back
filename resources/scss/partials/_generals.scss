@@ -256,7 +256,7 @@ a.custom-edit {
 }
 
 a.custom-delete,
-button.custom-delete {
+button.custom-delete, small.custom-delete {
     background-color: var(--accent);
     border: 1px solid var(--accent);
     color: var(--neutral);
@@ -279,7 +279,7 @@ span.custom-delete {
 }
 
 .pic {
-    width: 80% !important;
+    width: 85% !important;
     margin: 0 auto;
 
     img {
@@ -330,8 +330,8 @@ span.number{
 
 table{
 
-    .message-cell{
-        padding: 3em 0 !important;
+    .mytable-cell{
+        padding: 3.5em 0 !important;
 
         // i{
         //     font-size: 20px;

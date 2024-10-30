@@ -45,7 +45,7 @@ class SponsorshipController extends Controller
         // Ottieni l'ID dell'appartamento dal form
         $apartment = Apartment::findOrFail($request->input('apartment_id'));
 
-        // Ottieni la durata del pacchetto
+        // Ottieni la durata del pacchetto selezionato
         $duration = $request->input('package');
 
         // Trova la sponsorizzazione in base alla durata
@@ -55,27 +55,33 @@ class SponsorshipController extends Controller
             return redirect()->back()->with('error', 'Pacchetto sponsorizzazione non valido.');
         }
 
+        // Verifica se c'è già una sponsorizzazione attiva
         $currentSponsorship = $apartment->sponsorships()
             ->wherePivot('end_date', '>', Carbon::now())
             ->first();
 
         if ($currentSponsorship) {
-            return redirect()->route('admin.apartments.show', $apartment)->with('error', 'Questo appartamento ha già una sponsorizzazione attiva.'); // Messaggio di errore
+            // Estendi la sponsorizzazione esistente
+            $newEndDate = Carbon::parse($currentSponsorship->pivot->end_date)->addHours($duration);
+
+            // Aggiorna la data di fine nel record pivot
+            $apartment->sponsorships()->updateExistingPivot($currentSponsorship->id, [
+                'end_date' => $newEndDate,
+            ]);
+
+            return redirect()->route('admin.apartments.show', $apartment)
+                ->with('success', 'La sponsorizzazione è stata estesa con successo di ' . $duration . ' ore.');
         }
 
-        // Inizio sponsorizzazione
+        // Altrimenti, inizia una nuova sponsorizzazione
         $start_date = Carbon::now();
-
-        // Fine sponsorizzazione
         $end_date = $start_date->copy()->addHours($duration);
 
-        // Associa la sponsorizzazione all'appartamento
         $apartment->sponsorships()->attach($sponsorship->id, [
             'start_date' => $start_date,
             'end_date' => $end_date,
         ]);
 
-        // Redirect o visualizzazione di una pagina di successo
         return redirect()->route('admin.apartments.show', $apartment)
             ->with('success', 'Sponsorizzazione attivata con successo per ' . $duration . ' ore.');
     }

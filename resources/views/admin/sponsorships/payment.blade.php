@@ -20,12 +20,16 @@
                 <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
                     @foreach ($sponsorships as $sponsorship)
                         <div class="col">
-                            <div class="sponsorship-card card my_border_hover mb-4 rounded-3 shadow-sm" data-id="{{ $sponsorship->duration }}">
+                            <div class="sponsorship-card card my_border_hover mb-4 rounded-3 shadow-sm"
+                                data-id="{{ $sponsorship->duration }}">
                                 <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal text-uppercase fw-bold my_txt_secondary"> {{ $sponsorship->name }} </h4>
+                                    <h4 class="my-0 fw-normal text-uppercase fw-bold my_txt_secondary">
+                                        {{ $sponsorship->name }} </h4>
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title pricing-card-title my_txt_primary"><small class="text-body-secondary fw-light">€ </small>{{ $sponsorship->current_price }}</h1>
+                                    <h1 class="card-title pricing-card-title my_txt_primary"><small
+                                            class="text-body-secondary fw-light">€ </small>{{ $sponsorship->current_price }}
+                                    </h1>
                                     <ul class="list-unstyled mt-3 mb-4">
                                         <li class="lh-lg">DURATA</li>
                                         @if ($sponsorship->duration <= 72)
@@ -34,11 +38,12 @@
                                             </li>
                                         @else
                                             <li class="lh-lg fs-3 my_txt_accent">
-                                                {{ ($sponsorship->duration) / 24 }} giorni
+                                                {{ $sponsorship->duration / 24 }} giorni
                                             </li>
                                         @endif
                                     </ul>
-                                    <button type="button" class="custom-show-reverse w-100 btn btn-lg btn-outline-primary">Seleziona</button>
+                                    <button type="button"
+                                        class="custom-show-reverse w-100 btn btn-lg btn-outline-primary">Seleziona</button>
                                 </div>
                             </div>
                         </div>
@@ -48,16 +53,6 @@
 
             <!-- Input nascosto per la sponsorizzazione -->
             <input type="hidden" name="package" id="package" required>
-
-            {{-- <!-- Seleziona il pacchetto di sponsorizzazione -->
-            <div class="form-group">
-                <label for="package">Seleziona un pacchetto di sponsorizzazione:</label>
-                <select name="package" id="package" class="form-control mt-2" required>
-                    <option value="24">2.99 € per 24 ore</option>
-                    <option value="72">5.99 € per 72 ore</option>
-                    <option value="144">9.99 € per 144 ore</option>
-                </select>
-            </div> --}}
 
             <!-- Div per il drop-in di Braintree -->
             <div class="form-group">
@@ -69,54 +64,96 @@
         </form>
     </div>
 
-    <script src="https://js.braintreegateway.com/web/dropin/1.30.0/js/dropin.min.js"></script>
+    <!-- Modale di avviso -->
+    <div class="modal fade" id="selectionModal" tabindex="-1" role="dialog" aria-labelledby="selectionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="selectionModalLabel">Selezione richiesta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Per favore, seleziona una sponsorizzazione prima di procedere con il pagamento.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn custom-edit" data-bs-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://js.braintreegateway.com/web/dropin/1.30.0/js/dropin.min.js"></script>
     <script>
-        document.querySelectorAll('.sponsorship-card').forEach(card => {
-            card.addEventListener('click', function () {
-                // Rimuove la selezione da tutte le card
-                document.querySelectorAll('.sponsorship-card').forEach(c => c.classList.remove('selected'));
+        document.addEventListener('DOMContentLoaded', function() {
+            const sponsorshipCards = document.querySelectorAll('.sponsorship-card');
+            const packageInput = document.getElementById('package');
+            const form = document.querySelector('#payment-form');
+            let isCardSelected = false;
 
-                // Aggiunge la selezione alla card cliccata
-                card.classList.add('selected');
+            // Gestore di evento per la selezione della card
+            sponsorshipCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Rimuove la selezione da tutte le card
+                    sponsorshipCards.forEach(c => c.classList.remove('selected'));
 
-                // Imposta l'ID della sponsorizzazione selezionata nel campo nascosto
-                document.getElementById('package').value = card.getAttribute('data-id');
+                    // Aggiunge la selezione alla card cliccata
+                    card.classList.add('selected');
+
+                    // Imposta l'ID della sponsorizzazione selezionata nel campo nascosto
+                    packageInput.value = card.getAttribute('data-id');
+                    isCardSelected = true; // Imposta isCardSelected a true
+                });
             });
-        });
 
-        var form = document.querySelector('#payment-form');
-        var clientToken = "{{ $clientToken }}";
+            // Genera il form drop-in di Braintree
+            var clientToken = "{{ $clientToken }}";
+            braintree.dropin.create({
+                authorization: clientToken,
+                container: '#dropin-container',
+                translations: {
+                    'payWithCard': 'Paga con carta'
+                },
+                locale: 'it_IT'
+            }, function(createErr, instance) {
+                if (createErr) {
+                    console.error(createErr);
+                    return;
+                }
 
-        braintree.dropin.create({
-            authorization: clientToken,
-            container: '#dropin-container',
-            translations: {
-                'payWithCard': 'Paga con carta' // Traduci qui
-            },
-            locale: 'it_IT' // Imposta la lingua italiana
-        }, function(createErr, instance) {
-            if (createErr) {
-                console.error(createErr);
-                return;
-            }
+                // Gestore di evento per il submit del form
+                form.addEventListener('submit', function(event) {
+                    // Verifica se una card è stata selezionata
+                    if (!isCardSelected) {
+                        event.preventDefault(); // Impedisce l'invio del form
 
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
+                        // Mostra il modale
+                        var selectionModal = new bootstrap.Modal(document.getElementById(
+                            'selectionModal'));
+                        selectionModal.show();
 
-                instance.requestPaymentMethod(function(err, payload) {
-                    if (err) {
-                        console.error(err);
                         return;
                     }
 
-                    // Imposta il nonce nel campo nascosto
-                    document.querySelector('#nonce').value = payload.nonce;
+                    // Se una card è stata selezionata, continua con il pagamento
+                    instance.requestPaymentMethod(function(err, payload) {
+                        if (err) {
+                            console.error(err);
+                            return;
+                        }
 
-                    // Procedi con il form
-                    form.submit();
+                        // Imposta il nonce nel campo nascosto
+                        document.querySelector('#nonce').value = payload.nonce;
+
+                        // Procedi con il form
+                        form.submit();
+                    });
                 });
             });
         });
     </script>
+@endsection
+
+@section('title')
+    Sponsorizzazioni
 @endsection

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container">
         <h1 class="my-3">Visualizzazioni per Appartamento</h1>
 
-        Benvenuto, {{ $userName }}! Ci sono {{ $apartmentCount }} <a href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
+        Benvenuto, {{ $userName }}! Ci sono {{ $apartmentCount }} <a
+            href="{{ route('admin.apartments.index') }}">appartamenti</a> registrati.
 
         <!-- Seleziona l'appartamento -->
         <div class="form-group">
@@ -75,10 +75,9 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 
 @section('title')
-    Dashboard - BoolBnB Admin Panel
+    Dashboard
 @endsection

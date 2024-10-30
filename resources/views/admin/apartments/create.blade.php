@@ -320,5 +320,5 @@
 
 
 @section('title')
-    Create Apartment
+    Nuovo Appartamento
 @endsection

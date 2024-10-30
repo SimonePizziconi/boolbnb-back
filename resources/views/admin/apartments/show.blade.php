@@ -209,5 +209,5 @@
 
 
 @section('title')
-    Details - {{ $apartment->title }}
+    Dettaglio - {{ $apartment->title }}
 @endsection
