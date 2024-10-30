@@ -55,7 +55,7 @@
                 <tbody>
                     @foreach ($apartments as $apartment)
                         <tr>
-                            <td class="d-none d-md-table-cell">{{ $apartment->id }}</td>
+                            <td class="d-none d-md-table-cell mytable-cell">{{ $apartment->id }}</td>
                             <td class="d-none d-md-table-cell">
                                 <div class="ratio ratio-1x1">
                                     <img src="{{ asset('storage/' . $apartment->image_path) }}"
@@ -63,8 +63,8 @@
                                         onerror="this.src='/img/house-placeholder.jpg'">
                                 </div>
                             </td>
-                            <td>{{ $apartment->title }}</td>
-                            <td class="d-none d-md-table-cell">{{ $apartment->is_visible == 1 ? 'Pubblica' : 'Privata' }}
+                            <td class="mytable-cell">{{ $apartment->title }}</td>
+                            <td class="d-none d-md-table-cell mytable-cell">{{ $apartment->is_visible == 1 ? 'Pubblica' : 'Privata' }}
                             </td>
                             {{-- <td>{{ $apartment->rooms }}</td>
                         <td>{{ $apartment->beds }}</td>
@@ -74,12 +74,11 @@
                             {{-- <td>
                             <div id="map-{{ $apartment->id }}" style="width: 200px; height: 150px;"></div>
                         </td> --}}
-                            <td class="d-none d-lg-table-cell">
+                            <td class="d-none d-lg-table-cell mytable-cell">
                                 @forelse ($apartment->sponsorships as $sponsorship)
                                     <div>
-                                        <span class="badge text-bg-success custom-delete">{{ $sponsorship->name }}</span>
                                         @if ($sponsorship->pivot->end_date)
-                                            <small>Scadenza:
+                                            <small class="badge custom-delete">Scadenza:
                                                 {{ \Carbon\Carbon::parse($sponsorship->pivot->end_date)->format('d/m/Y') }}</small>
                                         @endif
                                     </div>
@@ -95,7 +94,7 @@
                                 -
                             @endforelse
                         </td> --}}
-                            <td>
+                            <td class="mytable-cell">
                                 <div class="btn-resp d-inline-flex gap-1">
                                     <a data-bs-toggle="tooltip" data-bs-placement="top" title="Dettagli"
                                         class="btn custom-show"

@@ -36,17 +36,17 @@
                                 </div>
                             </td>
 
-                            <td class="d-none d-md-table-cell apartment-cell message-cell">
+                            <td class="d-none d-md-table-cell apartment-cell mytable-cell">
                                 <a href="{{ route('admin.apartments.show', ['apartment' => $message->apartment->id]) }}"><strong>{{$message->apartment->title}}</strong></a>
                             </td>
 
-                            <td class="message-cell d-none d-md-table-cell">
+                            <td class="mytable-cell d-none d-md-table-cell">
                                 {{ $message->first_name }} {{ $message->last_name}}
                             </td>
-                            <td class="message-cell">{{($message->created_at)->format('H:m')}}</td>
-                            <td class="message-cell">{{($message->created_at)->format('d/m/Y')}}</td>
+                            <td class="mytable-cell">{{($message->created_at)->format('H:m')}}</td>
+                            <td class="mytable-cell">{{($message->created_at)->format('d/m/Y')}}</td>
 
-                            <td class="message-cell">
+                            <td class="mytable-cell">
                                 <a href="#readModal{{ $message->id }}" data-bs-toggle="modal"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Leggi" class="btn custom-delete close" {{-- {{route('admin.messages.open', $message)}} --}} >
 
