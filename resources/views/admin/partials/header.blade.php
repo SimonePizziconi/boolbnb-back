@@ -58,6 +58,11 @@
                                     <span><i class="fa-solid fa-envelope"></i> Messaggi</span>
                                 </a>
                             </li>
+                            <li class="nav-item d-inline-block d-md-none d-lg-none">
+                                <a class="nav-link" aria-current="page" href="{{ route('admin.index') }}">
+                                    <span><i class="fa-solid fa-chart-line"></i> Statistiche</span>
+                                </a>
+                            </li>
                             <li class="nav-item text-md-center">
                                 <div class="btn-group my-dropdown">
                                     <a class="nav-link" href="#" data-bs-toggle="dropdown" data-bs-auto-close="true"
