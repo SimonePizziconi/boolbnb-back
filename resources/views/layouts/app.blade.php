@@ -44,7 +44,11 @@
 </head>
 
 <body>
-    <div class="my_wrapper" @auth id="with_sidebar" @endauth>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <div class="my_wrapper hidden" @auth id="with_sidebar" @endauth>
         @auth
             <div class="my_sidebar">
                 @include('admin.partials.sidebar')
@@ -58,5 +62,15 @@
         </div>
     </div>
 </body>
+
+<script>
+    const loader = document.querySelector('.loader-container')
+    const wrapper = document.querySelector('.my_wrapper')
+
+    setTimeout(() => {
+        loader.classList.add('hidden');
+        wrapper.classList.remove('hidden');
+    }, 2000);
+</script>
 
 </html>
