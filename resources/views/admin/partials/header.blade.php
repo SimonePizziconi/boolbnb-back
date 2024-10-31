@@ -1,5 +1,6 @@
 <header>
-    <nav class="navbar fixed-top navbar-expand-md d-flex align-items-center navbar-light shadow-sm">
+    <nav
+        class=" {{ Auth::check() ? 'my-nav navbar fixed-top navbar-expand-md d-flex align-items-center navbar-light shadow-sm' : 'guest-nav navbar' }} ">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('admin.index') }}">Dashboard</a>
 
@@ -59,11 +60,12 @@
                             </li>
                             <li class="nav-item text-md-center">
                                 <div class="btn-group my-dropdown">
-                                    <a  class="nav-link" href="#" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                                    <a class="nav-link" href="#" data-bs-toggle="dropdown" data-bs-auto-close="true"
+                                        aria-expanded="false">
                                         <i class="fa-solid fa-user my_icon d-none d-md-inline-block d-lg-inline-block"></i>
                                         <span class="d-block fw-bold fs-5 d-md-none">{{ Auth::user()->email }}</span>
                                         <span
-                                        class="d-none d-md-block mt-1">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
+                                            class="d-none d-md-block mt-1">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
@@ -81,7 +83,7 @@
                                             </form>
                                         </li>
                                     </ul>
-                                  </div>
+                                </div>
                             </li>
                             {{-- <li class="nav-item dropstart text-md-center">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

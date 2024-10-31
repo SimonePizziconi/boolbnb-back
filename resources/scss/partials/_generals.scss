@@ -392,11 +392,62 @@ table{
     }
 }
 
+header{
+    .guest-nav{
+        width: 100%;
+        background-color: var(--primary) !important;
+        color: var(--neutral) !important;
+        @media (max-width: 767px) {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        a{
+            color: var(--neutral) !important;
+        }
+
+        .dropstart{
+            .dropdown-toggle::before{
+                display: none;
+
+            }
+        }
+
+        .navbar-toggler{
+            border-color: var(--neutral) !important;
+        }
+
+        .navbar-toggler-icon {
+            --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='%23FFFFFF' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M2 2.5h12M2 8h12M2 13.5h12'/%3E%3C/svg%3E");
+          }
+
+        .offcanvas-header{
+            background-color: var(--primary) !important;
+            color: var(--neutral) !important;
+        }
+
+        .offcanvas-body{
+            background-color: var(--primary) !important;
+            color: var(--neutral) !important;
+        }
+
+        .dropdown-menu{
+            background-color: var(--primary) !important;
+            color: var(--neutral) !important;
+            border-color: var(--neutral) !important;
+
+            .dropdown-item:hover{
+                background-color: var(--secondary) !important;
+            }
+        }
+}
+}
+
 
 
 header{
 
-    nav{
+    .my-nav{
         margin-left: 220px; /* Stessa larghezza della sidebar */
         width: calc(100% - 220px); /* Adatta la larghezza */
         z-index: 1030;
